@@ -31,6 +31,7 @@ author: Project Management Office (PMO)
 | `PRD.md` | ข้อกำหนดทางธุรกิจ |
 | `SRS.md` | ข้อกำหนดทางซอฟต์แวร์ |
 | `REQUIREMENTS.md` | ข้อกำหนดระดับ Production-grade |
+| `01_SYSTEM_ARCHITECTURE.md` | เอกสารสถาปัตยกรรมระบบ (System Architecture) |
 
 # 6. Documents In Progress
 | Document | Description |
@@ -41,7 +42,6 @@ author: Project Management Office (PMO)
 # 7. Pending Documents
 | Document | Description |
 |---|---|
-| `Architecture.md` | เอกสารการออกแบบสถาปัตยกรรมระบบ |
 | `Database.md` | เอกสารการออกแบบฐานข้อมูล |
 | `API.md` | เอกสารการออกแบบ API Contract |
 
@@ -61,7 +61,7 @@ author: Project Management Office (PMO)
 - **Status:** Initialized and Documented (ผ่านกระบวนการตั้งค่าโปรเจกต์เรียบร้อย พร้อมสำหรับการวิเคราะห์ออกแบบ)
 
 # 13. Architecture Status
-- Not Started
+- Complete
 
 # 14. Database Status
 - Not Started
@@ -96,7 +96,7 @@ author: Project Management Office (PMO)
 # 24. Next 10 Tasks
 | Task | Description | Status |
 |---|---|---|
-| 1 | ออกแบบ System Architecture (High-level) | Pending |
+| 1 | ออกแบบ System Architecture (High-level) | Complete |
 | 2 | ออกแบบ Database Schema และ ERD | Pending |
 | 3 | กำหนด API Contract ด้วย OpenAPI | Pending |
 | 4 | กำหนด Use Cases และ User Flow | Pending |
@@ -129,7 +129,7 @@ gantt
 |---|---|---|
 | Milestone 0 | Initialize documentation governance | Complete |
 | Milestone 1 | Complete requirements phase | Complete |
-| Milestone 2 | Architecture documentation | Pending |
+| Milestone 2 | Architecture documentation | Complete |
 | Milestone 3 | Database design | Pending |
 | Milestone 4 | API specification | Pending |
 | Milestone 5 | Analysis artifacts | Pending |
