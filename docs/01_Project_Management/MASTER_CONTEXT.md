@@ -40,7 +40,7 @@ author: Documentation Architect
 | **PRODUCT_VISION** | `docs/02_Requirements/02_PRODUCT_VISION.md` | Complete | วิสัยทัศน์ กลุ่มเป้าหมาย Value Proposition และเป้าหมายทางธุรกิจ |
 | **PRD** | `docs/02_Requirements/03_PRD.md` | Complete | Product Requirements Document กำหนดขอบเขตฟีเจอร์สำหรับ MVP |
 | **SRS** | `docs/02_Requirements/04_SRS.md` | Complete | Software Requirements Specification กำหนดรายละเอียดเชิงเทคนิคและมาตรฐาน |
-| **REQUIREMENTS** | `docs/02_Requirements/05_REQUIREMENTS.md` | Draft | รายละเอียด Requirement ระดับ Production-grade (จัดทำอยู่) |
+| **REQUIREMENTS** | `docs/02_Requirements/05_REQUIREMENTS.md` | Complete | รายละเอียด Requirement ระดับ Production-grade |
 | **Architecture** | `docs/03_Architecture/*` | Not Started | เอกสารการออกแบบสถาปัตยกรรมระบบ (System Architecture & Microservices) |
 | **Database** | `docs/03_Architecture/Database.md` | Not Started | การออกแบบโครงสร้างฐานข้อมูล (Database Schema, ER Diagram) |
 | **API** | `docs/03_Architecture/API.md` | Not Started | ข้อตกลงการเชื่อมต่อ API (API Contract & OpenAPI Specification) |
@@ -119,11 +119,10 @@ EV-Jarvis/
 สถานะการพัฒนาของโปรเจกต์ในระดับ Milestone ปัจจุบัน:
 
 - **Completed:** 
-  - เอกสารนโยบายและวิสัยทัศน์ (PROJECT_RULES, AI_AGENT_RULES, PRODUCT_VISION)
-  - ขอบเขตและความต้องการระบบ (PRD, SRS)
+  - เอกสารนโยบายและวิสัยทัศน์ (PROJECT_RULES, AI_AGENT_RULES, PRODUCT_VISION, MASTER_CONTEXT)
+  - ขอบเขตและความต้องการระบบแบบเต็มรูปแบบ (PRD, SRS, REQUIREMENTS)
 - **In Progress:** 
-  - การจัดทำเอกสาร REQUIREMENTS แบบละเอียด (05_REQUIREMENTS.md)
-  - การสรุปบริบทส่วนกลางใน MASTER_CONTEXT.md
+  - เตรียมเข้าสู่ Phase 2 (Architecture Design)
 - **Next Document:** 
   - เอกสาร System Architecture (การออกแบบระบบ)
   - เอกสาร Database Schema (ERD และตาราง)
