@@ -32,6 +32,7 @@ author: Project Management Office (PMO)
 | `SRS.md` | ข้อกำหนดทางซอฟต์แวร์ |
 | `REQUIREMENTS.md` | ข้อกำหนดระดับ Production-grade |
 | `01_SYSTEM_ARCHITECTURE.md` | เอกสารสถาปัตยกรรมระบบ (System Architecture) |
+| `02_C4_MODEL.md` | เอกสาร C4 Architecture Model (C4 Model) |
 
 # 6. Documents In Progress
 | Document | Description |
@@ -150,6 +151,7 @@ gantt
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
 | 1.0.0 | 2026-08-02 | Complete | PMO | Initial release of Project Progress |
+| 1.1.0 | 2026-08-02 | Complete | Principal Solution Architect | Added 02_C4_MODEL.md to completed documents |
 
 ### Progress Flow
 
