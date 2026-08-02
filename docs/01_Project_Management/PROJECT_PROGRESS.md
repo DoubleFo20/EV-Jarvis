@@ -35,6 +35,7 @@ author: Project Management Office (PMO)
 | `02_C4_MODEL.md` | เอกสาร C4 Architecture Model (C4 Model) |
 | `03_TECH_STACK.md` | เอกสารชุดเทคโนโลยี (Technology Stack) |
 | `04_DEPLOYMENT.md` | เอกสารสถาปัตยกรรมการนำระบบขึ้นทำงาน (Deployment Architecture) |
+| `05_SECURITY_ARCHITECTURE.md` | เอกสารสถาปัตยกรรมความปลอดภัย (Security Architecture) |
 
 # 6. Documents In Progress
 | Document | Description |
