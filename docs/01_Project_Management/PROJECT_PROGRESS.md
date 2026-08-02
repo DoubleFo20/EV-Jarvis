@@ -33,6 +33,7 @@ author: Project Management Office (PMO)
 | `REQUIREMENTS.md` | ข้อกำหนดระดับ Production-grade |
 | `01_SYSTEM_ARCHITECTURE.md` | เอกสารสถาปัตยกรรมระบบ (System Architecture) |
 | `02_C4_MODEL.md` | เอกสาร C4 Architecture Model (C4 Model) |
+| `03_TECH_STACK.md` | เอกสารชุดเทคโนโลยี (Technology Stack) |
 
 # 6. Documents In Progress
 | Document | Description |
