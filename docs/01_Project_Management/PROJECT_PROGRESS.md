@@ -39,6 +39,7 @@ author: Project Management Office (PMO)
 | `06_AI_ARCHITECTURE.md` | เอกสารสถาปัตยกรรมปัญญาประดิษฐ์ (AI Architecture) |
 | `01_DATABASE_DESIGN.md` | เอกสารการออกแบบฐานข้อมูล (Database Architecture) |
 | `02_ERD.md` | แผนภาพความสัมพันธ์ของเอนทิตี (Entity Relationship Diagram) |
+| `03_DATA_DICTIONARY.md` | พจนานุกรมข้อมูล (Data Dictionary) |
 
 # 6. Documents In Progress
 | Document | Description |
