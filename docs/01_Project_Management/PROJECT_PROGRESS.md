@@ -44,6 +44,7 @@ author: Project Management Office (PMO)
 | `01_API_SPECIFICATION.md` | ข้อกำหนดและการออกแบบ API (API Specification) |
 | `02_AUTHENTICATION.md` | สถาปัตยกรรมการยืนยันตัวตนและสิทธิ์ (Auth Architecture) |
 | `03_OPENAPI.md` | สเปก OpenAPI (OpenAPI Specification) |
+| `04_WEBHOOKS.md` | สถาปัตยกรรม Webhook และ Async Queue (Webhooks Architecture) |
 
 # 6. Documents In Progress
 | Document | Description |

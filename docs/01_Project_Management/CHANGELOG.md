@@ -1,7 +1,7 @@
 ---
 id: DOC-007
 title: Changelog
-version: 0.1.0
+version: 0.2.0
 last_updated: 2026-08-02
 status: Complete
 author: Documentation Release Manager
@@ -17,6 +17,18 @@ author: Documentation Release Manager
 - [PRD](../02_Requirements/03_PRD.md) 
 - [SRS](../02_Requirements/04_SRS.md) 
 - [REQUIREMENTS](../02_Requirements/05_REQUIREMENTS.md)
+
+---
+
+## [v0.2.0] - 2026-08-02
+
+### Added
+- เพิ่มเอกสารสถาปัตยกรรมระบบ: `01_SYSTEM_ARCHITECTURE.md`, `02_C4_MODEL.md`, `03_TECH_STACK.md`, `04_DEPLOYMENT.md`, `05_SECURITY_ARCHITECTURE.md`, `06_AI_ARCHITECTURE.md`
+- เพิ่มเอกสารสถาปัตยกรรมฐานข้อมูล: `01_DATABASE_DESIGN.md`, `02_ERD.md`, `03_DATA_DICTIONARY.md`, `04_MIGRATION.md`
+- เพิ่มเอกสารสถาปัตยกรรม API: `01_API_SPECIFICATION.md`, `02_AUTHENTICATION.md`, `03_OPENAPI.md`, `04_WEBHOOKS.md`
+
+### Architecture
+- Completed System, Database, and API Architecture specifications.
 
 ---
 
@@ -80,15 +92,8 @@ author: Documentation Release Manager
 
 | Project Version | Release Date | Description | Status |
 |---|---|---|---|
+| v0.2.0 | 2026-08-02 | Architecture, Database, & API Design Phase | Released |
 | v0.1.0 | 2026-08-02 | Requirements Phase & Documentation Governance | Released |
-
-## Git Commit History Table
-
-| Commit Hash | Date | Message | Scope |
-|---|---|---|---|
-| `eddf7e2` | 2026-08-02 | docs: update master context status for phase 1 completion | Master Context Update |
-| `df92444` | 2026-08-02 | docs: complete requirements phase | Requirements Docs |
-| `c6eba92` | 2026-08-02 | docs: initialize documentation governance | Governance Docs |
 
 ## Milestone History
 
@@ -96,6 +101,7 @@ author: Documentation Release Manager
 |---|---|---|---|
 | Milestone 0 | v0.1.0-alpha | Completed | PROJECT_RULES, AI_AGENT_RULES, MASTER_CONTEXT |
 | Milestone 1 | v0.1.0 | Completed | PRODUCT_VISION, PRD, SRS, REQUIREMENTS |
+| Milestone 2 | v0.2.0 | Completed | Architecture, Database, API Docs |
 
 ## Document History
 
@@ -110,6 +116,20 @@ author: Documentation Release Manager
 | `REQUIREMENTS.md` | Added | v0.1.0 |
 | `PROJECT_PROGRESS.md` | Added | v0.1.0 |
 | `CHANGELOG.md` | Added | v0.1.0 |
+| `01_SYSTEM_ARCHITECTURE.md` | Added | v0.2.0 |
+| `02_C4_MODEL.md` | Added | v0.2.0 |
+| `03_TECH_STACK.md` | Added | v0.2.0 |
+| `04_DEPLOYMENT.md` | Added | v0.2.0 |
+| `05_SECURITY_ARCHITECTURE.md` | Added | v0.2.0 |
+| `06_AI_ARCHITECTURE.md` | Added | v0.2.0 |
+| `01_DATABASE_DESIGN.md` | Added | v0.2.0 |
+| `02_ERD.md` | Added | v0.2.0 |
+| `03_DATA_DICTIONARY.md` | Added | v0.2.0 |
+| `04_MIGRATION.md` | Added | v0.2.0 |
+| `01_API_SPECIFICATION.md` | Added | v0.2.0 |
+| `02_AUTHENTICATION.md` | Added | v0.2.0 |
+| `03_OPENAPI.md` | Added | v0.2.0 |
+| `04_WEBHOOKS.md` | Added | v0.2.0 |
 
 ## Release Timeline
 
@@ -120,4 +140,6 @@ timeline
                : Milestone 0 - Documentation Governance
     2026-08-02 : Milestone 1 - Requirements Phase Completed
                : v0.1.0 Released
+               : Milestone 2 - Architecture Phase Completed
+               : v0.2.0 Released
 ```
