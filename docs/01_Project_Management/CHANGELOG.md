@@ -26,6 +26,7 @@ author: Documentation Release Manager
 - เพิ่มเอกสารสถาปัตยกรรมระบบ: `01_SYSTEM_ARCHITECTURE.md`, `02_C4_MODEL.md`, `03_TECH_STACK.md`, `04_DEPLOYMENT.md`, `05_SECURITY_ARCHITECTURE.md`, `06_AI_ARCHITECTURE.md`
 - เพิ่มเอกสารสถาปัตยกรรมฐานข้อมูล: `01_DATABASE_DESIGN.md`, `02_ERD.md`, `03_DATA_DICTIONARY.md`, `04_MIGRATION.md`
 - เพิ่มเอกสารสถาปัตยกรรม API: `01_API_SPECIFICATION.md`, `02_AUTHENTICATION.md`, `03_OPENAPI.md`, `04_WEBHOOKS.md`
+- บังคับใช้และเพิ่ม **Sprint Verification Policy** ลงใน `01_PROJECT_RULES.md` และ `AI_AGENT_RULES.md`
 
 ### Architecture
 - Completed System, Database, and API Architecture specifications.

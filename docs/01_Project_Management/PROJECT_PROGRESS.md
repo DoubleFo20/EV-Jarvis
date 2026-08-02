@@ -98,7 +98,7 @@ author: Project Management Office (PMO)
 - Not Started
 
 # 16. Backend Status
-- Not Started
+- In Progress (Sprint 0 - Foundation Verified & Runnable)
 
 # 17. Frontend Status
 - Not Started

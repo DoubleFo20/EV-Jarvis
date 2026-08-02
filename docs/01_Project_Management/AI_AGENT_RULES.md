@@ -840,3 +840,54 @@ Reviewer ต้องตรวจทุกข้อก่อนอนุมั�
 | Version | Date | Author | Description |
 |---------|------|--------|-------------|
 | 1.0.0 | 2026-08-02 | ChatGPT | Initial AI Agent Rules — ครอบคลุม role definition, repository governance, documentation standards, output policy, prompt rules, repository rules, file rules, naming convention, document template, cross-reference rules, conflict resolution, quality checklist, review checklist, violation policy |
+
+
+# Sprint Verification Policy
+
+Rules:
+
+- No AI Agent may start Sprint N+1 until Sprint N passes every verification.
+- Never report "Completed" without executing verification commands.
+- Every Sprint must include Definition of Done.
+- Every verification command must succeed with exit code 0.
+- If one command fails, Sprint status remains "In Progress".
+- Fix root cause before implementing any new feature.
+- Never skip verification to save time.
+- Verification results must be included in the final report.
+
+Required verification commands:
+
+Backend
+
+npm install
+npm run build
+npm run lint
+npm run dev
+
+Frontend (when created)
+
+npm install
+npm run build
+npm run lint
+npm run dev
+
+Database
+
+Migration
+Schema Validation
+
+Git
+
+git status
+
+Definition of Done
+
+A Sprint is COMPLETE only when:
+
+✓ Build passes
+✓ Lint passes
+✓ Dev server starts
+✓ No TypeScript errors
+✓ No critical warnings
+✓ Git working tree is clean
+✓ Verification evidence is attached
