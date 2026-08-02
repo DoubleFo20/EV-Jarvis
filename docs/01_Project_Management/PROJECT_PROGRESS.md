@@ -40,6 +40,7 @@ author: Project Management Office (PMO)
 | `01_DATABASE_DESIGN.md` | เอกสารการออกแบบฐานข้อมูล (Database Architecture) |
 | `02_ERD.md` | แผนภาพความสัมพันธ์ของเอนทิตี (Entity Relationship Diagram) |
 | `03_DATA_DICTIONARY.md` | พจนานุกรมข้อมูล (Data Dictionary) |
+| `04_MIGRATION.md` | คู่มือการย้ายโครงสร้างฐานข้อมูล (Database Migration) |
 
 # 6. Documents In Progress
 | Document | Description |
