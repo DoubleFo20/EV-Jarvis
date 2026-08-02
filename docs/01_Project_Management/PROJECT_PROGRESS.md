@@ -43,6 +43,7 @@ author: Project Management Office (PMO)
 | `04_MIGRATION.md` | คู่มือการย้ายโครงสร้างฐานข้อมูล (Database Migration) |
 | `01_API_SPECIFICATION.md` | ข้อกำหนดและการออกแบบ API (API Specification) |
 | `02_AUTHENTICATION.md` | สถาปัตยกรรมการยืนยันตัวตนและสิทธิ์ (Auth Architecture) |
+| `03_OPENAPI.md` | สเปก OpenAPI (OpenAPI Specification) |
 
 # 6. Documents In Progress
 | Document | Description |
