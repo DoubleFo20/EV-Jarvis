@@ -3,7 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.errorHandler = void 0;
 const logger_1 = require("../config/logger");
 // Standard RFC 7807 Error Response
-const errorHandler = (err, req, res, next) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const errorHandler = (err, req, res, _next) => {
     logger_1.logger.error('Unhandled Exception:', {
         message: err.message,
         stack: err.stack,

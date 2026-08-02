@@ -2,7 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import { logger } from '../config/logger';
 
 // Standard RFC 7807 Error Response
-export const errorHandler = (err: any, req: Request, res: Response, next: NextFunction) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const errorHandler = (err: any, req: Request, res: Response, _next: NextFunction) => {
   logger.error('Unhandled Exception:', {
     message: err.message,
     stack: err.stack,
