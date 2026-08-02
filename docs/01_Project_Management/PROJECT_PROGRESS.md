@@ -41,6 +41,7 @@ author: Project Management Office (PMO)
 | `02_ERD.md` | แผนภาพความสัมพันธ์ของเอนทิตี (Entity Relationship Diagram) |
 | `03_DATA_DICTIONARY.md` | พจนานุกรมข้อมูล (Data Dictionary) |
 | `04_MIGRATION.md` | คู่มือการย้ายโครงสร้างฐานข้อมูล (Database Migration) |
+| `01_API_SPECIFICATION.md` | ข้อกำหนดและการออกแบบ API (API Specification) |
 
 # 6. Documents In Progress
 | Document | Description |
@@ -51,7 +52,6 @@ author: Project Management Office (PMO)
 # 7. Pending Documents
 | Document | Description |
 |---|---|
-| `API.md` | เอกสารการออกแบบ API Contract |
 
 # 8. Current Active Task
 - จัดทำเอกสารติดตามผล (Project Documentation & Tracking)
