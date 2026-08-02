@@ -22,6 +22,19 @@ author: Project Management Office (PMO)
 - **Progress:** 10% (Phase 1 เสร็จสมบูรณ์ เตรียมเข้าสู่ Architecture Design)
 
 # 5. Completed Documents
+
+## Documentation Folders Status
+- ✅ 01_Project_Management : COMPLETE
+- ✅ 02_Requirements : COMPLETE
+- ✅ 03_Architecture : COMPLETE
+- ✅ 04_Development : COMPLETE
+- ✅ 05_Testing : COMPLETE
+- ✅ 06_Deployment : COMPLETE
+- ✅ 07_Database : COMPLETE
+- ✅ 08_API : COMPLETE
+- ✅ 09_Implementation : COMPLETE
+
+## Files
 | Document | Description |
 |---|---|
 | `PROJECT_RULES.md` | กฎและมาตรฐานของโปรเจกต์ |
@@ -45,6 +58,10 @@ author: Project Management Office (PMO)
 | `02_AUTHENTICATION.md` | สถาปัตยกรรมการยืนยันตัวตนและสิทธิ์ (Auth Architecture) |
 | `03_OPENAPI.md` | สเปก OpenAPI (OpenAPI Specification) |
 | `04_WEBHOOKS.md` | สถาปัตยกรรม Webhook และ Async Queue (Webhooks Architecture) |
+| `01_IMPLEMENTATION_PLAN.md` | แผนดำเนินการหลักเพื่อการพัฒนา (Master Implementation Plan) |
+| `02_MVP_CHECKLIST.md` | รายการตรวจสอบและติดตามความคืบหน้า (MVP Checklist) |
+| `03_AI_TASK_BREAKDOWN.md` | การแยกย่อยงานสำหรับพัฒนาด้วย AI (AI Task Breakdown) |
+| `TECHNICAL_DEBT.md` | บันทึกข้อจำกัดและหนี้ทางเทคนิค (Technical Debt Register) |
 
 # 6. Documents In Progress
 | Document | Description |
