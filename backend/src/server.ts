@@ -1,33 +1,59 @@
+import type { Server } from 'node:http';
 import app from './app';
 import { env } from './config/env';
 import { logger } from './config/logger';
+import { connectDatabase, disconnectDatabase } from './lib/prisma';
 
-const startServer = () => {
+let server: Server | undefined;
+
+const startServer = async (): Promise<void> => {
   try {
-    const port = env.PORT;
+    await connectDatabase();
 
-    app.listen(port, () => {
-      logger.info(`=================================`);
-      logger.info(`🚀 EV-JARVIS Server is running`);
-      logger.info(`🌍 Environment: ${env.NODE_ENV}`);
-      logger.info(`🔌 Port: ${port}`);
-      logger.info(`=================================`);
+    server = app.listen(env.PORT, () => {
+      logger.info('EV-JARVIS API started', {
+        environment: env.NODE_ENV,
+        port: env.PORT,
+      });
     });
   } catch (error) {
-    logger.error('Error starting server:', error);
+    logger.error('Failed to start EV-JARVIS API', {
+      error: error instanceof Error ? error.message : 'Unknown error',
+    });
     process.exit(1);
   }
 };
 
-startServer();
+const shutdown = async (signal: string): Promise<void> => {
+  logger.info('Shutdown requested', { signal });
 
-// Handle unexpected closures
-process.on('unhandledRejection', (reason, promise) => {
-  logger.error('Unhandled Rejection at:', promise, 'reason:', reason);
-  // Optional: process.exit(1);
+  if (server) {
+    await new Promise<void>((resolve, reject) => {
+      server?.close((error) => (error ? reject(error) : resolve()));
+    });
+  }
+
+  await disconnectDatabase();
+  process.exit(0);
+};
+
+void startServer();
+
+process.on('SIGTERM', () => {
+  void shutdown('SIGTERM');
+});
+
+process.on('SIGINT', () => {
+  void shutdown('SIGINT');
+});
+
+process.on('unhandledRejection', (reason) => {
+  logger.error('Unhandled rejection', {
+    reason: reason instanceof Error ? reason.message : String(reason),
+  });
 });
 
 process.on('uncaughtException', (error) => {
-  logger.error('Uncaught Exception thrown:', error);
+  logger.error('Uncaught exception', { error: error.message });
   process.exit(1);
 });

@@ -1,23 +1,28 @@
 import { Request, Response, NextFunction } from 'express';
 import { logger } from '../config/logger';
+import { env } from '../config/env';
+import { AppError } from '../utils/app-error';
 
-// Standard RFC 7807 Error Response
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const errorHandler = (err: any, req: Request, res: Response, _next: NextFunction) => {
-  logger.error('Unhandled Exception:', {
-    message: err.message,
-    stack: err.stack,
+export const errorHandler = (err: unknown, req: Request, res: Response, _next: NextFunction) => {
+  const appError = err instanceof AppError ? err : null;
+  const error = err instanceof Error ? err : new Error('Unknown error');
+  const statusCode = appError?.statusCode ?? 500;
+
+  logger.error('Request failed', {
+    message: error.message,
+    stack: env.NODE_ENV === 'production' ? undefined : error.stack,
     method: req.method,
-    url: req.url,
+    url: req.originalUrl,
+    requestId: req.requestId,
   });
 
-  const statusCode = err.status || err.statusCode || 500;
-  
   res.status(statusCode).json({
     type: 'about:blank',
-    title: err.name || 'Internal Server Error',
+    title: appError?.name ?? 'Internal Server Error',
     status: statusCode,
-    detail: err.message || 'An unexpected error occurred',
+    code: appError?.code ?? 'INTERNAL_SERVER_ERROR',
+    detail: appError?.message ?? 'An unexpected error occurred',
     instance: req.originalUrl,
+    requestId: req.requestId,
   });
 };
