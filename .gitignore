@@ -27,6 +27,8 @@ pnpm-debug.log*
 .turbo/
 .vite/
 .vitest/
+.next/
+*.tsbuildinfo
 
 # Editor and operating system files
 .idea/

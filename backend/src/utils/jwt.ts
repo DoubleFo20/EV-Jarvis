@@ -6,6 +6,7 @@ import { AppError } from './app-error';
 const claimsSchema = z.object({
   sub: z.string().uuid(),
   email: z.string().email().optional(),
+  aud: z.union([z.literal('authenticated'), z.array(z.string())]),
   app_metadata: z.record(z.string(), z.unknown()).optional(),
 });
 
@@ -23,6 +24,11 @@ export const verifyAccessToken = async (token: string): Promise<AuthPrincipal> =
 
   if (!parsedClaims.success) {
     throw new AppError(401, 'INVALID_ACCESS_TOKEN', 'Access token claims are invalid');
+  }
+
+  const audience = parsedClaims.data.aud;
+  if (Array.isArray(audience) && !audience.includes('authenticated')) {
+    throw new AppError(401, 'INVALID_ACCESS_TOKEN', 'Access token audience is invalid');
   }
 
   const claimedRole = parsedClaims.data.app_metadata?.role;

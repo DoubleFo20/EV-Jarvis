@@ -1,5 +1,5 @@
 import type { RequestHandler } from 'express';
-import { authService } from '../services/auth.service';
+import { authService } from '../modules/auth/auth.service';
 import { asyncHandler } from '../utils/async-handler';
 
 export const requireAuth: RequestHandler = asyncHandler(async (req, _res, next) => {

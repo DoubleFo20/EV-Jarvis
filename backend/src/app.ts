@@ -10,6 +10,7 @@ import { requestIdMiddleware } from './middlewares/request-id';
 
 // Routes
 import healthRoutes from './routes/health.route';
+import authRoutes from './modules/auth/auth.routes';
 
 const app: Application = express();
 
@@ -41,6 +42,7 @@ app.use(apiRateLimiter);
 // API Routes
 app.use('/', healthRoutes);
 app.use('/api/v1', healthRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 // Fallback Route for 404
 app.use((req, res) => {

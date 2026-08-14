@@ -8,3 +8,36 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+enum SystemRole {
+  user
+  admin
+
+  @@map("system_role")
+}
+
+model User {
+  id              String       @id @db.Uuid
+  email           String       @unique @db.VarChar(320)
+  role            SystemRole   @default(user)
+  isActive        Boolean      @default(true) @map("is_active")
+  termsAcceptedAt DateTime     @map("terms_accepted_at") @db.Timestamptz(6)
+  deletedAt       DateTime?    @map("deleted_at") @db.Timestamptz(6)
+  createdAt       DateTime     @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime     @updatedAt @map("updated_at") @db.Timestamptz(6)
+  profile         UserProfile?
+
+  @@map("users")
+}
+
+model UserProfile {
+  id          String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String   @unique @map("user_id") @db.Uuid
+  fullName    String?  @map("full_name") @db.VarChar(100)
+  phoneNumber String?  @unique @map("phone_number") @db.VarChar(20)
+  createdAt   DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("user_profiles")
+}

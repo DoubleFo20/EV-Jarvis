@@ -16,10 +16,8 @@ const startServer = async (): Promise<void> => {
         port: env.PORT,
       });
     });
-  } catch (error) {
-    logger.error('Failed to start EV-JARVIS API', {
-      error: error instanceof Error ? error.message : 'Unknown error',
-    });
+  } catch {
+    logger.error('Failed to start EV-JARVIS API');
     process.exit(1);
   }
 };

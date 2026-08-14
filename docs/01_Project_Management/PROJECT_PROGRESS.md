@@ -1,9 +1,9 @@
 ---
 id: DOC-006
 title: Project Progress
-version: 1.0.0
-last_updated: 2026-08-02
-status: Complete
+version: 1.2.0
+last_updated: 2026-08-07
+status: Active
 author: Project Management Office (PMO)
 ---
 
@@ -13,13 +13,13 @@ author: Project Management Office (PMO)
 - **Objective:** สร้างแพลตฟอร์มผู้ช่วย AI อัจฉริยะสำหรับเจ้าของรถ EV
 
 # 2. Current Phase
-- **Phase:** Phase 1 - Requirements & Architecture Definition
+- **Phase:** Phase 2 - Sprint Implementation
 
 # 3. Current Milestone
-- **Milestone:** Milestone 1 (Complete Requirements Phase)
+- **Milestone:** Sprint 1 Milestone 3 (Next.js SSR Authentication — Pre-commit)
 
 # 4. Overall Progress (%)
-- **Progress:** 10% (Phase 1 เสร็จสมบูรณ์ เตรียมเข้าสู่ Architecture Design)
+- **Progress:** Sprint 1 Milestone 3 implementation และ live DEV verification เสร็จแล้ว อยู่ระหว่างปิด pre-commit gate
 
 # 5. Completed Documents
 
@@ -74,10 +74,10 @@ author: Project Management Office (PMO)
 |---|---|
 
 # 8. Current Active Task
-- จัดทำเอกสารติดตามผล (Project Documentation & Tracking)
+- ปิด Sprint 1 Milestone 3 pre-commit blockers, ตรวจ diff และขอ Owner อนุมัติ Commit
 
 # 9. Next Recommended Task
-- เตรียมเริ่มต้น Milestone 2: Architecture Design
+- Owner ตรวจ verification evidence และรายการไฟล์ safe-to-stage ก่อนอนุมัติ Git mutation
 
 # 10. Current Branch
 - `main`
@@ -86,40 +86,49 @@ author: Project Management Office (PMO)
 - `eddf7e2`
 
 # 12. Repository Status
-- **Status:** Initialized and Documented (ผ่านกระบวนการตั้งค่าโปรเจกต์เรียบร้อย พร้อมสำหรับการวิเคราะห์ออกแบบ)
+- **Status:** Sprint 1 Authentication implemented and verified; dirty working tree ยังไม่ stage/commit
 
 # 13. Architecture Status
-- Complete
+- Approved with Next.js 16 App Router SSR override for Frontend (Owner decision 2026-08-07)
 
 # 14. Database Status
-- Not Started
+- Auth/Profile migration deployed to EV-JARVIS-DEV; RBAC/RLS and cleanup verified
 
 # 15. API Status
-- Not Started
+- Sprint 1 Auth API complete and verified
 
 # 16. Backend Status
-- Complete (Sprint 0 - Foundation Verified & Runnable)
+- Sprint 1 Auth backend complete; claims/JWKS verification and Auth/RBAC tests pass
 
 # 17. Frontend Status
-- Not Started
+- Next.js SSR Auth complete: Register, Confirm, Login, Dashboard, Profile/RLS, Refresh and Logout
 
 # 18. AI Module Status
 - Not Started
 
 # 19. Testing Status
-- Not Started
+- Frontend and backend automated suites, runtime smoke and EV-JARVIS-DEV live Auth verification pass
 
 # 20. Deployment Status
 - Not Started
 
 # 21. Known Issues
-- ไม่มี (โครงการอยู่ในระยะเริ่มต้น)
+- ไม่มี Critical/High issue ใน Sprint 1 Milestone 3
 
 # 22. Risks
-- ความเสี่ยงจากการผสานรวม API จากค่ายรถหลายยี่ห้อ (Integration Risk)
+- Hosted DEV email quota อาจ rate-limit การทดสอบ registration; ห้าม retry loop และใช้ custom SMTP เฉพาะเมื่อ Owner อนุมัติ
+- Destructive DEV Auth verifier ต้องผ่าน environment name, approved project-ref fingerprint และ explicit opt-in gate ทุกครั้ง
 
 # 23. Blockers
-- ไม่มี (Unblocked)
+- ไม่มี implementation blocker; Commit/Push ยังรอคำสั่ง Owner โดยตรง
+
+## Sprint 1 Milestone 3 Verification Evidence
+
+- EV-JARVIS-DEV เท่านั้น; ไม่มี Production access
+- Public registration + verification email, Login, Dashboard, Profile/RLS, forced refresh, Logout และ post-logout protection ผ่าน
+- Disposable users/sessions ถูก revoke และ cleanup จาก `auth.users`, `public.users`, `public.user_profiles` แล้ว
+- Frontend build/typecheck/lint/tests และ Backend typecheck/Auth tests/Prisma validation ผ่าน
+- ไม่พบ secret ใน tracked diff และยังไม่มี Git mutation
 
 # 24. Next 10 Tasks
 | Task | Description | Status |
@@ -158,13 +167,13 @@ gantt
 | Milestone 0 | Initialize documentation governance | Complete |
 | Milestone 1 | Complete requirements phase | Complete |
 | Milestone 2 | Architecture documentation | Complete |
-| Milestone 3 | Database design | Pending |
-| Milestone 4 | API specification | Pending |
+| Milestone 3 | Database design | Complete |
+| Milestone 4 | API specification | Complete |
 | Milestone 5 | Analysis artifacts | Pending |
 | Milestone 6 | Initialize backend | Complete |
-| Milestone 7 | Initialize frontend | Pending |
+| Milestone 7 | Initialize frontend | Complete (Next.js SSR Owner-approved override) |
 | Milestone 8 | Add AI assistant | Pending |
-| Milestone 9 | Add test suite | Pending |
+| Milestone 9 | Add test suite | In Progress (Sprint 1 Auth coverage complete) |
 | Milestone 10 | Release Candidate (v1.0.0) | Pending |
 
 # 27. AI Working Context
@@ -177,6 +186,7 @@ gantt
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 1.2.0 | 2026-08-07 | Active | Project Owner / Codex | บันทึก Sprint 1 Milestone 3 implementation, Next.js SSR decision, DEV verification และ pre-commit state |
 | 1.0.0 | 2026-08-02 | Complete | PMO | Initial release of Project Progress |
 | 1.1.0 | 2026-08-02 | Complete | Principal Solution Architect | Added 02_C4_MODEL.md to completed documents |
 
