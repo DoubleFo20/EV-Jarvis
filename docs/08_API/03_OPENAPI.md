@@ -1,9 +1,9 @@
 ---
 id: DOC-021
 title: OpenAPI 3.1 Specification
-version: 1.0.0
-last_updated: 2026-08-02
-status: Complete
+version: 1.1.0
+last_updated: 2026-08-14
+status: Review
 author: Principal API Architect
 references:
   - docs/01_Project_Management/MASTER_CONTEXT.md
@@ -21,11 +21,11 @@ references:
 # OpenAPI 3.1 Specification — EV-JARVIS
 
 > **Document ID:** DOC-021
-> **Version:** 1.0.0
-> **Status:** Complete
+> **Version:** 1.1.0
+> **Status:** Review
 > **Project:** EV-JARVIS
 > **Owner:** Principal API Architect
-> **Last Updated:** 2026-08-02
+> **Last Updated:** 2026-08-14
 > **Specification Standard:** OpenAPI 3.1.0
 
 ---
@@ -41,6 +41,9 @@ references:
 - **Format:** JSON / YAML
 - **Encoding:** UTF-8
 - **Protocol:** HTTPS
+- **Machine Validation Status:** NOT EXECUTED — ยังไม่ได้ bundle YAML fragments เป็น machine-readable specification และยังไม่ได้รัน Swagger, Redocly หรือ OpenAPI validator
+
+สถานะ Review ของเอกสารนี้หมายถึง contract ได้รับการตรวจเทียบกับ Sprint 1 Auth implementation ในระดับเอกสารเท่านั้น ห้ามอ้างว่า OpenAPI schema ผ่าน machine validation จนกว่าจะมี command evidence และผล validator ที่สำเร็จ
 
 ## 4. Versioning Policy
 - **API Version:** ถูกระบุอยู่ใน Base URL (`/api/v1`)
@@ -79,23 +82,17 @@ components:
 ### 9. Common Error Objects
 ```yaml
 schemas:
-  ErrorObject:
+  ProblemDetails:
     type: object
+    required: [type, title, status, code, detail, instance]
     properties:
-      success:
-        type: boolean
-        example: false
-      error:
-        type: object
-        properties:
-          code:
-            type: string
-          message:
-            type: string
-          details:
-            type: array
-            items:
-              type: object
+      type: { type: string, example: about:blank }
+      title: { type: string, example: AppError }
+      status: { type: integer, example: 400 }
+      code: { type: string, example: VALIDATION_ERROR }
+      detail: { type: string, example: Request validation failed }
+      instance: { type: string, example: /api/v1/auth/register }
+      requestId: { type: string }
 ```
 
 ### 10. Pagination Objects
@@ -152,7 +149,65 @@ schemas:
 ## 14. Document Schemas
 
 ### Authentication
-`LoginRequest`, `RegisterRequest`, `TokenResponse`
+`RegisterRequest`, `RegistrationResult`, `LoginRequest`, `RefreshRequest`, `AuthSession`, `EmailVerificationRequest`, `ResendVerificationRequest`, `UserProfile`
+
+```yaml
+RegisterRequest:
+  type: object
+  required: [email, password, fullName, termsConsent]
+  properties:
+    email: { type: string, format: email, maxLength: 320 }
+    password: { type: string, format: password, minLength: 8, maxLength: 128 }
+    fullName: { type: string, minLength: 1, maxLength: 100 }
+    termsConsent: { type: boolean, const: true }
+RegistrationResult:
+  type: object
+  required: [userId, email, verificationRequired]
+  properties:
+    userId: { type: string, format: uuid }
+    email: { type: string, format: email }
+    verificationRequired: { type: boolean }
+LoginRequest:
+  type: object
+  required: [email, password]
+  properties:
+    email: { type: string, format: email, maxLength: 320 }
+    password: { type: string, format: password, minLength: 1, maxLength: 128 }
+RefreshRequest:
+  type: object
+  required: [refreshToken]
+  properties:
+    refreshToken: { type: string, minLength: 1, maxLength: 4096 }
+EmailVerificationRequest:
+  type: object
+  required: [tokenHash]
+  properties:
+    tokenHash: { type: string, minLength: 1, maxLength: 4096 }
+ResendVerificationRequest:
+  type: object
+  required: [email]
+  properties:
+    email: { type: string, format: email, maxLength: 320 }
+AuthSession:
+  type: object
+  required: [accessToken, refreshToken, expiresIn, tokenType]
+  properties:
+    accessToken: { type: string }
+    refreshToken: { type: string }
+    expiresIn: { type: integer }
+    expiresAt: { type: integer }
+    tokenType: { type: string, const: bearer }
+UserProfile:
+  type: object
+  required: [id, email, role, isActive]
+  properties:
+    id: { type: string, format: uuid }
+    email: { type: string, format: email }
+    role: { type: string, enum: [user, admin] }
+    isActive: { type: boolean }
+    fullName: { type: [string, 'null'] }
+    phoneNumber: { type: [string, 'null'] }
+```
 ### Users
 `UserProfile`, `UserSettings`
 ### Vehicles
@@ -189,17 +244,18 @@ schemas:
 ---
 ### Tag: Authentication
 
+เส้นทางด้านล่างเป็น Sprint 1 contract ที่ implement จริงใต้ base path `/api/v1` ณ `origin/main@e2cd0a7`
+
 #### `POST /auth/register`
 - **Operation ID:** `registerUser`
 - **Summary:** สมัครสมาชิกใหม่
 - **Description:** รับข้อมูลอีเมลและรหัสผ่านเพื่อสร้างบัญชี Supabase
 - **Security:** `None`
 - **Request Schema:** `RegisterRequest`
-- **Response Schema:** `TokenResponse`
-- **Error Schema:** `ErrorObject`
-- **Example:** `{"email":"test@ev.com","password":"..."}`
+- **Response:** `201` → `SuccessResponse<RegistrationResult>`
+- **Error Schema:** `ProblemDetails`
 - **Related Database Tables:** `users`, `user_profiles`
-- **Related Requirement IDs:** `SEC-001`
+- **Related Requirement IDs:** `FEAT-001`, `FR-001`, `SEC-001`
 
 #### `POST /auth/login`
 - **Operation ID:** `loginUser`
@@ -207,10 +263,55 @@ schemas:
 - **Description:** ยืนยันตัวตนและรับ JWT Access/Refresh Token
 - **Security:** `None`
 - **Request Schema:** `LoginRequest`
-- **Response Schema:** `TokenResponse`
-- **Error Schema:** `ErrorObject`
+- **Response:** `200` → `SuccessResponse<AuthSession>`
+- **Error Schema:** `ProblemDetails`
 - **Related Database Tables:** `users`
-- **Related Requirement IDs:** `SEC-002`
+- **Related Requirement IDs:** `FEAT-002`, `FR-002`, `SEC-002`
+
+#### `POST /auth/logout`
+- **Operation ID:** `logoutUser`
+- **Summary:** revoke session ปัจจุบัน
+- **Security:** `bearerAuth`
+- **Request Schema:** None
+- **Response:** `204 No Content`
+- **Error Schema:** `ProblemDetails`
+- **Related Requirement IDs:** `FEAT-002`, `FR-002`
+
+#### `POST /auth/refresh`
+- **Operation ID:** `refreshAuthSession`
+- **Summary:** แลก refresh token เป็น session ใหม่
+- **Security:** `None`
+- **Request Schema:** `RefreshRequest`
+- **Response:** `200` → `SuccessResponse<AuthSession>`
+- **Error Schema:** `ProblemDetails`
+- **Related Requirement IDs:** `FEAT-002`, `FR-002`
+
+#### `POST /auth/email-verification`
+- **Operation ID:** `verifyEmail`
+- **Summary:** ยืนยันอีเมลด้วย token hash
+- **Security:** `None`
+- **Request Schema:** `EmailVerificationRequest`
+- **Response:** `200` → `SuccessResponse<{ verified: true }>`
+- **Error Schema:** `ProblemDetails`
+- **Related Requirement IDs:** `FEAT-001`, `FR-001`
+
+#### `POST /auth/email-verification/resend`
+- **Operation ID:** `resendEmailVerification`
+- **Summary:** ขอส่ง verification email ใหม่
+- **Security:** `None`
+- **Request Schema:** `ResendVerificationRequest`
+- **Response:** `202` → `SuccessResponse<{ accepted: true }>`
+- **Error Schema:** `ProblemDetails`
+- **Related Requirement IDs:** `FEAT-001`, `FR-001`
+
+#### `GET /auth/profile`
+- **Operation ID:** `getCurrentUserProfile`
+- **Summary:** ดึง profile ของ authenticated user
+- **Security:** `bearerAuth` (roles: `user`, `admin`)
+- **Response:** `200` → `SuccessResponse<UserProfile>`
+- **Error Schema:** `ProblemDetails`
+- **Related Database Tables:** `users`, `user_profiles`
+- **Related Requirement IDs:** `FEAT-003`, `FR-003`, `FEAT-004`, `FR-004`
 
 ---
 ### Tag: Vehicles
@@ -221,7 +322,7 @@ schemas:
 - **Description:** ข้อมูลรถ (Make, Model, VIN, SOC) ที่ผู้ใช้ครอบครอง
 - **Security:** `bearerAuth` (Role: `USER`)
 - **Response Schema:** `Array of Vehicle`
-- **Error Schema:** `ErrorObject`
+- **Error Schema:** `ProblemDetails`
 - **Related Database Tables:** `vehicles`, `batteries`
 - **Related Requirement IDs:** `VEH-001`
 
@@ -379,4 +480,5 @@ classDiagram
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 1.1.0 | 2026-08-14 | Review | Codex | จัด Auth schemas และ 7 operations ให้ตรง `/api/v1/auth` implementation ที่ `e2cd0a7` |
 | 1.0.0 | 2026-08-02 | Complete | Principal API Architect | สร้างเอกสาร OpenAPI 3.1 Specification เป็นศูนย์กลางกำหนด Contract ระหว่าง Frontend/Backend รวมถึงการจัดการ Component Schemas แบบใช้งานซ้ำ (Reuse) |

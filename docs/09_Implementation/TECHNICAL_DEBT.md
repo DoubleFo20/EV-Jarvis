@@ -1,9 +1,9 @@
 ---
 id: DOC-026
 title: Technical Debt Register
-version: 1.0.0
-last_updated: 2026-08-02
-status: Complete
+version: 1.1.0
+last_updated: 2026-08-14
+status: Active
 author: Principal Software Architect
 references:
   - docs/01_Project_Management/PROJECT_PROGRESS.md
@@ -15,11 +15,11 @@ references:
 # Technical Debt Register — EV-JARVIS
 
 > **Document ID:** DOC-026
-> **Version:** 1.0.0
-> **Status:** Complete
+> **Version:** 1.1.0
+> **Status:** Active
 > **Project:** EV-JARVIS
 > **Owner:** Principal Software Architect
-> **Last Updated:** 2026-08-02
+> **Last Updated:** 2026-08-14
 
 ---
 
@@ -54,6 +54,12 @@ references:
 | **Hardcoded Prompts** | System Prompt บางตัวฝังใน Code ของ Express แทน Database | 🟡 Medium | ย้าย Prompt ทั้งหมดไปเก็บและเวอร์ชันใน Database (Prompt Library) | v1.1 |
 | **Basic Observability** | ใช้แค่ Logging พื้นฐาน ไม่ได้ติด LangSmith / Vercel AI SDK เต็มระบบ | 🔴 High | ติดตั้งระบบ Analytics ติดตาม Cost ของ Token ที่ใช้แบบรายผู้ใช้ | v1.2 |
 
+### 2.5 Repository Hygiene & CI
+| Description | Evidence / Impact | Priority | Planned Resolution | Target |
+|---|---|---|---|---|
+| **Tracked `backend/node_modules` and `backend/dist`** | `origin/main@e2cd0a7` ยัง track dependency/generated files หลายพันรายการ ทำให้ build สร้าง noisy diff, เพิ่ม repository size และเสี่ยงรวม artifact ที่ไม่ตั้งใจ | 🔴 High | ทำ owner-approved cleanup commit: ยืนยัน `.gitignore`, untrack ด้วย `git rm --cached` เฉพาะสอง path และตรวจ reproducible build ก่อน push | ก่อนเริ่ม Sprint 2 |
+| **No GitHub Actions CI** | ไม่พบ workflow ใต้ `.github/workflows` และไม่มี status/check run สำหรับ `e2cd0a7`; post-push audit จึงยืนยันได้เฉพาะ remote alignment ไม่ใช่ CI pass | 🔴 High | เพิ่ม owner-approved CI สำหรับ install, typecheck, lint, test, build, Prisma validate และ documentation checks โดยไม่แตะ Production | ก่อนเริ่ม Sprint 2 |
+
 ---
 
 ## 3. Deferred Features
@@ -84,4 +90,5 @@ flowchart LR
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 1.1.0 | 2026-08-14 | Active | Codex | บันทึก tracked dependency/generated artifacts และ missing CI จาก Sprint 1 post-push audit |
 | 1.0.0 | 2026-08-02 | Complete | Principal Software Architect | จัดทำ Technical Debt Register บันทึกข้อจำกัดที่ยอมรับได้ในเฟส MVP และแนวทางแก้ไขในอนาคต |

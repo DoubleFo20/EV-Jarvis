@@ -1,9 +1,9 @@
 ---
 id: DOC-019
 title: API Specification
-version: 1.0.0
-last_updated: 2026-08-02
-status: Complete
+version: 1.1.0
+last_updated: 2026-08-14
+status: Review
 author: Principal API Architect
 references:
   - docs/01_Project_Management/MASTER_CONTEXT.md
@@ -16,11 +16,11 @@ references:
 # API Specification — EV-JARVIS
 
 > **Document ID:** DOC-019
-> **Version:** 1.0.0
-> **Status:** Complete
+> **Version:** 1.1.0
+> **Status:** Review
 > **Project:** EV-JARVIS
 > **Owner:** Principal API Architect
-> **Last Updated:** 2026-08-02
+> **Last Updated:** 2026-08-14
 > **Format:** RESTful JSON
 
 ---
@@ -30,6 +30,8 @@ references:
 
 ## 2. Scope
 ครอบคลุมโครงสร้างของ Request/Response, ระบบ Authentication, Error Handling, Pagination, Rate Limiting และรายละเอียดของ Endpoints ทุกหมวดหมู่ ได้แก่ Authentication, Vehicle, Charging, Trip, Maintenance, Dashboard, Notification, AI Assistant, Settings และ Admin
+
+ส่วน `/api/v1/auth` ถูก reconcile กับ implementation สำหรับ Sprint 1 แล้วในระดับเอกสาร แต่เอกสาร OpenAPI ที่อ้างอิงยังอยู่สถานะ Review และยังไม่ได้ผ่าน machine validation
 
 ## 3. API Design Principles
 - **RESTful by Default:** ใช้ HTTP Methods (`GET`, `POST`, `PUT`, `PATCH`, `DELETE`) ตามมาตรฐาน
@@ -54,8 +56,8 @@ references:
 
 ## 7. Authorization Strategy
 - ใช้ระบบ **RBAC (Role-Based Access Control)** 
-- Endpoint ทั่วไปเข้าถึงได้เฉพาะ Role `USER` (พร้อมการตรวจสอบ Data Ownership ผ่าน RLS)
-- Endpoint หมวดหมู่ Admin เข้าถึงได้เฉพาะ Role `ADMIN` เท่านั้น
+- Sprint 1 รองรับ Role `user` และ `admin` เท่านั้น โดยอ่านจาก verified `app_metadata`
+- Endpoint ที่มีข้อมูลผู้ใช้ต้องตรวจ authentication และ Data Ownership/RLS ตาม resource
 
 ## 8. Standard Request Format
 ```json
@@ -94,23 +96,20 @@ references:
 - `500 Internal Server Error`: ข้อผิดพลาดฝั่งเซิร์ฟเวอร์
 
 ## 11. Error Response Standard
-**Error Response:**
+Backend ที่ implement จริงตอบ error แบบ Problem Details-compatible JSON ดังนี้:
 ```json
 {
-  "success": false,
-  "error": {
-    "code": "VALIDATION_FAILED",
-    "message": "Invalid input data",
-    "details": [
-      { "field": "email", "message": "Must be a valid email address" }
-    ]
-  },
-  "meta": {
-    "timestamp": "2026-08-02T12:00:00Z",
-    "request_id": "req_123456"
-  }
+  "type": "about:blank",
+  "title": "AppError",
+  "status": 400,
+  "code": "VALIDATION_ERROR",
+  "detail": "Request validation failed",
+  "instance": "/api/v1/auth/register",
+  "requestId": "request-id"
 }
 ```
+
+ห้ามส่ง stack trace, provider detail, password, access token หรือ refresh token ใน error/log
 
 ## 12. Pagination Standard
 ใช้แบบ Cursor-based สำหรับข้อมูล Real-time หรือ Offset-based สำหรับข้อมูลทั่วไป:
@@ -199,8 +198,8 @@ sequenceDiagram
     API->>Supabase: Verify Credentials
     Supabase-->>API: JWT Token (Access + Refresh)
     API-->>App: 200 OK + JWT
-    App->>App: เก็บ JWT ใน Secure Storage
-    App->>API: GET /api/v1/profile (Bearer JWT)
+    App->>App: จัดการ session ตาม approved client architecture
+    App->>API: GET /api/v1/auth/profile (Bearer JWT)
 ```
 
 ### API Layer
@@ -234,28 +233,61 @@ flowchart LR
 
 ### 20.1 Authentication
 
-#### `POST /auth/register`
+ส่วนนี้คือ contract ที่ implement และ mount จริงใต้ `app.use('/api/v1/auth', authRoutes)` ณ `origin/main@e2cd0a7`
+
+#### `POST /api/v1/auth/register`
 - **Description:** สมัครสมาชิกใหม่
 - **Auth Required:** No
-- **Request Body:** `{"email": "...", "password": "...", "full_name": "..."}`
-- **Response:** `201 Created`
+- **Rate Limit:** IP และ normalized email
+- **Request Body:** `{"email":"user@example.com","password":"Strong!Pass1","fullName":"EV User","termsConsent":true}`
+- **Validation:** email ถูก normalize; password 8–128 ตัวและต้องมี lowercase, uppercase, number, special character; `fullName` 1–100 ตัว; `termsConsent` ต้องเป็น `true`
+- **Response:** `201 Created` พร้อม `userId`, `email`, `verificationRequired`; ไม่คืน session token
 - **Database:** `users`, `user_profiles`
+- **Primary Errors:** `400 VALIDATION_ERROR`, `400 INVALID_EMAIL`, `409 EMAIL_ALREADY_EXISTS`, `429 EMAIL_RATE_LIMITED`, `503 EMAIL_PROVIDER_UNAVAILABLE`
 
-#### `POST /auth/login`
+#### `POST /api/v1/auth/login`
 - **Description:** เข้าสู่ระบบ
 - **Auth Required:** No
-- **Request Body:** `{"email": "...", "password": "..."}`
-- **Response:** `200 OK` (Returns access_token, refresh_token)
+- **Rate Limit:** IP และ normalized email
+- **Request Body:** `{"email":"user@example.com","password":"..."}`
+- **Response:** `200 OK` พร้อม `accessToken`, `refreshToken`, `expiresIn`, optional `expiresAt` และ `tokenType: "bearer"`
+- **Primary Errors:** `400 VALIDATION_ERROR`, `401 INVALID_CREDENTIALS`, `403 EMAIL_NOT_VERIFIED`, `503 AUTH_PROVIDER_UNAVAILABLE`
 
-#### `POST /auth/refresh-token`
-- **Description:** ขอ Token ใหม่
-- **Auth Required:** No (Requires Refresh Token in body/cookie)
+#### `POST /api/v1/auth/logout`
+- **Description:** revoke session ปัจจุบัน
+- **Auth Required:** Yes (`Authorization: Bearer <access-token>`)
+- **Request Body:** None
+- **Response:** `204 No Content`
+- **Primary Errors:** `401 AUTHORIZATION_REQUIRED`, `401 INVALID_AUTHORIZATION_HEADER`, `401 INVALID_ACCESS_TOKEN`, `503 AUTH_PROVIDER_UNAVAILABLE`
 
-#### `GET /auth/profile`
+#### `POST /api/v1/auth/refresh`
+- **Description:** ขอ session ใหม่ด้วย refresh token
+- **Auth Required:** No
+- **Request Body:** `{"refreshToken":"..."}`
+- **Response:** `200 OK` ด้วย Auth Session schema เดียวกับ Login
+- **Primary Errors:** `400 VALIDATION_ERROR`, `401 INVALID_REFRESH_TOKEN`, `503 AUTH_PROVIDER_UNAVAILABLE`
+
+#### `POST /api/v1/auth/email-verification`
+- **Description:** ยืนยันอีเมลด้วย opaque token hash
+- **Auth Required:** No
+- **Request Body:** `{"tokenHash":"..."}`
+- **Response:** `200 OK` พร้อม `{"verified":true}`
+- **Primary Errors:** `400 VALIDATION_ERROR`, `400 INVALID_VERIFICATION_TOKEN`, `503 EMAIL_PROVIDER_UNAVAILABLE`
+
+#### `POST /api/v1/auth/email-verification/resend`
+- **Description:** ขอส่ง verification email ใหม่ โดยตอบแบบไม่เปิดเผยว่าบัญชีมีอยู่หรือไม่
+- **Auth Required:** No
+- **Rate Limit:** IP และ normalized email
+- **Request Body:** `{"email":"user@example.com"}`
+- **Response:** `202 Accepted` พร้อม `{"accepted":true}`
+- **Primary Errors:** `400 VALIDATION_ERROR`, `503 EMAIL_PROVIDER_UNAVAILABLE`
+
+#### `GET /api/v1/auth/profile`
 - **Description:** ดึงข้อมูลส่วนตัวของผู้ใช้ปัจจุบัน
-- **Auth Required:** Yes (`USER`)
-- **Response:** `200 OK`
+- **Auth Required:** Yes (`Authorization: Bearer <access-token>`; role `user` หรือ `admin`)
+- **Response:** `200 OK` พร้อม `id`, `email`, `role`, `isActive`, `fullName`, `phoneNumber`
 - **Database:** `users`, `user_profiles`
+- **Primary Errors:** `401 AUTHORIZATION_REQUIRED`, `401 INVALID_AUTHORIZATION_HEADER`, `401 INVALID_ACCESS_TOKEN`, `403 ACCOUNT_DISABLED`, `404 PROFILE_NOT_FOUND`
 
 ---
 
@@ -422,3 +454,10 @@ flowchart LR
 - **Auth Required:** Yes (`ADMIN`)
 
 ---
+
+## 21. Revision History
+
+| Version | Date | Status | Author | Change Description |
+|---|---|---|---|---|
+| 1.1.0 | 2026-08-14 | Review | Codex | จัด contract ของ `/api/v1/auth` ทั้ง 7 routes, validation, response และ error ให้ตรง implementation ที่ `e2cd0a7` |
+| 1.0.0 | 2026-08-02 | Complete | Principal API Architect | Initial production API specification |
