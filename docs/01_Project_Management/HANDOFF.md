@@ -1,7 +1,7 @@
 ---
 id: DOC-034
 title: EV-JARVIS Cross-Agent Handoff
-version: 4.7.0
+version: 4.8.0
 last_updated: 2026-09-28
 status: Review
 owner: Project Owner
@@ -19,12 +19,12 @@ references:
 
 ## 1. Handoff Status
 
-- **Updated:** 2026-09-28 (ANDROID-MVP-QUALITY-19 Android lint/runtime quality pass)
+- **Updated:** 2026-09-28 (ANDROID-MVP-CI-20 GitHub Android SDK setup remediation)
 - **Current worker:** Codex
-- **Task status:** `ANDROID-MVP-QUALITY-19` complete / Android source quality and current-APK phone smoke pass — local lint is clean; external DHU/device/CI/API gates remain separate.
-- **Task ID:** `ANDROID-MVP-QUALITY-19` — Reduce actionable Android lint warnings and re-run the current APK phone smoke without changing the approved Android/Web architecture
+- **Task status:** `ANDROID-MVP-CI-20` in progress / first GitHub Android run failed during SDK setup before Gradle; workflow correction prepared for rerun.
+- **Task ID:** `ANDROID-MVP-CI-20` — Remove obsolete Android SDK `tools` package request, rerun GitHub Android verification, and report exact job results
 - **Running processes:** No installer, sdkmanager, adb, emulator, DHU, verifier, provider, database, or production process remains associated with this checkpoint.
-- **Next task candidate:** Obtain separate push approval for the Android source/CI/Handoff, or use a changed external environment for DHU/physical-device evidence. Deepal live SOC/API and the licensed/commissioned/generic 3-D asset path remain open decisions.
+- **Next task candidate:** Verify the new GitHub run against its exact head SHA. Keep DHU/physical-device, Deepal live SOC/API, and licensed/commissioned/generic 3-D asset gates separate.
 
 ## 2. Goal and Scope
 
@@ -42,9 +42,9 @@ This section records the original handoff task scope. Later, explicit bounded Ow
 
 - **Working directory:** `D:\xampp\htdocs\EV-Jarvis`
 - **Branch:** `main`
-- **Local HEAD:** `b62f61204c8b95d13abb008a008ffbb6dcaf9b45` — `docs: close sprint 1 verification record`, created locally and not pushed.
-- **Local `origin/main` tracking ref:** `f24d1fc27f81341c0f72ae19924def7191d68334`
-- **GitHub branch state:** Push to `origin/main` succeeded; GitHub Actions run `36382091960` for remote commit `f24d1fc` completed `success` with backend/frontend jobs passed. This does not prove a local-only documentation commit, Android/device/vehicle behavior, OEM telemetry, or provider availability.
+- **Local HEAD:** `97e21ecf81e29c61c59c45866ccecc265430849a` — `feat(android): add Android Auto MVP and CI`.
+- **Local `origin/main` tracking ref:** `97e21ecf81e29c61c59c45866ccecc265430849a` at checkpoint start.
+- **GitHub branch state:** Push to `origin/main` succeeded. Fresh Actions run `36414200394` for exact SHA `97e21ecf81e29c61c59c45866ccecc265430849a` completed with backend and frontend success, Android failure at SDK setup (`sdkmanager tools`: package not found); Gradle never ran. This does not prove Android CI, DHU/device/vehicle behavior, OEM telemetry, or provider availability.
 - **Staged changes before this task:** None.
 
 ## 4. Work Completed and Remaining
@@ -122,6 +122,7 @@ These paths were already dirty or untracked before this documentation task; they
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 4.8.0 | 2026-09-28 | In progress / Android CI retry | Codex | Record Android GitHub run `36414200394` failure at obsolete SDK package `tools`; bound workflow fix to setup-android package list and retry exact pushed SHA |
 | 4.1.0 | 2026-09-28 | Review / Owner decision needed | Codex | Record public Deepal API and 3-D asset research; retain manual/local MVP, reject unapproved reverse-engineered production integration, and separate licensed asset decision |
 | 4.2.0 | 2026-09-28 | Review / DHU host blocker | Codex | Add Android Auto descriptor metadata, verify normal-memory emulator phone runtime and APK metadata, attempt DHU transport, and record the Google APIs stub limitation without claiming DHU acceptance |
 | 4.3.0 | 2026-09-28 | Review / SDK download blocker | Codex | Attempt the separate Android 35 Google Play image for DHU, stop only the stalled installer process, preserve the partial SDK marker, and retain the no-DHU-pass boundary |
@@ -1348,3 +1349,23 @@ No other path was edited by Phase C. The nine Phase A targets were restored to `
 
 - This is local source/build/emulator-phone evidence only. It does not close DHU projection, real-device/vehicle, GitHub Android CI, Deepal live SOC/API, or 3-D asset gates.
 - No stage, commit, push, deploy, database/Supabase/Production access, dependency installation, or unapproved asset acquisition was performed.
+
+## Current Continuation Record — ANDROID-MVP-CI-20
+
+### Goal and bounded remediation
+
+- **Goal:** Get the approved Android source through a real GitHub Actions Android verification run.
+- Android source/workflow/HANDOFF were pushed as `97e21ec`; fresh run `36414200394` matched exact SHA `97e21ecf81e29c61c59c45866ccecc265430849a`.
+- Backend and frontend jobs passed. Android stopped at `Setup Android SDK`: setup-android attempted `sdkmanager tools`, which returned “Failed to find package 'tools'”; SDK package install and Gradle steps were skipped. This is not an Android Gradle test result.
+- Bounded fix: pass only `packages: platform-tools` to setup-android; the next existing step explicitly installs platform-tools, Android 35, and build-tools 35.0.0. No dependency, source architecture, or SDK version changed.
+
+### Verification and next gate
+
+| Check | Result | Notes |
+|---|---|---|
+| Exact first Android GitHub run | Failed | Run `36414200394`, SHA `97e21ecf81e29c61c59c45866ccecc265430849a`; backend/frontend passed; Android SDK setup failed before Gradle. |
+| Workflow correction | Prepared locally | Remove deprecated `tools` implicit request by setting setup-android packages to `platform-tools`; awaiting exact diff review and approved push workflow. |
+| Android local verification | Previously passed | ANDROID-MVP-QUALITY-19 records offline unit tests, APK assembly, lint, and phone-emulator smoke; that is independent of GitHub CI. |
+
+- After exact diff/status review, push this bounded workflow/HANDOFF correction under the Owner’s explicit request to send Android source for real CI; inspect the new run and each job by exact head SHA.
+- Keep DHU, real device/vehicle, Deepal live SOC/API, and licensed 3-D asset gates independent. Do not claim Android CI until its GitHub job actually succeeds.
