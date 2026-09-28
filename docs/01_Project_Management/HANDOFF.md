@@ -21,7 +21,7 @@ references:
 
 - **Updated:** 2026-09-28 (ANDROID-MVP-CI-20 GitHub Android SDK setup remediation)
 - **Current worker:** Codex
-- **Task status:** `ANDROID-MVP-CI-20` in progress / first GitHub Android run failed during SDK setup before Gradle; workflow correction prepared for rerun.
+- **Task status:** `ANDROID-MVP-CI-20` in progress / SDK setup now passes on GitHub, but Android verification stops because `android/gradlew` is not executable in Git; wrapper mode correction prepared.
 - **Task ID:** `ANDROID-MVP-CI-20` — Remove obsolete Android SDK `tools` package request, rerun GitHub Android verification, and report exact job results
 - **Running processes:** No installer, sdkmanager, adb, emulator, DHU, verifier, provider, database, or production process remains associated with this checkpoint.
 - **Next task candidate:** Verify the new GitHub run against its exact head SHA. Keep DHU/physical-device, Deepal live SOC/API, and licensed/commissioned/generic 3-D asset gates separate.
@@ -42,9 +42,9 @@ This section records the original handoff task scope. Later, explicit bounded Ow
 
 - **Working directory:** `D:\xampp\htdocs\EV-Jarvis`
 - **Branch:** `main`
-- **Local HEAD:** `97e21ecf81e29c61c59c45866ccecc265430849a` — `feat(android): add Android Auto MVP and CI`.
-- **Local `origin/main` tracking ref:** `97e21ecf81e29c61c59c45866ccecc265430849a` at checkpoint start.
-- **GitHub branch state:** Push to `origin/main` succeeded. Fresh Actions run `36414200394` for exact SHA `97e21ecf81e29c61c59c45866ccecc265430849a` completed with backend and frontend success, Android failure at SDK setup (`sdkmanager tools`: package not found); Gradle never ran. This does not prove Android CI, DHU/device/vehicle behavior, OEM telemetry, or provider availability.
+- **Local HEAD:** `4359362f2655a25c42dc2ff6e28a290dee6813dd` — `fix(android): avoid obsolete SDK tools package`.
+- **Local `origin/main` tracking ref:** `4359362f2655a25c42dc2ff6e28a290dee6813dd` at checkpoint start.
+- **GitHub branch state:** Run `36414601839` for exact SHA `4359362f2655a25c42dc2ff6e28a290dee6813dd` completed with backend/frontend success. Android setup and SDK package install passed, but `Run Android verification` failed with exit 126 (`./gradlew: Permission denied`) before Gradle. The tracked wrapper mode is `100644`; this does not prove Android CI, DHU/device/vehicle behavior, OEM telemetry, or provider availability.
 - **Staged changes before this task:** None.
 
 ## 4. Work Completed and Remaining
@@ -122,7 +122,7 @@ These paths were already dirty or untracked before this documentation task; they
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
-| 4.8.0 | 2026-09-28 | In progress / Android CI retry | Codex | Record Android GitHub run `36414200394` failure at obsolete SDK package `tools`; bound workflow fix to setup-android package list and retry exact pushed SHA |
+| 4.8.0 | 2026-09-28 | In progress / Android CI retry | Codex | Record Android GitHub runs `36414200394` and `36414601839`; remove the obsolete SDK package request, then identify the wrapper executable-mode failure and prepare a targeted mode correction |
 | 4.1.0 | 2026-09-28 | Review / Owner decision needed | Codex | Record public Deepal API and 3-D asset research; retain manual/local MVP, reject unapproved reverse-engineered production integration, and separate licensed asset decision |
 | 4.2.0 | 2026-09-28 | Review / DHU host blocker | Codex | Add Android Auto descriptor metadata, verify normal-memory emulator phone runtime and APK metadata, attempt DHU transport, and record the Google APIs stub limitation without claiming DHU acceptance |
 | 4.3.0 | 2026-09-28 | Review / SDK download blocker | Codex | Attempt the separate Android 35 Google Play image for DHU, stop only the stalled installer process, preserve the partial SDK marker, and retain the no-DHU-pass boundary |
@@ -1357,15 +1357,16 @@ No other path was edited by Phase C. The nine Phase A targets were restored to `
 - **Goal:** Get the approved Android source through a real GitHub Actions Android verification run.
 - Android source/workflow/HANDOFF were pushed as `97e21ec`; fresh run `36414200394` matched exact SHA `97e21ecf81e29c61c59c45866ccecc265430849a`.
 - Backend and frontend jobs passed. Android stopped at `Setup Android SDK`: setup-android attempted `sdkmanager tools`, which returned “Failed to find package 'tools'”; SDK package install and Gradle steps were skipped. This is not an Android Gradle test result.
-- Bounded fix: pass only `packages: platform-tools` to setup-android; the next existing step explicitly installs platform-tools, Android 35, and build-tools 35.0.0. No dependency, source architecture, or SDK version changed.
+- Bounded fix pushed as `4359362`: pass only `packages: platform-tools` to setup-android; the next existing step explicitly installs platform-tools, Android 35, and build-tools 35.0.0. No dependency, source architecture, or SDK version changed.
 
 ### Verification and next gate
 
 | Check | Result | Notes |
 |---|---|---|
 | Exact first Android GitHub run | Failed | Run `36414200394`, SHA `97e21ecf81e29c61c59c45866ccecc265430849a`; backend/frontend passed; Android SDK setup failed before Gradle. |
-| Workflow correction | Prepared locally | Remove deprecated `tools` implicit request by setting setup-android packages to `platform-tools`; awaiting exact diff review and approved push workflow. |
+| Exact retry GitHub run | Failed before Gradle | Run `36414601839`, SHA `4359362f2655a25c42dc2ff6e28a290dee6813dd`; backend/frontend and SDK setup/package install passed; shell could not execute `./gradlew` (exit 126). |
+| Wrapper permission correction | Prepared locally | Git currently tracks `android/gradlew` as `100644`; targeted index change sets it to `100755`, the standard executable mode for this checked-in shell wrapper. |
 | Android local verification | Previously passed | ANDROID-MVP-QUALITY-19 records offline unit tests, APK assembly, lint, and phone-emulator smoke; that is independent of GitHub CI. |
 
-- After exact diff/status review, push this bounded workflow/HANDOFF correction under the Owner’s explicit request to send Android source for real CI; inspect the new run and each job by exact head SHA.
+- Review the exact mode-only change and HANDOFF update, push the bounded correction under the Owner’s explicit request to send Android source for real CI, then inspect each job by exact head SHA.
 - Keep DHU, real device/vehicle, Deepal live SOC/API, and licensed 3-D asset gates independent. Do not claim Android CI until its GitHub job actually succeeds.
