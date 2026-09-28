@@ -1,8 +1,8 @@
 ---
 id: DOC-034
 title: EV-JARVIS Cross-Agent Handoff
-version: 4.9.0
-last_updated: 2026-09-28
+version: 5.10.0
+last_updated: 2026-09-29
 status: Review
 owner: Project Owner
 author: Codex
@@ -19,12 +19,12 @@ references:
 
 ## 1. Handoff Status
 
-- **Updated:** 2026-09-28 (ANDROID-MVP-CI-20 GitHub Android CI success)
+- **Updated:** 2026-09-29 (`ANDROID-MVP-3D-ASSET-SCOPE-28` proposal and publication preflight)
 - **Current worker:** Codex
-- **Task status:** `ANDROID-MVP-CI-20` complete / GitHub Actions passed Android unit tests, debug APK assembly, lint, and backend/frontend jobs on exact SHA `549b0ba`.
-- **Task ID:** `ANDROID-MVP-CI-20` — Remove obsolete Android SDK `tools` package request, rerun GitHub Android verification, and report exact job results
-- **Running processes:** No installer, sdkmanager, adb, emulator, DHU, verifier, provider, database, or production process remains associated with this checkpoint.
-- **Next task candidate:** Resume acceptance at DHU/Android Auto projection; earlier DHU transport remains blocked by host/Google APIs image limitations. Keep physical-device/vehicle, Deepal live SOC/API, and licensed/commissioned/generic 3-D asset gates separate.
+- **Task status:** The phone-only 3-D concept remains a visibly low-poly approximation, not an exact S05 mesh. The repository has no GLB/FBX/Blend or other mesh asset; a bounded original-model/asset-integration proposal is recorded below without approving or starting that architecture work. Owner authorized publishing today's six-path local bundle to GitHub on 2026-09-29. This handoff entry records the pre-push state; verify the actual commit, remote SHA, and GitHub Actions result independently. Earlier local unit tests, APK assembly, lint, and AVD framebuffer checks passed as recorded below. DHU, physical device/vehicle, live Deepal SOC, and the Owner-reported Windows emulator-window problem remain separate/unverified.
+- **Task ID:** `ANDROID-MVP-3D-ASSET-SCOPE-28` — Prepare an evidence-based high-detail model scope and publish the authorized local bundle
+- **Running processes:** On 2026-09-29, read-only process inspection found the ADB server but no emulator/QEMU process. The prior 2026-09-28 AVD screenshot remains historical evidence; do not infer a live AVD from it. No installer, DHU, verifier, provider, database, or production process is known to be running for this task.
+- **Next task candidate:** Check the GitHub Actions run for the actual published SHA; do not infer CI success from local tests. For near-photographic S05 fidelity, Owner must choose between providing a mesh with demonstrable app-use rights and separately approving original high-detail modeling plus an asset-loading path. The eight photos alone are not a ready-to-install exact mesh. No OEM outreach is authorized or planned. Owner can independently confirm whether the visible emulator window is centered; do not wipe/reset the AVD. DHU needs an eligible Android Auto runtime/device, while physical device/vehicle and Deepal live SOC/API remain separate gates.
 
 ## 2. Goal and Scope
 
@@ -42,9 +42,9 @@ This section records the original handoff task scope. Later, explicit bounded Ow
 
 - **Working directory:** `D:\xampp\htdocs\EV-Jarvis`
 - **Branch:** `main`
-- **Local HEAD:** `549b0ba2a7aecb7a9e133910cd9d29f6b740baeb` — `fix(android): mark Gradle wrapper executable`.
-- **Local `origin/main` tracking ref:** `549b0ba2a7aecb7a9e133910cd9d29f6b740baeb` at checkpoint start.
-- **GitHub branch state:** Actions run `36414846654` completed `success` for exact SHA `549b0ba2a7aecb7a9e133910cd9d29f6b740baeb`; Android, backend, and frontend jobs all succeeded. Android ran `testDebugUnitTest assembleDebug lintDebug`. This does not prove DHU/device/vehicle behavior, OEM telemetry, or provider availability.
+- **Local HEAD:** `f9619122b1c41640048c982363dcbeec069d1851` — `docs: record passing Android GitHub CI`.
+- **Local `origin/main` tracking ref:** `f9619122b1c41640048c982363dcbeec069d1851` at checkpoint start.
+- **GitHub branch state:** Actions run `36415224531` completed `success` for exact SHA `f9619122b1c41640048c982363dcbeec069d1851`; Android, backend, and frontend jobs all succeeded. Android ran `testDebugUnitTest assembleDebug lintDebug`. This does not prove DHU/device/vehicle behavior, OEM telemetry, or provider availability.
 - **Staged changes before this task:** None.
 
 ## 4. Work Completed and Remaining
@@ -122,6 +122,17 @@ These paths were already dirty or untracked before this documentation task; they
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 5.10.0 | 2026-09-29 | Proposal / publication preflight | Codex | Record Owner-authorized GitHub publication scope, no project-owned 3-D mesh, and an unapproved high-detail modeling/asset-integration proposal |
+| 5.9.0 | 2026-09-28 | Partial / low-poly fidelity gap | Codex | Refine the phone concept silhouette and confirm final APK rendering on the existing AVD without claiming an exact S05 model |
+| 5.8.0 | 2026-09-28 | Partial / visible AVD open for Owner review | Codex | Record recovery from the recurring Android System UI dialog via Wait, successful S05 render in visible-mode AVD, and the remaining Owner check for the desktop window position/black region |
+| 5.7.0 | 2026-09-28 | Partial / Android framebuffer passes; Windows emulator window unresolved | Codex | Record successful same-AVD S05 render, swipe rotation, and Back navigation; distinguish the Owner-reported black/off-center host-window region and Computer Use permission denial from the verified Android framebuffer |
+| 5.6.0 | 2026-09-28 | Partial / local Android checks passed; emulator UI blocked | Codex | Record authorized local unit-test, APK assembly, and lint success plus APK install/MainActivity launch; preserve System UI ANR as the blocker to visually verifying the S05 screen, without claiming GitHub CI or device acceptance |
+| 5.5.0 | 2026-09-28 | In progress / S05 visual approximation | Codex | Replace generic prototype styling with Owner-reference-informed silver S05 REEV Max exterior approximation and prominent unofficial disclaimer; record local Gradle/cache blocker, without acquiring OEM assets or contacting Changan |
+| 5.4.0 | 2026-09-28 | In progress / generic phone model | Codex | Implement original unbranded EV-SUV GLES2 prototype for phone companion; record successful local tests/build/lint and blocked AVD install due to incomplete Android boot |
+| 5.3.0 | 2026-09-28 | Review / prototype scope decision | Codex | Record Owner clarification: no Changan contact; independent small-project intent with possible future offer/partnership; confirm no local Blender or renderer pipeline and retain model/surface decision gate |
+| 5.2.0 | 2026-09-28 | Review / OEM outreach prepared | Codex | Identify official Changan Thailand contact channel and prepare an unsent request for S05 3-D source and explicit mobile-app rights; no personal data or external write used |
+| 5.1.0 | 2026-09-28 | Review / asset rights decision | Codex | Read official Deepal/Changan sources; distinguish a public 360° product page and brochures from a downloadable model/license; preserve OEM, commission, and defer choices |
+| 5.0.0 | 2026-09-28 | Blocked / DHU environment decision | Codex | Recheck installed Android images, registered AVDs, connected devices, APK presence, and official DHU prerequisites; retain the no-repeat/no-environment-mutation boundary |
 | 4.9.0 | 2026-09-28 | Complete / CI passed | Codex | Record exact GitHub run `36414846654` success on `549b0ba` across Android, backend, and frontend; set DHU/physical acceptance as next independent gate |
 | 4.8.0 | 2026-09-28 | In progress / Android CI retry | Codex | Record Android GitHub runs `36414200394` and `36414601839`; remove the obsolete SDK package request, then identify the wrapper executable-mode failure and prepare a targeted mode correction |
 | 4.1.0 | 2026-09-28 | Review / Owner decision needed | Codex | Record public Deepal API and 3-D asset research; retain manual/local MVP, reject unapproved reverse-engineered production integration, and separate licensed asset decision |
@@ -1372,3 +1383,216 @@ No other path was edited by Phase C. The nine Phase A targets were restored to `
 
 - Android GitHub CI is now verified for this exact SHA; this does not certify a future commit until its own run is checked.
 - Keep DHU, real device/vehicle, Deepal live SOC/API, and licensed 3-D asset gates independent. Do not claim Android CI until its GitHub job actually succeeds.
+
+## Current Continuation Record — ANDROID-MVP-DHU-21
+
+### Goal and result
+
+- **Goal:** Determine whether the DHU/Android Auto projection acceptance step can proceed safely with the environment currently available.
+- Repository began clean at `main...origin/main`, exact SHA `f9619122b1c41640048c982363dcbeec069d1851`; no source, configuration, device, SDK package, or emulator state was changed.
+- `sdkmanager --sdk_root=C:\Users\u937\AppData\Local\Android\Sdk --list_installed` reports Android 35 Google APIs, platform-tools, emulator, and DHU, but no `google_apis_playstore` image. The old Play Store image `.installer\.installData` marker remains (171 bytes); it is not a completed image.
+- `emulator.exe -list-avds` lists only `ev-jarvis-api35`; `adb devices -l` reports no connected device. The existing debug APK is present at 6,859,339 bytes (6.54 MiB). No emulator/DHU/installer process was found in the process snapshot.
+- Prior record `ANDROID-MVP-EMULATOR-DHU-14` shows DHU 2.0 connected to ADB but the Google APIs image launched `AndroidAutoStubPrebuilt`; no projection or EV-Jarvis car surface appeared. Repeating that same setup would not create new acceptance evidence.
+- Read-only Android source/test audit: `EvJarvisHomeScreen` renders the local snapshot/source/freshness/capture time and a geo navigation intent; `ChargingStopsScreen` renders the static provider result/source/freshness and station navigation intents. Existing unit tests cover data/provider classes, not rendered Car App templates, projection, or navigation handoff.
+- `EvJarvisCarAppService` currently uses `ALLOW_ALL_HOSTS_VALIDATOR`, with a source comment limiting it to local MVP/DHU bootstrap and requiring restriction before public release. Do not treat this as release-ready host validation or widen the release claim.
+
+### Evidence and boundary
+
+| Check | Result | Notes |
+|---|---|---|
+| Android GitHub CI | Passed | Run `36415224531`, exact SHA `f9619122b1c41640048c982363dcbeec069d1851`; Android/backend/frontend all succeeded. |
+| Local APK presence | Passed | `android/app/build/outputs/apk/debug/app-debug.apk`, 6,859,339 bytes. Presence alone is not a DHU result. |
+| Car App source/data audit | Read-only review passed | Local/manual source and static fallback labels are present; existing tests do not prove template rendering or navigation UI. |
+| Public-release host validation | Not release-ready | `ALLOW_ALL_HOSTS_VALIDATOR` is explicitly documented in code as local-MVP bootstrap only; must be restricted and separately verified before release. |
+| Android Auto-capable mobile target | Not available | No ADB device; current registered AVD uses Google APIs, not a Play Store image/full Android Auto app. |
+| DHU projection acceptance | Blocked / not run | Existing stub limitation is unchanged; no projection, car template, or navigation-handoff result is claimed. |
+| External/system change | Not performed | No package download/retry, AVD creation, sign-in, pagefile/Docker/host change, file cleanup, or repository Git operation. |
+
+- Official DHU instructions require an installed/current Android Auto app on the connected mobile device and ADB forwarding to the DHU. Official AVD documentation distinguishes Google APIs images from images that include Play Store. References: [DHU testing](https://developer.android.com/training/cars/testing/dhu), [AVD system images](https://developer.android.com/studio/run/managing-avds).
+
+### Owner decision required
+
+Choose one path before the next DHU attempt:
+
+1. Connect a compatible Android phone with Google Play/Android Auto updated, authorize USB debugging, and approve a DHU-only projection test. This avoids a multi-GB emulator image download, but needs a real test phone.
+2. Explicitly authorize one bounded retry to download/install the Android 35 Google Play image and create a separate AVD, accepting that the previous download stalled and the official DHU guide describes a connected mobile device; an emulator may still fail to provide supported Android Auto behavior.
+3. Defer DHU until a compatible phone/test host is available and continue only with already-approved, non-DHU work.
+
+- Until an option is selected, do not rerun the known stub DHU attempt, retry the stalled SDK image, create an AVD, or alter host/system settings. This checkpoint made no commit or push; HANDOFF update is local and uncommitted.
+
+## Current Continuation Record — ANDROID-MVP-3D-ASSET-RESEARCH-22
+
+### Goal and findings
+
+- **Goal:** Continue independent work while the DHU environment is blocked by determining whether an authorized Deepal S05 3-D asset is already publicly available for app use.
+- Read-only web research found an official Deepal S05 product page with a section labeled “360° View” and brochure downloads, and official Changan Thailand S05 specification/brochure material. The pages/material reviewed did not identify a downloadable GLB/GLTF/FBX model or grant permission to copy/repackage a model into EV-Jarvis.
+- A targeted public search did not surface an authoritative Deepal S05 model download with explicit mobile-app redistribution rights. This is a search result, not proof that no such OEM asset exists privately.
+- The repository inventory in `ANDROID-MVP-ASSET-INVENTORY-18` remains valid: no 3-D asset or renderer pipeline is present. No image/model was downloaded, generated, copied, or added; no dependency or rendering architecture was selected.
+- Source references: [Deepal S05 official product page with 360° view](https://www.deepal.com.bd/deepal_s05), [Changan Thailand S05 brochure/specification](https://api.www.changan.co.th/uploads/Deepal_S05_Eng_version_Update_12_Mar2026_compressed_9e64d75d74.pdf). Public product imagery/spec material is not itself a 3-D model license.
+
+### Evidence and next gate
+
+| Check | Result | Notes |
+|---|---|---|
+| Official OEM/dealer product sources | Found | Public 360° view/product images and brochures; no explicit downloadable mesh or app redistribution grant identified in the reviewed material. |
+| Public 3-D model with explicit Deepal/app rights | Not identified | Search was read-only and non-exhaustive; OEM may provide an authorized asset privately upon request. |
+| Repository asset/rendering pipeline | Absent | Previously recorded in `ANDROID-MVP-ASSET-INVENTORY-18`; unchanged. |
+| Asset acquisition or implementation | Not performed | No downloads, licensing acceptance, generated model, renderer dependency, or UI changes. |
+
+- Owner decision required before implementation: request a licensed OEM asset and written mobile-app rights; commission an original model with explicit use/redistribution rights and approve cost; or defer exact Deepal 3-D. A generic unbranded placeholder is not equivalent to an accurate Deepal model and must be explicitly accepted if chosen.
+- DHU remains independently blocked under `ANDROID-MVP-DHU-21`; this asset research does not resolve DHU, physical-device/vehicle, or live SOC/API acceptance. HANDOFF changes remain local and uncommitted; no commit or push was performed.
+
+## Current Continuation Record — ANDROID-MVP-3D-ASSET-OUTREACH-DRAFT-23
+
+### Goal and safe action
+
+- **Goal:** Advance the licensed-model path without selecting rights, disclosing personal information, or contacting an external party without authorization.
+- Official Changan Thailand contact information identifies CHANGAN Auto Sales (Thailand) Co., Ltd. and its 24-hour call center at `02 078 6666`. The official site also exposes a callback/contact form that requests personal data and a consent to disclosure; no form was opened or submitted.
+- Prepared this draft for Owner review; it was not sent and contains no fabricated project contact or commercial-status claims:
+
+```text
+Subject: Request for authorized DEEPAL S05 3-D asset and mobile-app usage terms
+
+เรียน ทีมงาน CHANGAN Auto Sales (Thailand)
+
+กำลังพัฒนา EV-Jarvis ซึ่งมีแอป companion สำหรับผู้ใช้รถ และต้องการสอบถามช่องทางขอรับโมเดล 3-D ของ DEEPAL S05 ที่ได้รับอนุญาตให้นำไปแสดงในแอปได้
+
+หากมี asset ที่อนุญาตให้ใช้ รบกวนแนะนำรูปแบบไฟล์สำหรับ mobile (เช่น GLB/glTF) และเงื่อนไขเป็นลายลักษณ์อักษรที่ครอบคลุมการแสดงผลในแอป การปรับขนาด/optimization การเผยแพร่ไฟล์ไปพร้อมแอป ขอบเขตพื้นที่/ระยะเวลา การใช้ชื่อหรือเครื่องหมายการค้า การให้เครดิต และค่าใช้จ่าย (ถ้ามี)
+
+หากต้องประสานฝ่าย Licensing, Marketing หรือ Design กรุณาแนะนำผู้ติดต่อหรือขั้นตอนที่ถูกต้องด้วยครับ/ค่ะ
+
+ขอบคุณครับ/ค่ะ
+ทีม EV-Jarvis
+```
+
+### Evidence and boundary
+
+| Check | Result | Notes |
+|---|---|---|
+| Official contact route | Found | [Changan Thailand contact page](https://www.changan.co.th/th/contact-us/) lists call center `02 078 6666` and the company address. |
+| Contact form | Not submitted | The official site form requests personal data and consent; no owner details or consent were supplied. |
+| OEM outreach | Draft only | No email, phone call, form submission, or external message was sent. |
+| Asset download/acquisition | Not performed | No asset, fee, license, dependency, or renderer selected. |
+
+- This draft was not sent. It is superseded by the Owner clarification in `ANDROID-MVP-3D-PROTOTYPE-FEASIBILITY-24`: do not contact Changan or submit its form. No further model use is authorized until the selected asset path has the required rights.
+
+## Current Continuation Record — ANDROID-MVP-3D-PROTOTYPE-FEASIBILITY-24
+
+### Owner clarification and local feasibility
+
+- **Owner intent:** Do not contact Changan Thailand. EV-Jarvis is currently a small independent project; if it attracts the brand's interest, the Owner may later offer it for sale or discuss a partnership. This is not permission to send an OEM inquiry, publish, or claim affiliation.
+- Supersede `ANDROID-MVP-3D-ASSET-OUTREACH-DRAFT-23` as an active next action. Retain its draft as historical only; do not send it or submit any contact form.
+- Read-only local inspection found no Blender executable on `PATH` or in the checked common Program Files locations, no existing 3-D renderer/model-viewer dependency, and no repository 3-D asset. Android uses the existing native Java companion; the existing web app is Next.js SSR. A renderer/surface choice would be a new product/architecture decision.
+- No code, model, image, dependency, renderer, or UI change was made. No external contact or asset acquisition occurred.
+
+### Evidence and decision boundary
+
+| Check | Result | Notes |
+|---|---|---|
+| OEM outreach | Explicitly not authorized | Do not contact Changan Thailand or use its form. |
+| Independent-project intent | Confirmed | Possible later pitch/sale/partnership; no current brand affiliation or license claim. |
+| Local modeling tool | Not found | `Get-Command blender, blender.exe` returned no executable; common Blender Foundation folders checked were absent. |
+| Existing renderer/model pipeline | Not found | Prior repository inventory remains valid; adding one would change current implementation choices. |
+| Exact Deepal model | Not available | No authorized model asset or rights evidence found. |
+
+- Safe next implementation requires Owner selection: (A) allow a clearly labeled, original, unbranded EV-SUV concept for prototype UI only, or (B) defer 3-D until an exact S05 asset can be licensed/commissioned. If A is selected, also choose phone companion vs web companion; do not place 3-D in the driver-facing Android Auto surface by default.
+- The earlier attached screenshots show a different vehicle listing and a Blender modeling tutorial, not source geometry or proof of rights for a Deepal S05 model.
+- DHU remains independently blocked under `ANDROID-MVP-DHU-21`. All HANDOFF changes remain local/uncommitted; no commit or push was performed.
+
+## Current Continuation Record — ANDROID-MVP-3D-GENERIC-MOBILE-25
+
+### Owner decision and implementation
+
+- **Owner choice:** A — an original, generic EV-SUV concept shown in the phone companion app. It is not an exact Deepal S05 model, does not use Deepal/Changan names or marks, and makes no affiliation claim. No OEM contact is authorized.
+- Added a separate, non-exported phone Activity with a GLES2 stylized vehicle blockout and drag-to-rotate interaction. The renderer uses Android platform OpenGL ES APIs; no external model, asset, or dependency was added.
+- Added a launcher-screen entry point and an explicit disclaimer that the concept is not an official vehicle and is not displayed on the driver-facing Android Auto surface. Car App service/templates were not changed.
+- The renderer is a prototype blockout, not a production-quality or photoreal 3-D vehicle. Exact-model rights and live Deepal SOC/API remain unaddressed.
+
+### Verification checkpoint
+
+| Check | Result | Notes |
+|---|---|---|
+| Scope / source diff | Passed | Expected scope is the Android launcher/manifest/strings, two new Java UI/render files, and HANDOFF only; `git diff --check` passed. |
+| Local Android unit tests/build/lint | Passed | `ANDROID_HOME` set for the process only to the existing SDK; `gradlew --offline --no-daemon --max-workers=2 testDebugUnitTest assembleDebug lintDebug` succeeded. SDK XML version 4 compatibility warning was emitted. |
+| Emulator install and phone-side render | Passed with transient boot issue | One boot attempt stopped incomplete and PackageManager install failed (`StorageManagerService.allocateBytes`, null `PackageManagerInternal`). A bounded cold boot of the same AVD using `-no-snapshot -no-boot-anim -gpu swiftshader_indirect` later completed; final APK installed, MainActivity and the concept screen opened, the generic vehicle rendered, a drag changed its orientation, and Back returned to MainActivity. One transient System UI ANR appeared during the first successful boot; after choosing Wait, the app screen remained usable and later install/render interaction checks succeeded. No app `FATAL EXCEPTION` was found in the inspected log excerpt. AVD was shut down. No new AVD/image was created or downloaded. |
+| DHU / physical device / vehicle | Still separate | DHU remains blocked as recorded in `ANDROID-MVP-DHU-21`; this phone preview does not satisfy those gates. |
+| GitHub CI | Not run for these changes | No stage/commit/push; previous successful run `36415224531` covers only its own exact SHA, not this working tree. |
+
+- No stage, commit, push, merge, deploy, database, Supabase, or production action was performed. Changes remain local pending separate pre-commit approval.
+- First Gradle attempt without an SDK environment failed before task configuration (`SDK location not found`); rerunning with a process-only `ANDROID_HOME` pointing at the already installed SDK completed successfully. Final rerun after the geometry refinement also passed `testDebugUnitTest assembleDebug lintDebug`. `git diff --check` passed. Only the expected Android source/resource/manifest paths and this HANDOFF changed; no generated source or lockfile was edited.
+
+## Current Continuation Record — ANDROID-MVP-3D-S05-REF-26
+
+### Owner request and implementation
+
+- Owner provided eight reference images showing the DEEPAL S05 exterior and interior, and asked whether the mobile 3-D page could be adjusted to this vehicle. This supersedes the generic-only visual choice for this bounded prototype revision; it does not authorize OEM contact, use of OEM badges/logos, or acquisition/repackaging of official assets. The requested model name is used only as a text identifier for the explicitly unofficial approximation.
+- Updated the existing GLES2 phone companion concept toward the reference exterior: silver body, darker panoramic-roof/glazing treatment, tapered body/cabin sections, slim front lamps, rear light bar, rocker trim, door details, mirrors, and alloy-style wheel spokes. Renamed the renderer source to `VehicleVisualConceptView` and updated the UI to say “DEEPAL S05 REEV Max — visual concept” with an explicit unofficial/not-exact disclaimer.
+- Geometry is original handwritten low-poly approximation informed by Owner-supplied images. No attached image was copied into the app; no OEM mesh, logo, external source, dependency, Android Auto surface, or interior 3-D view was added. The reference images are not proof of OEM model licensing.
+
+### Verification and blocker
+
+| Check | Result | Notes |
+|---|---|---|
+| Scope / working tree | Passed | Only the existing phone screen renderer/activity/string files and HANDOFF are within this update; no Git staging/commit/push. The previous generic renderer was an untracked local file created in Task 25 and was renamed within the same uncommitted work. |
+| `git diff --check` | Passed | No whitespace errors at the checkpoint. |
+| Gradle wrapper build | Blocked | `gradlew.bat --offline --no-daemon --max-workers=2 testDebugUnitTest assembleDebug lintDebug` attempted to fetch Gradle 8.10.2 and failed with network `SocketException: Permission denied`. No download completed. |
+| Cached Gradle direct build | Blocked | Direct cached Gradle 8.10.2 starts, but `--offline` cannot resolve `com.android.application:8.8.2` from the available plugin cache. A temporary resolution init script was tried and removed; it did not resolve the plugin offline. No dependency install was run. |
+| Direct Java fallback | Not passed | `javac` fallback could not resolve generated `R` and the read-only SDK `android.jar` was denied during archive close by sandbox. This is not a source compile result. |
+| APK/emulator for this revision | Not run | The previously installed APK belongs to Task 25 generic geometry; do not claim S05 approximation was installed/rendered. No AVD was started in this checkpoint. |
+| GitHub CI / DHU / real vehicle | Not run for this update | CI requires authorized Git operation; DHU and physical vehicle are independent gates. |
+
+- The offline wrapper/plugin and direct javac failures above describe the initial attempts only; their current status is superseded by the latest authorized verification checkpoint below. Exact-model fidelity and asset rights remain unresolved.
+
+## Latest Authorized Verification Checkpoint — 2026-09-28
+
+| Check | Result | Evidence / limitation |
+|---|---|---|
+| Local Android unit tests, APK assembly, lint | Passed | With `ANDROID_HOME` set for this PowerShell process to the existing SDK, `gradlew.bat --no-daemon --max-workers=2 testDebugUnitTest assembleDebug lintDebug` (run from `android`) exited 0: 48 tasks (21 executed, 27 up-to-date), `BUILD SUCCESSFUL`. SDK XML v4 compatibility warning only. No app dependency or lockfile was changed. |
+| APK install and launcher | Passed | Installed `android/app/build/outputs/apk/debug/app-debug.apk` to existing AVD `ev-jarvis-api35` (`Success`; file size 6,881,627 bytes), launched MainActivity, and observed the S05 concept button. |
+| S05 concept screen render / rotation / Back | Passed on the ADB framebuffer | After a cold boot of the same AVD, MainActivity content became visible after the initial splash delay. UI hierarchy showed the app view bounds `[0,0][1080,2400]`; the S05 button opened the intentionally non-exported Activity through its in-app click handler. An ADB screenshot showed the 3-D vehicle on a light background; an input swipe visibly changed its angle, and Back returned to MainActivity. No EV-Jarvis `FATAL EXCEPTION` or app ANR was found in the inspected log excerpt. Android system logs did contain ANRs for Google Play Services and Google Messages. |
+| Owner-reported Windows emulator window appearance | Pending Owner confirmation after visible-mode relaunch | The attached desktop screenshot predates the visible-mode relaunch and shows a black, offset rectangle, while the direct ADB framebuffer shows the app and vehicle rendered. Computer Use was attempted twice and returned `Computer Use was not approved to use qemu-system-x86_64`; host-window rendering/position therefore remains unverified. The same AVD was later relaunched without `-WindowStyle Hidden` and left on the concept page; no display settings or AVD data were changed. |
+| GitHub CI | Not run for these uncommitted changes | Earlier GitHub success covers its exact prior SHA only. No stage/commit/push was performed. |
+| DHU / physical device or vehicle / Deepal live SOC API | Not run | Independent acceptance gates remain; no telemetry/API or vehicle behavior is claimed. |
+
+- The online Gradle resolution/build was performed only after Owner authorization to fetch required tooling/dependencies. The AVD was shut down once after the first successful interaction test, then relaunched in visible mode using the same existing profile; it is currently left open on the S05 page. No OEM contact, database/Supabase/Production access, stage, commit, push, merge, or deploy occurred.
+- Safe next action: Owner to confirm whether the currently visible emulator window is centered and no longer black. If it is still wrong, use an approved QEMU window inspection method or a direct screenshot. Do not wipe/reset the existing AVD. DHU acceptance still needs a suitable Android Auto runtime/device, and GitHub CI for these changes still needs separately approved Git publication.
+
+## Current Continuation Record — ANDROID-MVP-3D-S05-FIDELITY-27
+
+### Owner feedback and bounded correction
+
+- **Owner feedback:** The 3-D car still does not look like the supplied S05 photos. This is valid: the prior renderer was a boxy procedural blockout with a short wheelbase, tall rectangular glasshouse, and generic front/rear faces.
+- Reworked only the existing untracked `android/app/src/main/java/com/evjarvis/android/VehicleVisualConceptView.java`: moved the wheel centers toward the corners, changed the body to tapered multi-facet rings, lowered/sloped the cabin and windshield, shaped the panoramic roof and side glass, refined wheel/arch trim and front/rear lamps, and framed the initial camera so the whole car fits. Removed obsolete blockout drawing helpers. No dependency, OEM mesh, badge, photo texture, Android Auto driver-facing UI, or architecture change was added.
+- **Honest fidelity result:** The ADB screenshots show a more coherent SUV silhouette and working 3-D rotation, but the output remains visibly low-poly and is not an exact or photoreal DEEPAL S05 REEV Max. Do not mark visual fidelity complete or represent the app as OEM-endorsed. The eight reference photos do not themselves grant rights to an exact 3-D model.
+
+### Verification checkpoint
+
+| Check | Result | Evidence / limitation |
+|---|---|---|
+| Local unit tests, build, lint | Passed before final camera-only adjustment | With process-only `ANDROID_HOME` pointing to the existing SDK, `gradlew.bat --no-daemon --max-workers=2 testDebugUnitTest assembleDebug lintDebug` exited 0 after the geometry changes and unused-helper removal (48 tasks, 14 executed, 34 up-to-date). SDK XML v4 compatibility warning remained. |
+| Final APK assembly | Passed | After the camera-distance adjustment, `gradlew.bat --offline --no-daemon --max-workers=2 assembleDebug` exited 0 (33 tasks, 4 executed, 29 up-to-date). No further source edits followed. |
+| Git/worktree check | Passed within the expected dirty baseline | `git diff --check` reported no whitespace error. Final status contains only the same four modified paths (manifest, MainActivity, strings, HANDOFF) and two untracked phone visual files already present at task start. The new renderer had no trailing-whitespace match in the direct source check. No generated or lockfile path became dirty. |
+| Existing AVD install / UI | Passed on ADB framebuffer | `adb install -r` returned `Success` for the final APK. MainActivity launched; tapping the visual concept button opened the non-exported phone Activity. The final screenshot shows the entire vehicle within the light-blue renderer surface. An earlier screenshot of the same corrected geometry after a horizontal swipe showed its rear view. No new AVD or SDK image was created. |
+| Visible Windows emulator window | Not independently verified | ADB framebuffer evidence does not establish whether the previously reported black/off-center host window is fixed. Computer Use access to QEMU was denied earlier; Owner confirmation remains needed. |
+| GitHub CI / DHU / real device or vehicle / live SOC | Not run for this update | The existing uncommitted working tree is not covered by prior GitHub success. Phone concept tests do not satisfy Android Auto projection, real-vehicle, or OEM telemetry acceptance. |
+
+- Final ADB framebuffer screenshot: `C:\Users\u937\.codex\visualizations\2026\09\28\01a0e62e-a67b-7c23-adc8-36460c751dca\evjarvis-model-v4.png`. The prior rotated rear view of the same geometry is `evjarvis-model-rear.png` in that directory (before the camera-distance-only adjustment). These are visual evidence, not a quantitative fidelity test.
+- No stage, commit, push, merge, deploy, OEM outreach, database/Supabase/Production access, dependency installation, or file cleanup occurred. Existing modified/untracked files were preserved; only this renderer and HANDOFF were edited in this task.
+- To pursue close S05 likeness, obtain an independently licensed/owned GLB/FBX/Blend mesh with explicit app-use rights, or commission/create an original high-detail model under a separately approved scope and then choose/approve the asset-loading path. Do not silently promote this low-poly concept to an exact S05 asset. The vehicle preview remains phone-only until any Android Auto display change is separately approved and checked against platform requirements.
+
+## Current Continuation Record — ANDROID-MVP-3D-ASSET-SCOPE-28
+
+### Owner request and inventory — 2026-09-29
+
+- Owner explicitly authorized publishing today's completed work to GitHub. Before publication, the local `main` and `origin/main` tracking ref both pointed to `f961912`; a read-only `git ls-remote origin refs/heads/main` confirmed the same remote SHA. The working tree contained exactly the four modified and two untracked phone-visual/HANDOFF paths from Task 27; no staged path or unrelated dirty file was found. Inspect the final staged diff and record the actual publication/CI result separately; this paragraph is pre-push evidence, not a claim that push or CI succeeded.
+- Repository inventory with `rg --files --hidden --no-ignore` for GLB, glTF, FBX, Blend, OBJ, STL, USD/USDZ, 3DS, and DAE found no project-owned 3-D asset (excluding Git, dependency, generated build, and Next.js output directories). The eight Owner-supplied photos are reference images, not geometry. No file or license was acquired.
+- Read-only process inspection on 2026-09-29 found `adb` but no `emulator`/`qemu-system-x86_64`. Do not state that the AVD is still open merely because it was open at the prior day's checkpoint.
+
+### Proposed high-detail S05-inspired asset work — not yet approved for implementation
+
+1. **Input and rights gate:** Owner supplies an app-usable GLB/FBX/Blend mesh and provenance/license, or separately authorizes creation of an original high-detail model using the eight photos only as visual references. Do not copy the photos into the APK, reuse an unknown third-party mesh/texture, add OEM marks, or claim official/verified accuracy without a separate rights decision. No Changan outreach or paid asset/service use is authorized.
+2. **Modeling deliverable:** Produce an editable source mesh and a mobile-optimized export covering front, both sides, rear, roofline, glazing, wheels, wheel arches, lamp placement, and body proportions. The eight images do not supply complete underbody, hidden-side, dimensions, or interior geometry; those details need additional Owner reference/approval or must remain a clearly labeled approximation. Keep the source asset and its rights record reviewable.
+3. **Integration decision:** The current Android phone preview draws hard-coded GLES2 geometry and has no GLB/FBX/Blend loader. Before code work, Owner chooses either an approved offline conversion into the existing renderer's mesh format or a new runtime asset-loading path, with explicit dependency, APK-size, memory, and device-compatibility review. Keep the preview phone-only; do not put a 3-D scene on the Android Auto driver-facing surface as part of this proposal.
+4. **Acceptance evidence:** Compare front three-quarter, side, rear three-quarter, and roof views against the eight supplied references with Owner visual sign-off. Verify 360-degree interaction, no clipping/black frame, resource usage and APK size on the existing emulator and, when available, a physical phone. Run local unit tests/build/lint and GitHub CI for the exact published implementation SHA. DHU, vehicle, and live SOC remain independent acceptance gates.
+
+- No high-detail mesh, asset pipeline, dependency, budget, license, architecture, or new acceptance threshold is approved by this proposal. The existing low-poly concept remains the truthful fallback until the Owner makes the asset and integration decisions.

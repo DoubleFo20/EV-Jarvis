@@ -8,6 +8,11 @@
     <string name="manual_range_hint">Manual range (km)</string>
     <string name="destination_hint">Destination or route context</string>
     <string name="save_local_state">Save local state</string>
+    <string name="open_vehicle_concept">View S05 REEV Max visual concept</string>
+    <string name="concept_title">DEEPAL S05 REEV Max — visual concept</string>
+    <string name="concept_disclaimer">Unofficial visual approximation based on owner-supplied reference photos; not an OEM 3-D model, endorsement or verified exact vehicle. Phone companion only; not shown on Android Auto. Drag to rotate.</string>
+    <string name="concept_interaction_hint">Drag the model to inspect it from different angles.</string>
+    <string name="concept_back">Back</string>
     <string name="saved_manual_local">Saved as MANUAL_LOCAL</string>
     <string name="status_summary">Source: %1$s\nFreshness: %2$s\nCaptured: %3$d\nCar surface: POI discovery and navigation handoff only</string>
 </resources>

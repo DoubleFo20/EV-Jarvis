@@ -1,6 +1,7 @@
 package com.evjarvis.android;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.TypedValue;
@@ -58,6 +59,12 @@ public final class MainActivity extends Activity {
         saveButton.setText(R.string.save_local_state);
         saveButton.setOnClickListener(view -> saveState());
         content.addView(saveButton, fieldParams());
+
+        Button conceptButton = new Button(this);
+        conceptButton.setText(R.string.open_vehicle_concept);
+        conceptButton.setOnClickListener(view ->
+                startActivity(new Intent(this, VehicleConceptActivity.class)));
+        content.addView(conceptButton, fieldParams());
 
         statusView = new TextView(this);
         content.addView(statusView, fullWidth());
