@@ -1,7 +1,7 @@
 ---
 id: DOC-034
 title: EV-JARVIS Cross-Agent Handoff
-version: 5.10.0
+version: 5.10.1
 last_updated: 2026-09-29
 status: Review
 owner: Project Owner
@@ -19,12 +19,12 @@ references:
 
 ## 1. Handoff Status
 
-- **Updated:** 2026-09-29 (`ANDROID-MVP-3D-ASSET-SCOPE-28` proposal and publication preflight)
+- **Updated:** 2026-09-29 (`ANDROID-MVP-3D-ASSET-SCOPE-28` GitHub source commit and CI confirmation)
 - **Current worker:** Codex
-- **Task status:** The phone-only 3-D concept remains a visibly low-poly approximation, not an exact S05 mesh. The repository has no GLB/FBX/Blend or other mesh asset; a bounded original-model/asset-integration proposal is recorded below without approving or starting that architecture work. Owner authorized publishing today's six-path local bundle to GitHub on 2026-09-29. This handoff entry records the pre-push state; verify the actual commit, remote SHA, and GitHub Actions result independently. Earlier local unit tests, APK assembly, lint, and AVD framebuffer checks passed as recorded below. DHU, physical device/vehicle, live Deepal SOC, and the Owner-reported Windows emulator-window problem remain separate/unverified.
+- **Task status:** The six-path phone visual/HANDOFF bundle was committed as `b25ba76e38d6e54ef5c20eb5db18ff49b6988660` and pushed to `origin/main`. GitHub Actions run `36456206601` completed `success` for that exact SHA: Android unit tests/assembly/lint, backend, and frontend all succeeded. This documentation-only follow-up records that evidence; its own eventual SHA/CI must be verified separately. The visual remains a low-poly approximation, not an exact S05 mesh. No project-owned GLB/FBX/Blend or other mesh asset was found; the high-detail scope below is a proposal, not an architecture or asset approval. DHU, physical device/vehicle, live Deepal SOC, and the Owner-reported Windows emulator-window problem remain separate/unverified.
 - **Task ID:** `ANDROID-MVP-3D-ASSET-SCOPE-28` — Prepare an evidence-based high-detail model scope and publish the authorized local bundle
 - **Running processes:** On 2026-09-29, read-only process inspection found the ADB server but no emulator/QEMU process. The prior 2026-09-28 AVD screenshot remains historical evidence; do not infer a live AVD from it. No installer, DHU, verifier, provider, database, or production process is known to be running for this task.
-- **Next task candidate:** Check the GitHub Actions run for the actual published SHA; do not infer CI success from local tests. For near-photographic S05 fidelity, Owner must choose between providing a mesh with demonstrable app-use rights and separately approving original high-detail modeling plus an asset-loading path. The eight photos alone are not a ready-to-install exact mesh. No OEM outreach is authorized or planned. Owner can independently confirm whether the visible emulator window is centered; do not wipe/reset the AVD. DHU needs an eligible Android Auto runtime/device, while physical device/vehicle and Deepal live SOC/API remain separate gates.
+- **Next task candidate:** Verify this documentation-only follow-up's final remote SHA and CI, then request Owner's 3-D asset path decision: provide a mesh with demonstrable app-use rights or separately approve original high-detail modeling plus an asset-loading method. The eight photos alone are not a ready-to-install exact mesh. No OEM outreach is authorized or planned. Owner can independently confirm whether the visible emulator window is centered; do not wipe/reset the AVD. DHU needs an eligible Android Auto runtime/device, while physical device/vehicle and Deepal live SOC/API remain separate gates.
 
 ## 2. Goal and Scope
 
@@ -122,6 +122,7 @@ These paths were already dirty or untracked before this documentation task; they
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 5.10.1 | 2026-09-29 | Published / source CI passed | Codex | Record source commit `b25ba76` on `origin/main` and exact GitHub Actions run `36456206601` success across Android, backend, and frontend; keep docs follow-up CI and physical acceptance separate |
 | 5.10.0 | 2026-09-29 | Proposal / publication preflight | Codex | Record Owner-authorized GitHub publication scope, no project-owned 3-D mesh, and an unapproved high-detail modeling/asset-integration proposal |
 | 5.9.0 | 2026-09-28 | Partial / low-poly fidelity gap | Codex | Refine the phone concept silhouette and confirm final APK rendering on the existing AVD without claiming an exact S05 model |
 | 5.8.0 | 2026-09-28 | Partial / visible AVD open for Owner review | Codex | Record recovery from the recurring Android System UI dialog via Wait, successful S05 render in visible-mode AVD, and the remaining Owner check for the desktop window position/black region |
@@ -1596,3 +1597,10 @@ Subject: Request for authorized DEEPAL S05 3-D asset and mobile-app usage terms
 4. **Acceptance evidence:** Compare front three-quarter, side, rear three-quarter, and roof views against the eight supplied references with Owner visual sign-off. Verify 360-degree interaction, no clipping/black frame, resource usage and APK size on the existing emulator and, when available, a physical phone. Run local unit tests/build/lint and GitHub CI for the exact published implementation SHA. DHU, vehicle, and live SOC remain independent acceptance gates.
 
 - No high-detail mesh, asset pipeline, dependency, budget, license, architecture, or new acceptance threshold is approved by this proposal. The existing low-poly concept remains the truthful fallback until the Owner makes the asset and integration decisions.
+
+### Publication outcome for the source bundle
+
+- With explicit Owner authorization, staged only the six inspected Android visual/HANDOFF paths; `git diff --cached --check` exited 0. Committed `b25ba76e38d6e54ef5c20eb5db18ff49b6988660` (`feat(android): add S05 phone visual concept`) and pushed non-force to `origin/main`. A subsequent read-only remote query returned that exact SHA, and the worktree was clean before this documentation-only follow-up.
+- Local Android verification on 2026-09-29: `gradlew.bat --offline --no-daemon --max-workers=2 testDebugUnitTest assembleDebug lintDebug` exited 0 (`BUILD SUCCESSFUL`, 48 tasks; 11 executed, 37 up-to-date). This was local evidence, not GitHub CI.
+- GitHub Actions [run 36456206601](https://github.com/DoubleFo20/EV-Jarvis/actions/runs/36456206601) reports `completed/success` for exact head SHA `b25ba76e38d6e54ef5c20eb5db18ff49b6988660`. Android unit tests/assemble/lint, backend build/typecheck/tests, and frontend build/typecheck/tests all concluded `success`. The run emitted Node.js 20 deprecation and future `ubuntu-latest` migration notices; no failing job was reported. This proves CI for that source commit only, not emulator/DHU, physical-device/vehicle, model fidelity, or live SOC behavior.
+- This paragraph is a documentation-only post-CI amendment to be published separately. Do not claim CI for its future commit until GitHub reports the exact result.
