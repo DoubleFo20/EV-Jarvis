@@ -62,6 +62,20 @@ describe('verifyAccessToken', () => {
     await expect(verifyAccessToken('token')).resolves.toMatchObject({ role: 'user' });
   });
 
+  it('rejects an access token that Supabase reports as expired', async () => {
+    const expiredAccessToken = 'expired-access-token-fixture';
+    getClaims.mockResolvedValue({
+      data: null,
+      error: new Error('JWT expired'),
+    });
+
+    await expect(verifyAccessToken(expiredAccessToken)).rejects.toMatchObject({
+      statusCode: 401,
+      code: 'INVALID_ACCESS_TOKEN',
+    });
+    expect(getClaims).toHaveBeenCalledWith(expiredAccessToken);
+  });
+
   it.each([
     { data: null, error: new Error('invalid') },
     { data: { claims: { sub: 'not-a-uuid', aud: 'authenticated' } }, error: null },
