@@ -1,7 +1,7 @@
 ---
 id: DOC-034
 title: EV-JARVIS Cross-Agent Handoff
-version: 3.2.0
+version: 4.7.0
 last_updated: 2026-09-28
 status: Review
 owner: Project Owner
@@ -19,12 +19,12 @@ references:
 
 ## 1. Handoff Status
 
-- **Updated:** 2026-09-28 (S1-CLOSE-14 Sprint 1 documentation closure)
+- **Updated:** 2026-09-28 (ANDROID-MVP-QUALITY-19 Android lint/runtime quality pass)
 - **Current worker:** Codex
-- **Task status:** `S1-CLOSE-14` complete — `PROJECT_PROGRESS.md` and `04_SPRINT_1_PLAN.md` now reconcile the verified `f24d1fc`/run `36382091960` evidence; the approved local documentation closure commit is created but not pushed.
-- **Task ID:** `S1-CLOSE-14` — Record Sprint 1 closure after verified post-push CI and clean-tree checkpoint
-- **Running processes:** No dependency install, build, verifier, Android, emulator, DHU, vehicle, provider, database, or production process was started by this task. No process remains associated with this task.
-- **Next task candidate:** Continue the next read-only Android MVP readiness task under the already approved architecture; handle the local documentation push as a separate Owner decision and do not claim remote CI for it until pushed and verified.
+- **Task status:** `ANDROID-MVP-QUALITY-19` complete / Android source quality and current-APK phone smoke pass — local lint is clean; external DHU/device/CI/API gates remain separate.
+- **Task ID:** `ANDROID-MVP-QUALITY-19` — Reduce actionable Android lint warnings and re-run the current APK phone smoke without changing the approved Android/Web architecture
+- **Running processes:** No installer, sdkmanager, adb, emulator, DHU, verifier, provider, database, or production process remains associated with this checkpoint.
+- **Next task candidate:** Obtain separate push approval for the Android source/CI/Handoff, or use a changed external environment for DHU/physical-device evidence. Deepal live SOC/API and the licensed/commissioned/generic 3-D asset path remain open decisions.
 
 ## 2. Goal and Scope
 
@@ -42,7 +42,7 @@ This section records the original handoff task scope. Later, explicit bounded Ow
 
 - **Working directory:** `D:\xampp\htdocs\EV-Jarvis`
 - **Branch:** `main`
-- **Local HEAD:** S1-CLOSE-14 documentation closure commit (`docs: close sprint 1 verification record`), created locally and not pushed.
+- **Local HEAD:** `b62f61204c8b95d13abb008a008ffbb6dcaf9b45` — `docs: close sprint 1 verification record`, created locally and not pushed.
 - **Local `origin/main` tracking ref:** `f24d1fc27f81341c0f72ae19924def7191d68334`
 - **GitHub branch state:** Push to `origin/main` succeeded; GitHub Actions run `36382091960` for remote commit `f24d1fc` completed `success` with backend/frontend jobs passed. This does not prove a local-only documentation commit, Android/device/vehicle behavior, OEM telemetry, or provider availability.
 - **Staged changes before this task:** None.
@@ -71,7 +71,7 @@ This section records the original handoff task scope. Later, explicit bounded Ow
 - Clean working tree is not achievable by cleaning/removing existing changes; preserve the dirty baseline and request a separate Owner decision if cleanup is required.
 - Commit/push of only the previously approved CI candidate occurred as `9fbc108`; this `S1-CLOSE-11` task did not stage, commit, push, move, or delete files. Phase A restored only the nine explicitly approved paths and Phase B added only the two exact `.gitignore` entries.
 - The Owner has now approved the bounded architecture/scope/provider decisions recorded in `ANDROID-MVP-ARCHITECTURE-DECISION-05`; this does not approve Git stage/commit/push, cleanup/removal, paid provider access, credentials, deployment, or release.
-- Android implementation remains intentionally deferred until Sprint 1 is closed; Phase C documentation reconciliation does not change requirements or architecture.
+- Android implementation has started only after Sprint 1 closure and the approved architecture decision; the new module remains bounded to the documented local/manual/provider-fallback behavior and does not change the web architecture.
 - `S1-CLOSE-09` prepared the exact-path decision packet below; no path was staged, committed, pushed, cleaned, moved, deleted, or overwritten.
 
 ## 5. Existing Work to Preserve
@@ -122,6 +122,20 @@ These paths were already dirty or untracked before this documentation task; they
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 4.1.0 | 2026-09-28 | Review / Owner decision needed | Codex | Record public Deepal API and 3-D asset research; retain manual/local MVP, reject unapproved reverse-engineered production integration, and separate licensed asset decision |
+| 4.2.0 | 2026-09-28 | Review / DHU host blocker | Codex | Add Android Auto descriptor metadata, verify normal-memory emulator phone runtime and APK metadata, attempt DHU transport, and record the Google APIs stub limitation without claiming DHU acceptance |
+| 4.3.0 | 2026-09-28 | Review / SDK download blocker | Codex | Attempt the separate Android 35 Google Play image for DHU, stop only the stalled installer process, preserve the partial SDK marker, and retain the no-DHU-pass boundary |
+| 4.4.0 | 2026-09-28 | Review / device gate | Codex | Check ADB and Windows-present devices read-only; no physical Android phone, head unit, or vehicle target was available |
+| 4.5.0 | 2026-09-28 | Review / remote CI gate | Codex | Run the Android workflow-equivalent Gradle command locally, inspect the local job and remote run list, and retain the no-GitHub-claim boundary |
+| 4.6.0 | 2026-09-28 | Review / asset decision gate | Codex | Inspect repository model/image assets and renderer dependencies; none exist, so no unlicensed Deepal model or new rendering architecture was introduced |
+| 4.7.0 | 2026-09-28 | Review / local quality pass | Codex | Move phone strings to resources, add explicit no-backup rules, document the required exported CarApp service, achieve zero lint issues, and verify the current APK interaction on the normal-memory emulator |
+| 4.0.0 | 2026-09-28 | Prepared / remote gate pending | Codex | Record `ANDROID-MVP-CI-12` Android GitHub Actions job for JDK 17, SDK 35, Gradle test/assemble/lint; no remote run claim before approved push |
+| 3.9.0 | 2026-09-28 | Partial / host blocker | Codex | Record Android 15 AVD boot/API/install success and system-wide ANR during low-RAM phone runtime; stop before DHU and retain independent CI task |
+| 3.8.0 | 2026-09-28 | Review / host blocker | Codex | Record `ANDROID-MVP-TEST-10` local unit-test, APK assembly, lint, metadata, and no-runtime-session evidence; retain emulator/DHU blocker and separate Git push gate |
+| 3.7.0 | 2026-09-28 | Partial / host blocker | Codex | Record low-RAM Android 15 boot, successful APK install, and unstable MainActivity runtime/low-memory kill; do not claim emulator or DHU acceptance |
+| 3.6.0 | 2026-09-28 | Partial / host blocker | Codex | Record Android 35 system-image installation, AVD creation on C:/D:, failed boot evidence from disk/RAM limits, and Docker disk inspection without cleanup |
+| 3.5.0 | 2026-09-28 | Review | Codex | Record ANDROID-MVP-IMPLEMENTATION-07 provider result states, manual freshness handling, unit coverage, and final local build evidence; retain emulator/DHU/device/vehicle/CI gates |
+| 3.4.0 | 2026-09-28 | Review | Codex | Record ANDROID-MVP-IMPLEMENTATION-06 native module creation, local unit/assemble/lint evidence, APK checksum, and the system-image blocker; keep emulator/DHU/device/vehicle/CI claims separate |
 | 3.1.0 | 2026-09-28 | Review | Codex | Record push of `f24d1fc`, GitHub Actions run `36382091960` success for both jobs, and post-push Sprint 1 closure assessment |
 | 3.2.0 | 2026-09-28 | Review | Codex | Record S1-CLOSE-14 Sprint 1 closure documentation commit locally; keep its push separate and preserve the next Android readiness task |
 | 3.0.0 | 2026-09-28 | Review | Codex | Record separate pre-commit approval for the exact `.gitignore` plus eight-document set; local commit is allowed but push remains held |
@@ -928,3 +942,409 @@ No other path was edited by Phase C. The nine Phase A targets were restored to `
 
 - Separate push approval is required for this local documentation commit. If pushed, query the resulting GitHub Actions run before treating that remote documentation commit as CI-verified.
 - The next independent task may inspect Android MVP readiness under the approved architecture; Android implementation and any emulator/DHU/vehicle/OEM/SOC claim still require their own evidence and must not be inferred from Sprint 1 CI.
+
+## Current Continuation Record — ANDROID-MVP-IMPLEMENTATION-06
+
+### Goal and authorization
+
+- **Goal:** Move from closed Sprint 1 governance into the approved native Android/Android for Cars MVP implementation path while preserving the existing Next.js SSR application and all evidence boundaries.
+- **Authorization boundary:** Sprint 1 closure is recorded locally in `b62f612`, and `ANDROID-MVP-ARCHITECTURE-DECISION-05` approved the separate native Android companion, Android for Cars POI surface, provider-agnostic adapter, and no-cost fallback. This checkpoint authorizes toolchain bootstrap and the next implementation work; it does not authorize a new push, paid provider account, credentials, OEM access, production release, or direct vehicle control.
+
+### Toolchain bootstrap result
+
+- Microsoft OpenJDK 17.0.10.7 was installed in user scope and verified with `java -version`.
+- Android SDK command-line tools `15859902` were downloaded from the official Android distribution URL; SHA-256 matched `90ae805d20434428bffcb699c290860f19bb5f66a67e6b330067e3de801fb04a`. The tools are laid out at `C:\Users\u937\AppData\Local\Android\Sdk\cmdline-tools\latest` and `sdkmanager --version` returned `22.0`.
+- SDK packages installed and verified with `sdkmanager --list_installed`: `platform-tools 37.0.1`, `platforms;android-35`, `build-tools 35.0.0`, `emulator 37.1.11`, and `extras;google;auto 2.0` (Android Auto Desktop Head Unit).
+- Gradle `8.10.2` was downloaded from the official Gradle distribution, SHA-256 matched `31c55713e40233a8303827ceb42ca48a47267a0ad4bab9177123121e71524c26`, and `gradle --version` ran successfully with JDK 17.
+- A separate Android Studio installer attempt stalled before downloading an installer file and was stopped. A phone system image download (`system-images;android-35;google_apis;x86_64`) also stalled before payload completion and was stopped. No emulator or DHU session was started.
+
+### Native Android implementation result
+
+- Created the separate `android/` Gradle module using the approved native Android + AndroidX Car App/POI boundary. The phone surface stores manually entered vehicle name, SOC, range, and destination locally; the car surface exposes the local snapshot, static charging-stop fallback, source/freshness labels, disclaimer, and external navigation handoff only.
+- No Deepal/OEM telemetry, live provider call, provider credential, payment flow, direct vehicle control, database, Supabase, or Production access was added.
+- The first local compile exposed an incorrect `HostValidator` import; it was corrected to the official `androidx.car.app.validation.HostValidator` package before the final verification run.
+- The Android module uses AndroidX Car App `1.7.0`, compile/target SDK 35, minimum SDK 28, Java 17, and Gradle wrapper `8.10.2`; it now includes an explicit application icon. The wrapper and project files are new uncommitted implementation paths; Android build outputs remain ignored.
+
+### Evidence boundary and repository state
+
+| Evidence layer | Result | Boundary |
+|---|---|---|
+| Local toolchain / Android build | Passed | JDK, SDK platform/build tools, ADB, emulator binary, DHU binary, Gradle, Android unit tests, debug APK assembly, and lint completed locally. |
+| Emulator / DHU | Not run | Phone system image is incomplete; no AVD, emulator, or DHU session exists. |
+| Real Android device / vehicle | Not run | `adb devices` was empty; no phone/head unit/vehicle was used. |
+| OEM / Deepal telemetry | Not available | No API, permission, live call, or SOC claim. Manual/local state only. |
+| GitHub CI | Not run for Android | Remote remains `origin/main@f24d1fc`; local documentation commit `b62f612` is not pushed. |
+
+- The toolchain bootstrap itself did not alter repository files; the subsequent implementation increment added only the new `android/` module and its local-build ignore rules, plus this HANDOFF checkpoint. Existing baseline files remain preserved; no broad restore/reset/clean was used.
+- Current working tree is intentionally dirty with `.gitignore`, `HANDOFF.md`, and the untracked `android/` source/wrapper files. The Android crash log is ignored by the pre-existing root `*.log` rule, and Android build outputs are ignored by the exact Android rules above.
+- Next implementation increment must use a local/mock provider fallback, expose source/freshness/estimate or disclaimer/stale/partial/unavailable state, and avoid live Deepal telemetry, direct vehicle control, payment behavior, or unapproved provider credentials.
+
+### Verification
+
+| Check | Result | Notes |
+|---|---|---|
+| JDK verification | Passed | Explicit JDK path returned OpenJDK 17.0.10 LTS. |
+| SDK package verification | Passed | `sdkmanager --list_installed` reported all five core packages. |
+| ADB verification | Passed, no devices | `adb version` returned 37.0.1; `adb devices` listed no attached device. Daemon was stopped afterward. |
+| DHU package verification | Passed, not executed | `extras;google;auto` contains `desktop-head-unit.exe`; no DHU session started. |
+| Gradle verification | Passed | Gradle 8.10.2 ran with JDK 17. |
+| `android/gradlew.bat testDebugUnitTest` | Passed | Final source after the `HostValidator` and `String.isBlank` compatibility fixes; `BUILD SUCCESSFUL`. |
+| `android/gradlew.bat assembleDebug` | Passed | Memory-bounded local invocation (`--no-daemon --max-workers=1`, `-Xmx768m`); `BUILD SUCCESSFUL`. APK: `android/app/build/outputs/apk/debug/app-debug.apk`; SHA-256 `1FAD021C4356512BBD4D3E2DE3FC08D311DF88A81AFBEF4D3E53CD87782E3416`. |
+| `android/gradlew.bat lintDebug` | Passed with warnings | `BUILD SUCCESSFUL`; lint report contained 7 warnings (exported CarApp service, Android 12 backup metadata, and phone-side text localization), no lint errors. |
+| `aapt dump badging app-debug.apk` | Passed | Package `com.evjarvis.android`, version `0.1.0`, launch activity `com.evjarvis.android.MainActivity`, and application icon `res/drawable/ic_ev_jarvis.xml` were present. |
+| System-image retry | Blocked / stopped | `sdkmanager --install system-images;android-35;google_apis;x86_64` produced no payload/progress within the bounded retry; only the existing `.installer` directory remains. |
+| Repository scope check | Passed | No existing generated/dependency/documentation baseline path was restored, deleted, or overwritten by the Android increment; no stage/commit/push was performed. |
+
+### Next gate
+
+- Retry or repair the phone system image/AVD before claiming emulator/DHU results; the prior retry is an external download/resource blocker, not evidence of a failed Android source build.
+- If the image becomes available, install the APK to the emulator, connect DHU, and exercise the approved loading/empty/success/stale/partial/unavailable and navigation-handoff cases. Keep local build, emulator/DHU, real-device/vehicle, OEM, provider, and GitHub CI results separately labeled.
+- Android source is not staged or committed. Separate Owner approval is still required before any Android commit/push; the local documentation commit remains `b62f612` and is also not pushed.
+
+## Current Continuation Record — ANDROID-MVP-IMPLEMENTATION-07
+
+### Goal and bounded change
+
+- **Goal:** Close the local acceptance-state gap identified in `ANDROID-MVP-ACCEPTANCE-MATRIX-04` without selecting a provider, adding network access, or changing the approved native Android/Web architecture.
+- **Change:** Added a provider-agnostic `ChargingProvider` boundary and normalized `ChargingSearchResult` states (`SUCCESS`, `PARTIAL`, `EMPTY`, `UNAVAILABLE`) with source/freshness/message fields. The local fallback returns an explicitly static/unverified result and does not claim live availability.
+- **Vehicle state:** Added deterministic manual snapshot freshness states: `CURRENT_LOCAL_ESTIMATE` within the 15-minute local threshold and `STALE` outside it. Phone and car surfaces now show the source, freshness, captured timestamp, and local-estimate boundary.
+- **Safety boundary:** No Deepal/OEM API, telemetry, provider credential, live provider call, payment, direct vehicle control, database, Supabase, Production, or deploy action was performed.
+
+### Verification
+
+| Check | Result | Notes |
+|---|---|---|
+| `android/gradlew.bat testDebugUnitTest` | Passed | Covers manual value clamping, current/stale freshness, static fallback success, partial result retention, and unavailable result safety. |
+| `android/gradlew.bat assembleDebug` | Passed | Memory-bounded local invocation; `BUILD SUCCESSFUL`. Final APK SHA-256: `C386864B31C0850C88BF1539B6951AD5A6F96B41F5E8B1B5DFC322F068A4A5AE`. |
+| `android/gradlew.bat lintDebug` | Passed with warnings | `BUILD SUCCESSFUL`; 7 warnings remain for the intentionally exported Car App service, Android 12 backup metadata, and phone-side text localization. No lint errors. |
+| `aapt dump badging app-debug.apk` | Passed | Package `com.evjarvis.android`, version `0.1.0`, launcher `MainActivity`, and explicit application icon verified. |
+| `git diff --check` | Passed | No whitespace errors; existing LF-to-CRLF normalization warnings only. |
+| Working-tree scope | Passed | Only `.gitignore`, HANDOFF, and new `android/` paths are visible; no staged/commit/push/restore/reset/clean action. |
+
+### Evidence boundary and next gate
+
+- Local build/unit/lint evidence is available for the current source. Emulator/DHU remains **not run** because the Android 35 phone image download stalled twice before payload progress; the SDK directory still contains only `.installer` for that image. Real device/vehicle remains **not run** because `adb devices` is empty. GitHub CI evidence remains limited to the previously verified remote `f24d1fc` run and does not cover this unpushed Android source.
+- The next independent action is to retry system-image/AVD/DHU setup when the external download/resource blocker changes, then install this APK and exercise the approved state/navigation matrix. No Android source commit or push is authorized by this checkpoint.
+
+## Current Continuation Record — ANDROID-MVP-EMULATOR-DHU-08
+
+### Goal and environment result
+
+- **Goal:** Prepare a real emulator/DHU evidence path for the approved Android Auto MVP while keeping local build, emulator/DHU, real device/vehicle, OEM, provider, and GitHub CI evidence separate.
+- Android 35 Google APIs x86_64 system image was installed successfully: revision 9, package `system-images;android-35;google_apis;x86_64`. The ZIP was downloaded and extracted by `sdkmanager`; no package or repository file was deleted.
+- AVD creation succeeded despite an `avdmanager` metadata warning about missing `devices.xml` (the resulting AVD is listed and points to the installed Google APIs image):
+  - `C:\Users\u937\.android\avd\ev-jarvis-api35.avd` — retained; first boot attempt failed because C: had ~6,000 MB available while emulator userdata required 12,288 MB.
+  - `D:\EV-Jarvis-avd\ev-jarvis-api35-d.avd` — created to keep userdata on D:, which had ~48 GB free; no existing AVD was deleted or overwritten.
+- The D: AVD passed emulator compatibility checks (Hypervisor, system, GPU requirement bypass, and disk), but boot then failed before ADB registration because Windows commit memory was marginal: currently committed ~15,950 MB, commit limit ~18,509 MB, remaining ~2,559 MB, emulator requirement 2,560 MB. A retry with the AVD config RAM reduced to 1,536 MB and `-memory 1536` still showed the emulator enforcing 2,560 MB.
+
+### Docker/storage investigation
+
+- Docker context is `desktop-linux`, but the Docker Linux engine pipe is unavailable and `docker system df` could not run; Docker daemon was not started or changed by this task.
+- Read-only file inspection found `C:\Users\u937\AppData\Local\Docker\wsl\disk\docker_data.vhdx` at approximately 8.54 GB and Docker WSL `main\ext4.vhdx` at approximately 0.09 GB. This is a material contributor to C: usage, but not the whole cause: C: is ~155.9 GB total with roughly 5.2 GB free, so other system/application data accounts for the remainder. No prune, cleanup, delete, move, or Docker configuration change was performed.
+
+### Verification boundary
+
+| Evidence layer | Result | Notes |
+|---|---|---|
+| Android system image | Passed | Installed and present under the configured SDK root. |
+| AVD creation | Passed with warning | AVDs listed; one retained on C:, one new D: AVD. `devices.xml` warning did not prevent listing/boot attempt. |
+| Emulator boot | Blocked | C: attempt blocked by userdata disk requirement; D: attempt blocked by Windows commit-memory requirement. |
+| ADB / APK install | Not run | No emulator reached ADB `device` state; `adb devices -l` remained empty. APK was not installed. |
+| DHU | Not run | No connected Android Auto projection/emulator session exists. |
+| Real device / vehicle | Not run | No physical device/head unit/vehicle attached. |
+| GitHub CI | Not run for Android | Current Android source is uncommitted/unpushed; remote CI evidence remains limited to the earlier `f24d1fc` backend/frontend run. |
+| Repository scope | Passed | Only the prior `.gitignore`, HANDOFF, and new `android/` paths are visible in Git; no source reset/clean/delete/stage/commit/push. AVD/system-image files are outside the repository. |
+
+### Next gate
+
+- The next retry needs a host-state change: close or pause enough memory/commit consumers, increase approved Windows pagefile/commit capacity, or use an approved better-resourced host. Do not prune Docker or alter system settings without Owner approval.
+- Once boot reaches ADB, install the final debug APK, verify phone-side manual/local state, then attempt DHU and record each acceptance state/navigation handoff separately. No emulator/DHU pass may be inferred from system-image or local-build success.
+
+## Current Continuation Record — ANDROID-MVP-EMULATOR-DHU-09
+
+### Low-RAM runtime attempt
+
+- The D: AVD was retried with `-lowram -memory 1024` because the normal emulator configuration required 2,560 MB while the host could not provide that commit headroom. It reached `emulator-5554` ADB `device`, Android API 35, and `sys.boot_completed=1` / `dev.bootcomplete=1`.
+- Final APK installation was attempted on that emulator and passed: `adb install -r android/app/build/outputs/apk/debug/app-debug.apk` returned `Success`. Package inspection returned `/data/app/.../com.evjarvis.android/base.apk` and the installed package reported version `0.1.0`, `minSdk=28`, `targetSdk=35`, and `EvJarvisCarAppService`.
+- Phone runtime smoke did not pass. `am start -W -n com.evjarvis.android/.MainActivity` returned `Status: ok`, but logcat recorded the activity as unresponsive for 20,943 ms; Android low-memory killer then killed process `com.evjarvis.android` because the device was not responding. Therefore this is **install evidence only**, not stable emulator app-launch evidence.
+- A second retry with `-lowram -memory 1536` showed an initial ADB/offline transport but did not retain a stable device for the boot/property check; no additional pass is claimed.
+
+### Evidence boundary
+
+| Evidence layer | Result | Notes |
+|---|---|---|
+| System image / AVD | Passed | Android 35 Google APIs image and D: AVD are present. |
+| ADB boot | Partial | Low-RAM 1024 attempt reached boot-complete once; 1536 retry was unstable. |
+| APK install | Passed on emulator | `adb install -r` returned `Success` for the final APK. |
+| Phone activity runtime | Failed / host constrained | Activity became unresponsive and was killed by low-memory killer; no functional UI/state result claimed. |
+| Car App / Android Auto surface | Not run | No stable runtime and no DHU projection session. |
+| DHU | Not run | `desktop-head-unit.exe` was not started. Official DHU testing remains a separate evidence layer ([Android DHU testing](https://developer.android.com/training/cars/testing/dhu)). |
+| Real device / vehicle | Not run | No physical device/head unit/vehicle attached. |
+| GitHub CI | Not run for Android | Android source remains uncommitted/unpushed. |
+
+### Next gate
+
+- A stable emulator runtime now requires a host-state change: reduce memory/commit pressure with Owner-approved process/system action or use a better-resourced host. Do not kill ChatGPT/Codex/Chrome or change pagefile/Docker state autonomously.
+- After stable boot, repeat APK install, launch smoke, phone manual-state interaction, Car App host validation, and DHU navigation/state checks. Until then, retain the accurate distinction: local build passed; emulator install passed once; emulator runtime and DHU acceptance remain open.
+
+## Current Continuation Record — ANDROID-MVP-TEST-10
+
+### Goal and scope
+
+- **Goal:** Run the narrow local Android verification for the current uncommitted MVP source and preserve the separate emulator/DHU evidence boundary.
+- **Scope:** Unit tests, debug APK assembly, lint, APK metadata/hash inspection, Git diff check, and read-only runtime-process check. No source, dependency, architecture, provider, OEM, database, Supabase, production, stage, commit, push, or deploy change was made.
+
+### Verification evidence
+
+| Check | Result | Notes |
+|---|---|---|
+| Android unit tests | Passed | Existing Gradle 8.10.2 installation, `--no-daemon --max-workers=1`, `-Dorg.gradle.jvmargs=-Xmx512m`, `testDebugUnitTest`; `BUILD SUCCESSFUL`, 21 actionable tasks up-to-date. |
+| Debug APK | Passed | `assembleDebug`; `BUILD SUCCESSFUL`, 44 actionable tasks with 1 executed and 43 up-to-date. |
+| Lint | Passed with warnings | `lintDebug`; `BUILD SUCCESSFUL`, 0 errors and 7 warnings: exported Car App service, Android 12 backup metadata, and phone-side `SetTextI18n`. |
+| SDK/toolchain warning | Non-blocking | Android Gradle Plugin reported SDK XML version 4 while the current processor understands up to version 3; build and tests still completed successfully. |
+| APK metadata | Passed | `com.evjarvis.android`, version `0.1.0`, compile/target SDK 35, min SDK 28, launcher `MainActivity`, explicit icon. |
+| APK SHA-256 | Recorded | `C386864B31C0850C88BF1539B6951AD5A6F96B41F5E8B1B5DFC322F068A4A5AE`. |
+| `git diff --check` | Passed | No whitespace errors; only existing LF-to-CRLF normalization warnings. |
+| ADB / emulator / DHU | Not run in this checkpoint | `adb devices -l` was empty; no `emulator.exe`, `qemu-system-x86_64.exe`, or `desktop-head-unit.exe` process remained. Prior emulator install/runtime result remains the separate `ANDROID-MVP-EMULATOR-DHU-09` record. |
+
+### Command/environment notes
+
+- The first wrapper invocation could not download Gradle because sandbox network was denied. The installed Gradle 8.10.2 binary was then used; Android SDK paths were supplied only to that process through `ANDROID_SDK_ROOT` and `ANDROID_HOME`. No `local.properties` was created.
+- No new source or configuration path was modified by this verification. The working tree remains `main...origin/main [ahead 1]` with the pre-existing `.gitignore`, Handoff changes, and untracked `android/` module; nothing was staged, committed, or pushed.
+
+### Next gate
+
+- Local verification is complete for this checkpoint. The next required evidence is a stable emulator phone/runtime session followed by DHU Car App projection and navigation/state checks. That remains blocked by host memory/commit pressure and requires an approved host/system-state change; no local test result may substitute for emulator/DHU acceptance.
+
+## Current Continuation Record — ANDROID-MVP-EMULATOR-DHU-11
+
+### Boot/install/runtime result
+
+- D: AVD `ev-jarvis-api35-d` was started with `-lowram -memory 1536 -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect -no-metrics` without changing its files or host memory settings.
+- Emulator reached ADB `device`, `sys.boot_completed=1`, `dev.bootcomplete=1`, and API level 35.
+- `adb install -r android/app/build/outputs/apk/debug/app-debug.apk` returned `Success`. Package inspection confirmed `com.evjarvis.android`, version `0.1.0`, `minSdk=28`, `targetSdk=35`, `MainActivity`, and `EvJarvisCarAppService`.
+- `am start -W -n com.evjarvis.android/.MainActivity` returned `Status: ok`, but launch took `TotalTime: 8144` ms. The UI hierarchy then showed `System UI isn't responding`; ActivityManager logs recorded ANRs for Google Play services and the keyboard while the EV-Jarvis process was present. This is not a stable phone-runtime pass.
+- Memory snapshot during the failure showed EV-Jarvis `TOTAL PSS: 22492 KB`, System UI `TOTAL PSS: 81672 KB`, and total swap PSS for EV-Jarvis `15725 KB`. The emulator was stopped with `adb emu kill`; no ADB device or emulator/DHU process remained afterward.
+
+### Evidence boundary
+
+| Evidence layer | Result | Notes |
+|---|---|---|
+| AVD/API 35 boot | Passed | ADB and both boot-complete properties were observed. |
+| APK install | Passed | `adb install -r` returned `Success`. |
+| Package/service registration | Passed | Main activity and Car App service were present in `dumpsys package`. |
+| Phone UI/runtime | Failed / host constrained | System-wide UI/Google services/input-method ANR appeared in the low-RAM session; no usable interaction result is claimed. |
+| DHU / Android Auto | Not run | No stable phone/runtime session existed, so no projection or Car App acceptance result can be inferred. |
+| Real device / vehicle | Not run | No physical device or vehicle attached. |
+| GitHub CI | Not run for Android | Independent next task; current Android source remains uncommitted/unpushed. |
+
+### Next gate
+
+- Continue with independent Android GitHub CI preparation while keeping this emulator/DHU blocker explicit. A DHU run requires a stable phone/runtime session or a better-resourced approved host.
+- Do not claim Android Auto acceptance from boot/install evidence alone. Do not change pagefile, Docker, or host processes autonomously.
+
+## Current Continuation Record — ANDROID-MVP-CI-12
+
+### CI change
+
+- Added one `android` job to `.github/workflows/ci.yml` without changing the existing backend/frontend jobs.
+- The job pins `actions/checkout`, `actions/setup-java` JDK 17, `android-actions/setup-android`, and `gradle/actions/setup-gradle` to commit refs; it installs SDK platform 35/build-tools 35.0.0 and runs the Gradle wrapper with `testDebugUnitTest`, `assembleDebug`, and `lintDebug`.
+- The job is designed to produce remote evidence for the current Android source. It does not run emulator/DHU, real-device/vehicle, OEM telemetry, provider calls, or deployment.
+
+### Verification and boundary
+
+| Check | Result | Notes |
+|---|---|---|
+| Action ref inspection | Passed | Read-only `git ls-remote` verified the pinned tag commit refs used in the workflow. |
+| Local workflow diff check | Passed | `git diff --check`; only existing LF-to-CRLF normalization warnings. |
+| GitHub Actions run | Not run | Workflow is only in the local working tree; no push was performed and no CI pass is claimed. |
+| Repository mutation | Bounded | Only `.github/workflows/ci.yml` was edited for this task; no dependency, source, database, secret, stage, commit, or push action was performed. |
+
+### Next gate
+
+- Separate Owner approval is required before staging/committing/pushing the Android source, CI workflow, and current Handoff changes. After an approved push, inspect the exact GitHub Actions run and report Android CI separately from the prior backend/frontend run.
+- Emulator/DHU remains independently blocked by low-RAM/system-wide ANR; CI success would not substitute for Car App projection or real-device/vehicle evidence.
+
+## Current Continuation Record — ANDROID-MVP-DATA-ASSET-13
+
+### Deepal data research
+
+- Official Deepal material confirms that the manufacturer ecosystem/app handles connected-vehicle information and remote vehicle services, including vehicle status, charging state, location, SOC and other vehicle data under its privacy/consent model. This is evidence that data exists in the OEM ecosystem, not evidence of a public developer API or permission for EV-Jarvis to call it.
+- No public official Deepal developer portal/API contract, OAuth client-registration path, or S05 telemetry SDK was identified in the bounded public review. Therefore no live SOC/API claim or integration was added.
+- A public unofficial Home Assistant integration was reviewed: it states that S05 support is read-only through an app/MQTT telemetry path, lists supported login regions as UK/Israel/Portugal, and explicitly says it is unofficial/not endorsed. It also warns about session invalidation and vehicle-control risk. It is not approved as a production dependency or credential source.
+- Safe current strategy remains manual/local state with explicit source/freshness/disclaimer. A future OEM integration would require Owner approval, written provider/OEM permission, region/account compatibility, consent/privacy review, credential handling, rate limits, failure behavior, and a read-only scope before any implementation.
+
+### Deepal 3-D asset research
+
+- The official public review found an official Deepal 3-D showroom page for SL03, but no downloadable S05 GLB/FBX/CAD asset with a redistribution license. A web configurator/reference image is not treated as permission to extract or ship its model.
+- The requested S05 3-D model should therefore use one of these bounded paths: (A) OEM/Changan licensed asset, (B) commissioned original S05 model with explicit commercial/mobile redistribution rights, or (C) a clearly non-infringing generic EV-SUV placeholder for UI prototyping.
+- The 3-D model belongs on the phone/web companion surface, not the driver-facing Android Auto template by default. Android Auto should keep simple status/POI/navigation surfaces; the model is a visual asset and does not provide vehicle telemetry.
+- No image/model was downloaded, scraped, generated into the repository, or added to the app in this review. The attached images are treated as visual references only, not as evidence of asset ownership or an exact S05 model specification.
+
+### Owner decisions required
+
+1. Choose the data path: keep manual/local for MVP; pursue official Deepal/Changan partnership/API; or allow a private, read-only, non-production bridge experiment with explicit risk acceptance.
+2. Choose the asset path: provide an OEM/licensed S05 model, authorize commissioning an original model, or accept a generic placeholder first. Confirm target model/trim, colors, detail level, and intended phone/web surface.
+3. Keep provider credentials, vehicle login, asset acquisition, release, and production deployment as separate approvals.
+
+## Current Continuation Record — ANDROID-MVP-EMULATOR-DHU-14
+
+### Goal and bounded change
+
+- **Goal:** Close the Android Auto manifest-discovery gap, re-run the phone runtime on the available normal-memory AVD, and attempt the official DHU ADB transport while keeping phone, DHU, real-device/vehicle, OEM, provider, and GitHub CI evidence separate.
+- **Authorization boundary:** Only the Android source metadata fix, local build/install/runtime verification, DHU attempt, and HANDOFF update were performed. No dependency was installed, no architecture or requirement was changed, and no stage/commit/push/deploy/provider/OEM/database action was performed.
+
+### Source fix
+
+- Added the required application metadata `com.google.android.gms.car.application` pointing to `@xml/automotive_app_desc` in `android/app/src/main/AndroidManifest.xml`.
+- Added `android/app/src/main/res/xml/automotive_app_desc.xml` with `<uses name="template" />`.
+- The existing `EvJarvisCarAppService` declaration, POI category, manual/local data boundary, and external navigation handoff were not changed.
+
+### Verification evidence
+
+| Evidence layer | Result | Notes |
+|---|---|---|
+| Local Android build | Passed | Standalone Gradle 8.10.2 with JDK 17: `testDebugUnitTest assembleDebug lintDebug`; `BUILD SUCCESSFUL`, 48 actionable tasks. Lint remains 7 warnings and 0 errors. |
+| Gradle wrapper CI parity | Passed locally | `android/gradlew.bat --offline --no-daemon --max-workers=1 testDebugUnitTest assembleDebug lintDebug`; `BUILD SUCCESSFUL`, 48 actionable tasks. Offline mode used; no dependency installation or network fetch occurred. |
+| APK Android Auto metadata | Passed | `aapt2 dump xmltree` confirmed `com.google.android.gms.car.application`, `EvJarvisCarAppService`, `androidx.car.app.CarAppService`, and POI category in the built APK. |
+| Emulator boot/install | Passed | D: AVD `ev-jarvis-api35-d` started with normal `-memory 2560`; ADB reached `device`, API 35 boot properties were complete, and `adb install -r` returned `Success`. |
+| Phone runtime | Passed for bounded smoke | `MainActivity` returned `Status: ok`, remained resumed with process `com.evjarvis.android`, and screenshot `C:\Users\u937\AppData\Local\Temp\ev-jarvis-emulator-15-metadata.png` showed the manual/local disclaimer, editable SOC/range/destination fields, save action, `MANUAL_LOCAL`, `CURRENT_LOCAL_ESTIMATE`, and POI/navigation boundary. Earlier in the same normal-memory session the save interaction was also observed with a changed captured timestamp. |
+| Android Auto image | Host limitation | AVD uses `system-images;android-35;google_apis;x86_64` with `PlayStore.enabled=no`; package `com.google.android.projection.gearhead` is `AndroidAutoStubPrebuilt` version `1.2.542030-stub`, not a full Play Store Android Auto app. |
+| DHU transport | Partial / not acceptance | `adb forward tcp:5277 tcp:5277` succeeded. DHU 2.0 connected to the local ADB server and exposed its command console (`help` worked), but the stub `StubSettingsActivity` finished immediately and no projection session or EV-Jarvis Car App surface appeared. The explicit launch of the stub launch-pad activity returned Android `Error type 3`. No DHU pass is claimed. |
+| Real Android device / vehicle | Not run | `adb devices` had no physical device; no head unit or vehicle was used. |
+| Deepal OEM/API/SOC | Not run | No credentials, permission, API call, live SOC, or vehicle telemetry claim. |
+| GitHub Android CI | Not run | `.github/workflows/ci.yml` remains local; no new source/CI commit was pushed and no remote Android run is claimed. |
+
+### Cleanup and repository state
+
+- Removed only the ADB forwarding rule created for this attempt and stopped the emulator started by this task; no emulator/desktop-head-unit process remained after the bounded cleanup check.
+- `git diff --check` remained clean apart from the existing LF-to-CRLF normalization warnings. The source metadata files are part of the untracked `android/` module; `.github/workflows/ci.yml`, `.gitignore`, and this HANDOFF remain the only modified tracked paths visible alongside `android/`.
+- No existing modified/untracked baseline path was restored, deleted, moved, or overwritten.
+
+### Next gate
+
+- DHU acceptance needs an approved Android Auto-capable environment: a Play Store AVD with the full Android Auto app, a compatible physical Android phone, or a real head unit/vehicle. The current Google APIs stub cannot provide the required head-unit server, so installing a new image/dependency or changing host/system state requires a separate Owner decision.
+- Keep the current proof at the accurate level: local build and normal-memory phone smoke passed; DHU projection, real device/vehicle, Android GitHub CI, and Deepal live SOC/API remain open.
+
+## Current Continuation Record — ANDROID-MVP-DHU-15
+
+### Goal and bounded authorization
+
+- **Goal:** Use the next approved environment step to obtain an Android 35 Google Play system image, create an isolated D:-hosted AVD, and retry DHU without altering the existing Google APIs AVD or the repository.
+- **Authorization interpretation:** The Owner message `ทำขั้นต่อไปได้` was applied only to this bounded environment attempt. It did not authorize deleting the partial SDK marker, changing pagefile/Docker/host settings, stage/commit/push, or using a physical vehicle/account/provider.
+
+### Attempt and result
+
+- Preflight found approximately 19 GB free on C: and 44.7 GB free on D:. The requested package was available as `system-images;android-35;google_apis_playstore;x86_64` revision 9; the existing installed image remains `system-images;android-35;google_apis;x86_64` revision 9.
+- Started only `sdkmanager --sdk_root=C:\Users\u937\AppData\Local\Android\Sdk --install system-images;android-35;google_apis_playstore;x86_64`.
+- The installer produced no payload/progress within the bounded retry. Read-only inspection found only `C:\Users\u937\AppData\Local\Android\Sdk\system-images\android-35\google_apis_playstore\x86_64\.installer\.installData` (171 bytes); `sdkmanager --list_installed` does not report the Play Store image.
+- After validating the exact command lineage, stopped only the stalled sdkmanager Java process that this checkpoint started; its command wrapper had exited during the bounded check and was not force-stopped. No emulator, DHU, adb, host setting, Docker state, or existing AVD was changed.
+- The partial `.installer` marker was preserved; it is outside the repository and was not deleted or moved because that requires a separate cleanup decision.
+
+### Evidence boundary
+
+| Evidence layer | Result | Notes |
+|---|---|---|
+| Existing Android source/build | Still passed | The `ANDROID-MVP-EMULATOR-DHU-14` local build, APK metadata, and normal-memory phone smoke remain the latest valid source/runtime evidence. |
+| Full Android Auto Play Store image | Not installed | Download stalled before package payload; no new Play Store AVD was created. |
+| DHU acceptance | Not run in this retry | The current Google APIs AVD remains the only usable image and has the Android Auto stub limitation already recorded in `ANDROID-MVP-EMULATOR-DHU-14`. |
+| Real device / vehicle | Not run | No physical device/head unit/vehicle attached. |
+| Android GitHub CI | Not run remotely | Local wrapper parity passed; no Android source/CI push was authorized or performed. |
+| Deepal live SOC/API and 3-D asset | Not run/added | No credentials, OEM permission, vehicle telemetry, or unlicensed model acquisition. |
+
+### Next gate
+
+- The current blocker is external SDK download/network state, not Android source compilation. A later retry needs a working SDK download path or an approved physical Android device/head unit; do not repeatedly start stalled installers without a changed external condition.
+- Do not remove `google_apis_playstore\\x86_64\\.installer` or claim DHU acceptance from the existing Google APIs AVD. Keep separate approvals for cleanup, Android commit/push, device/vehicle access, Deepal data, and 3-D asset licensing.
+
+## Current Continuation Record — ANDROID-MVP-REAL-DEVICE-16
+
+### Goal and result
+
+- **Goal:** Check whether a physical Android phone, Android Auto head unit, or vehicle is available for the next acceptance layer, using read-only host/device inspection only.
+- `adb devices -l` returned an empty device list; no physical target was available for install, pairing, Android Auto projection, navigation handoff, or vehicle-state testing.
+- Windows present-device inspection found no eligible Android/ADB/MTP phone or head unit. The listed USB/Bluetooth entries were host peripherals and a `spacedesk Android Control` system entry, not evidence of a connected Android test device.
+
+### Evidence boundary
+
+| Evidence layer | Result | Notes |
+|---|---|---|
+| ADB toolchain | Passed | Platform-tools 37.0.1 on Windows 10. |
+| Physical Android device | Not available | `adb devices -l` empty; no APK installation or device UI claim. |
+| Android Auto head unit / vehicle | Not available | No head unit or vehicle connected; no projection/navigation/SOC result. |
+| Emulator/DHU | Separate blocker | Existing phone smoke passed, but DHU remains blocked by the Google APIs stub and stalled Play Store image download recorded above. |
+
+### Next gate
+
+- Continue with local Android CI preflight while the physical-device gate is unavailable. A real-device/vehicle acceptance run requires an attached device/head unit and the corresponding Owner-approved test access; it cannot be inferred from Windows USB entries or the emulator phone smoke.
+
+## Current Continuation Record — ANDROID-MVP-CI-17
+
+### Goal and bounded scope
+
+- **Goal:** Validate the Android GitHub Actions job locally and inspect the remote run list without staging, committing, pushing, or claiming a remote result.
+- **Scope:** Read the local workflow, verify pinned action refs already recorded in the workflow, run the exact Android Gradle command in offline mode, and query GitHub Actions read-only.
+
+### Verification evidence
+
+| Check | Result | Notes |
+|---|---|---|
+| Local workflow inspection | Passed | `.github/workflows/ci.yml` contains the Android job with JDK 17, Android SDK platform/build-tools 35, Gradle setup, and `testDebugUnitTest assembleDebug lintDebug`. |
+| Action refs | Previously verified | The workflow keeps the pinned commit refs for checkout, setup-java, setup-android, and setup-gradle; no ref was changed in this checkpoint. |
+| Workflow-equivalent Android command | Passed locally | `android/gradlew.bat --offline --no-daemon --max-workers=2 testDebugUnitTest assembleDebug lintDebug`; `BUILD SUCCESSFUL` in 24 seconds, 48 actionable tasks, 0 test/lint errors. The SDK XML v4 compatibility warning remains non-blocking. |
+| Local syntax validator | Unavailable | `actionlint` and `yq` were not installed; no tool was installed to compensate. The workflow was inspected by exact diff/content and the job command executed locally. |
+| GitHub Actions remote evidence | No Android run | `gh run list` returned only successful runs `36382091960` (SHA `f24d1fc`) and `36379393726` (SHA `9fbc108`); neither contains this unpushed Android job. |
+| Repository mutation | None | No stage, commit, push, merge, dependency install, or source cleanup was performed. |
+
+### Next gate
+
+- Local Android CI readiness is complete. A real GitHub Android result requires a separately approved commit/push of the Android source, workflow, and current HANDOFF; only then may the exact SHA/run/jobs be inspected and reported.
+- Do not call the local wrapper result “GitHub CI passed.” Keep device/vehicle, DHU, Deepal API/SOC, and 3-D asset evidence independent.
+
+## Current Continuation Record — ANDROID-MVP-ASSET-INVENTORY-18
+
+### Goal and result
+
+- **Goal:** Inspect the repository for existing 3-D assets, image assets, and rendering dependencies before deciding whether any model work can proceed safely.
+- No `.blend`, `.glb`, `.gltf`, `.fbx`, `.obj`, `.usdz`, `.dae`, `.stl`, `.ply`, `.3ds`, HDR, or EXR asset was found in the repository search scope.
+- No renderer dependency or existing model-viewer pipeline was found in the package manifests/source search (`three.js`, Babylon, model-viewer, GLTF/GLB references absent from implementation).
+- No Deepal S05 model was downloaded, generated, scraped, or added. The two attached images remain visual references only and do not prove asset ownership or redistribution rights.
+
+### Evidence boundary
+
+| Evidence layer | Result | Notes |
+|---|---|---|
+| Repository asset inventory | Passed | No existing 3-D or image asset/pipeline was found to extend. |
+| Licensed Deepal/S05 asset | Not available | Requires OEM/Changan-provided rights or a commissioned model with explicit redistribution rights. |
+| Generic placeholder | Not selected | Choosing this path would be an Owner product/asset decision and may require a phone/web rendering architecture decision. |
+| Android Auto surface | Unchanged | The approved car surface remains status/POI/navigation only; no 3-D model was put into the driver-facing template. |
+
+### Next gate
+
+- Owner must choose one asset path before implementation: licensed OEM asset, commissioned original model with commercial/mobile rights, or generic non-infringing placeholder. Until then, automatic work must not invent a Deepal model or add a renderer dependency.
+- Keep the separate approval boundaries for asset acquisition, architecture, release, and production deployment.
+
+## Current Continuation Record — ANDROID-MVP-QUALITY-19
+
+### Goal and bounded change
+
+- **Goal:** Improve Android source quality and verify the current APK after the change, without adding dependencies or changing the approved native Android/Web architecture.
+- Moved phone-side hardcoded labels and status text into `android/app/src/main/res/values/strings.xml`, using resource placeholders for source/freshness/timestamp values.
+- Added explicit no-backup rules at `android/app/src/main/res/xml/backup_rules.xml` and `data_extraction_rules.xml`, referenced by the manifest. This preserves the existing no-backup intent for local vehicle state across Android backup modes.
+- Documented the intentionally exported `CarAppService` with a narrow `tools:ignore="ExportedService"`; a custom permission was not added because the Android Auto host must bind to the service and no verified library permission contract was available. The existing `HostValidator` local-MVP boundary remains unchanged.
+
+### Verification evidence
+
+| Check | Result | Notes |
+|---|---|---|
+| Android unit tests / APK / lint | Passed | `android/gradlew.bat --offline --no-daemon --max-workers=2 testDebugUnitTest assembleDebug lintDebug`; `BUILD SUCCESSFUL` in 43 seconds, 48 actionable tasks. |
+| Lint issues | Passed | `lint-results-debug.txt` reports `No issues found.` The non-blocking SDK XML v4 compatibility warning remains in Gradle output. |
+| Current APK install | Passed | APK rebuilt from the quality changes; `adb install -r` returned `Success` on D: AVD `ev-jarvis-api35-d`. |
+| Current phone runtime | Passed with host recovery | AVD reached API 35 boot-complete; initial System UI ANR appeared, `Wait` recovered the surface, `MainActivity` remained alive/foreground, and the screenshot showed the manual/local UI. |
+| Current interaction | Passed | Tapped `SAVE LOCAL STATE`; screenshot `C:\Users\u937\AppData\Local\Temp\ev-jarvis-emulator-16-lintfix-save.png` showed `Saved as MANUAL_LOCAL`, `CURRENT_LOCAL_ESTIMATE`, and updated captured timestamp. |
+| Cleanup | Passed | Stopped the emulator started by this checkpoint; `adb devices` was empty and no emulator/DHU process remained after the bounded wait. |
+
+### Evidence boundary and next gate
+
+- This is local source/build/emulator-phone evidence only. It does not close DHU projection, real-device/vehicle, GitHub Android CI, Deepal live SOC/API, or 3-D asset gates.
+- No stage, commit, push, deploy, database/Supabase/Production access, dependency installation, or unapproved asset acquisition was performed.

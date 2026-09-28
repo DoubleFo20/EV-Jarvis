@@ -48,3 +48,9 @@ backend/src/generated/prisma/
 # Local-only generated tools
 /frontend/next-env.d.ts
 /backend/scripts/verify-auth-dev.ts
+
+# Android local build and SDK configuration
+/android/.gradle/
+/android/**/build/
+/android/**/.cxx/
+/android/local.properties

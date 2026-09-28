@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EV-Jarvis</string>
+    <string name="phone_title">EV-Jarvis Android Auto MVP</string>
+    <string name="phone_disclaimer">Manual/local state only. No Deepal OEM telemetry or live provider data is used.</string>
+    <string name="vehicle_profile_hint">Vehicle profile name</string>
+    <string name="manual_soc_hint">Manual SOC percent (0–100)</string>
+    <string name="manual_range_hint">Manual range (km)</string>
+    <string name="destination_hint">Destination or route context</string>
+    <string name="save_local_state">Save local state</string>
+    <string name="saved_manual_local">Saved as MANUAL_LOCAL</string>
+    <string name="status_summary">Source: %1$s\nFreshness: %2$s\nCaptured: %3$d\nCar surface: POI discovery and navigation handoff only</string>
+</resources>
