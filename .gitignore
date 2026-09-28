@@ -44,3 +44,7 @@ test-results/
 
 # Generated clients
 backend/src/generated/prisma/
+
+# Local-only generated tools
+/frontend/next-env.d.ts
+/backend/scripts/verify-auth-dev.ts

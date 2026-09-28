@@ -1,11 +1,11 @@
 # EV-JARVIS Project Rules
 
 > **Document ID:** DOC-001
-> **Version:** 1.0.0
+> **Version:** 1.2.0
 > **Status:** Draft
 > **Project:** EV-JARVIS
 > **Owner:** Project Manager
-> **Last Updated:** 2026-08-02
+> **Last Updated:** 2026-09-28
 
 ---
 
@@ -30,6 +30,7 @@
 17. Change Management
 18. Folder Structure
 19. AI Prompt Rules
+20. Cross-Agent Handoff
 
 ---
 
@@ -443,10 +444,26 @@ AI ทุกตัวต้อง
 
 ---
 
+# 20. Cross-Agent Handoff
+
+- Codex และ Antigravity รับช่วงแทนกันได้เฉพาะภายใน Task ที่ Project Owner อนุมัติและกำหนดขอบเขตไว้
+- ใช้กฎ one-writer-per-file/path: ในเวลาเดียวกันให้มี AI เพียงหนึ่งตัวเป็นผู้แก้ไขไฟล์หรือ path เดียวกัน แต่อนุญาตให้ subagents ทำงานพร้อมกันได้เมื่อได้รับมอบหมาย disjoint file/path ownership ที่ไม่ทับซ้อนกันอย่างชัดเจน
+- งานที่ใช้ไฟล์ร่วมกันหรือมี ownership ไม่ชัดเจนต้อง serialize; agent ต้องประกาศ path ที่รับผิดชอบ ตรวจ preflight ก่อนแก้ และหยุดรายงานทันทีเมื่อพบ overlap หรือ content conflict
+- การเปลี่ยน AI ผู้ทำงานไม่ถือเป็นการอนุมัติ Feature, Scope, Requirement, Database, Security Policy หรือ Architecture ใหม่ และไม่ลบล้าง Owner decision เดิม รวมถึง Owner decision สำหรับ Next.js SSR
+- `docs/01_Project_Management/HANDOFF.md` ใช้บันทึกสถานะและบริบทการทำงาน ไม่ใช่เอกสารอนุมัติหรือแหล่งเปลี่ยน Requirement
+- ก่อนแก้ไข ผู้รับช่วงต้องเทียบ HANDOFF กับ branch, commit, staged/unstaged diff, untracked files และ implementation จริง ห้ามทำซ้ำงานที่หลักฐานยืนยันว่าเสร็จแล้ว
+- หลังจบแต่ละ subtask ให้อัปเดต HANDOFF ก่อนเริ่ม subtask ถัดไป
+- เมื่อ Project Owner พิมพ์ “ส่งไม้ต่อ” ให้หยุดเริ่มงานใหม่ บันทึกสถานะและหลักฐานล่าสุด หยุดเฉพาะ process ที่ตนเริ่มและยังเขียนไฟล์เมื่อทำได้อย่างปลอดภัย แล้วรายงานว่างานพร้อมรับช่วงหรือยัง
+- งานนอกขอบเขตที่อนุมัติให้เสนอเหตุผลและขอ Owner approval ก่อนแก้ไข
+
+---
+
 # Revision History
 
 | Version | Date | Description |
 |----------|------------|----------------|
+| 1.2.0 | 2026-09-28 | Reconcile one-writer-per-file/path with approved disjoint subagent ownership; shared paths remain serialized |
+| 1.1.0 | 2026-09-27 | เพิ่มกติกาให้ Codex และ Antigravity รับช่วงเฉพาะ Task ที่กำหนด ใช้ผู้แก้ไฟล์ครั้งละหนึ่งตัว และบันทึก HANDOFF โดยไม่เปลี่ยน Owner decision หรือขยาย Scope |
 | 1.0.0 | 2026-08-02 | Initial Project Rules |
 
 # Sprint Verification Policy

@@ -1,9 +1,9 @@
 ---
 id: DOC-000
 title: Master Context
-version: 1.0.0
-last_updated: 2026-08-02
-status: Complete
+version: 1.2.0
+last_updated: 2026-09-28
+status: Review
 author: Documentation Architect
 ---
 
@@ -25,7 +25,8 @@ author: Documentation Architect
 - **Repository:** DoubleFo20/EV-Jarvis
 - **Version:** 1.0.0
 - **Status:** In Development
-- **Current Phase:** Requirements & Architecture Definition
+- **Current Phase:** Phase 2 — Sprint Implementation; Sprint 1 closure remains pending
+- **Current Frontend Decision:** Next.js 16 App Router with SSR, approved by the Project Owner on 2026-08-07; this decision does not authorize an architecture change
 - **Objective:** สร้างระบบผู้ช่วย AI ส่วนตัวระดับแนวหน้าสำหรับเจ้าของรถ EV ที่ผสานรวมข้อมูล Telemetry, สถานะแบตเตอรี่, ประวัติการชาร์จ, การบำรุงรักษา และการนำทาง เข้าไว้ในแพลตฟอร์มเดียว เพื่อเพิ่มความสะดวกสบาย ลดความกังวลเรื่องระยะทาง (Range Anxiety) และบริหารจัดการต้นทุนการใช้รถ EV ได้อย่างมีประสิทธิภาพสูงสุด
 
 # Documentation Status
@@ -41,12 +42,12 @@ author: Documentation Architect
 | **PRD** | `docs/02_Requirements/03_PRD.md` | Complete | Product Requirements Document กำหนดขอบเขตฟีเจอร์สำหรับ MVP |
 | **SRS** | `docs/02_Requirements/04_SRS.md` | Complete | Software Requirements Specification กำหนดรายละเอียดเชิงเทคนิคและมาตรฐาน |
 | **REQUIREMENTS** | `docs/02_Requirements/05_REQUIREMENTS.md` | Complete | รายละเอียด Requirement ระดับ Production-grade |
-| **Architecture** | `docs/03_Architecture/*` | Not Started | เอกสารการออกแบบสถาปัตยกรรมระบบ (System Architecture & Microservices) |
-| **Database** | `docs/03_Architecture/Database.md` | Not Started | การออกแบบโครงสร้างฐานข้อมูล (Database Schema, ER Diagram) |
-| **API** | `docs/03_Architecture/API.md` | Not Started | ข้อตกลงการเชื่อมต่อ API (API Contract & OpenAPI Specification) |
-| **Development** | `docs/04_Development/*` | Not Started | แนวทางการเขียนโค้ด โครงสร้างโปรเจกต์ และ Git Flow |
-| **Testing** | `docs/05_Testing/*` | Not Started | แผนการทดสอบและกรณีทดสอบ (Unit, Integration, E2E Test Plans) |
-| **Deployment** | `docs/06_Deployment/*` | Not Started | ขั้นตอนการติดตั้งและการนำขึ้นระบบจริง (CI/CD Pipeline & Infrastructure) |
+| **Architecture** | `docs/03_Architecture/*` | Baseline Complete | Architecture documents exist; see `PROJECT_PROGRESS.md` for current status |
+| **Database** | `docs/07_Database/*` | Sprint 1 Auth scope verified | Domain schema work remains outside Sprint 1 |
+| **API** | `docs/08_API/*` | Review | Auth specification exists; OpenAPI machine validation has not been run |
+| **Development** | `docs/04_Development/*` | Baseline Partial | `BACKEND_STRUCTURE.md` is intentionally empty and requires Owner approval before editing |
+| **Testing** | `docs/05_Testing/*` | Baseline Documented | Sprint 1 closure remains pending verification gaps |
+| **Deployment** | `docs/06_Deployment/*` | Baseline Documented | No Production deployment is recorded |
 
 # Current Statistics
 
@@ -86,22 +87,26 @@ EV-Jarvis/
 │   ├── 05_Testing/             (Test Strategy, QA Plans)
 │   ├── 06_Deployment/          (Infrastructure as Code, CI/CD)
 │   └── assets/                 (ภาพประกอบ, โลโก้, ไดอะแกรม)
-├── src/                        (Source Code - รอการสร้าง)
-├── tests/                      (Test Code - รอการสร้าง)
-├── scripts/                    (Utility Scripts - สำหรับ CI/CD)
+├── backend/                    (TypeScript API and authentication implementation)
+├── frontend/                   (Next.js 16 App Router SSR implementation)
+├── docs/                       (Project, architecture, implementation, and test documents)
+├── packages/                   (Shared packages)
+├── scripts/                    (Repository scripts)
 └── README.md                   (Project Landing Page)
 ```
 
 # Technology Stack
 
-ชุดเทคโนโลยีที่คาดการณ์และกำหนดไว้สำหรับระบบ EV-Jarvis:
+สถานะ implementation ที่ยืนยันได้ใน repository ปัจจุบัน: Frontend ใช้ Next.js 16 App Router แบบ SSR ตาม Owner decision; Backend มี TypeScript API และ Prisma สำหรับ persistence การระบุนี้เป็นการบันทึกสภาพจริง ไม่ใช่การอนุมัติเปลี่ยน Requirement หรือ Architecture เพิ่มเติม
+
+ชุดเทคโนโลยีที่กำหนดไว้และสถานะ implementation ปัจจุบันของ EV-Jarvis:
 
 - **Frontend:** 
   - Mobile App: React Native หรือ Flutter รองรับ iOS/Android
-  - Web Admin: React.js หรือ Next.js ร่วมกับ TailwindCSS
+  - Web Frontend: Next.js 16 App Router แบบ SSR ตาม Owner decision 2026-08-07
 - **Backend:** 
-  - Core Services: Go หรือ Node.js (TypeScript) สถาปัตยกรรม Modular Monolith
-  - Framework: Gin (Go) หรือ NestJS (Node.js)
+  - Core Services: Node.js (TypeScript) แบบ Modular Monolith ตาม implementation ปัจจุบัน
+  - Framework: Express ตาม implementation ปัจจุบัน
 - **Database:** 
   - Primary: PostgreSQL สำหรับเก็บข้อมูล Core Transaction และ User Data
   - Cache/Queue: Redis สำหรับ Session, Caching, และ Background Job Queue
@@ -116,22 +121,13 @@ EV-Jarvis/
 
 # Current Development Status
 
-สถานะการพัฒนาของโปรเจกต์ในระดับ Milestone ปัจจุบัน:
+สถานะปัจจุบัน ณ 2026-09-28 อ้างอิง `PROJECT_PROGRESS.md`, Sprint 1 plan และหลักฐานใน local repository/GitHub:
 
-- **Completed:** 
-  - เอกสารนโยบายและวิสัยทัศน์ (PROJECT_RULES, AI_AGENT_RULES, PRODUCT_VISION, MASTER_CONTEXT)
-  - ขอบเขตและความต้องการระบบแบบเต็มรูปแบบ (PRD, SRS, REQUIREMENTS)
-- **In Progress:** 
-  - เตรียมเข้าสู่ Phase 2 (Architecture Design)
-- **Next Document:** 
-  - เอกสาร System Architecture (การออกแบบระบบ)
-  - เอกสาร Database Schema (ERD และตาราง)
-  - เอกสาร API Contract (Endpoints & Payloads)
-- **Blocked:** 
-  - ไม่มี (สถานะปกติ โปรเจกต์ดำเนินไปตามแผน)
-- **Pending:** 
-  - การ Setup Project Repository
-  - การเริ่มต้นพัฒนา Frontend และ Backend
+- **Completed implementation:** Sprint 1 Milestone 2 authentication backend และ Milestone 3 Next.js SSR authentication flow มีหลักฐานการตรวจใน `PROJECT_PROGRESS.md`; database/Auth verification ที่บันทึกไว้จำกัดอยู่ที่ EV-JARVIS-DEV
+- **Current status:** Sprint 1 Closure Pending — local/disposable evidence และ GitHub CI evidence ผ่านตามที่บันทึกไว้; clean working tree/per-path disposition ยังเปิดอยู่
+- **Current handoff task:** `S1-CLOSE-11` remediation — ใช้ one-writer-per-file/path และอนุญาต disjoint subagent ownership เฉพาะ path ที่ไม่ทับซ้อน; shared files ต้อง serialize และ conflict ต้องหยุดรายงาน
+- **Repository state:** local `main` และ `origin/main` ตรงกันที่ `9fbc108`; GitHub Actions run `36379393726` จบ `success`. Phase A restore และ Phase B exact `.gitignore` rules สำเร็จ; เอกสาร Phase C ยังเป็น working-tree changes ตาม HANDOFF
+- **Not authorized by this status:** ห้ามตีความว่า Sprint 1 ปิดแล้วหรือเริ่ม Sprint 2 ได้
 
 # Dependency Chain
 
@@ -163,8 +159,9 @@ flowchart TD
     classDef inprogress fill:#fff3cd,stroke:#ffc107,stroke-width:2px;
     classDef pending fill:#e2e3e5,stroke:#6c757d,stroke-width:2px;
     
-    class PR,AIR,PV,PRD,SRS,REQ complete;
-    class ARCH,DB,API,DEV,TEST,DEPLOY pending;
+    class PR,AIR,PV,PRD,SRS,REQ,ARCH,DB complete;
+    class API,DEV,TEST inprogress;
+    class DEPLOY pending;
 ```
 
 # Current Working Rules
@@ -176,6 +173,7 @@ flowchart TD
 3. **Format & Metadata:** งานเอกสารต้องใช้ Markdown (.md) เท่านั้น และต้องมี YAML Frontmatter หรือ Metadata header (เช่น version, status, date) ที่ส่วนบนสุดของไฟล์เสมอ
 4. **Tool Constraints:** AI ห้ามสร้าง Script, Generator, PowerShell, Python หรือไฟล์ชั่วคราวเพื่อดำเนินการทำงาน ต้องใช้ความสามารถในการประมวลผลข้อความและส่งผลลัพธ์เป็น Markdown เท่านั้น
 5. **Quality Standard:** โค้ดและเอกสารต้องเป็น Production-grade เสมอ ครอบคลุมมุมมองทั้ง Functional, Security, Performance, และ Error Handling
+6. **Disjoint Agent Ownership:** Agent หนึ่งตัวเขียนได้เฉพาะ file/path ที่ได้รับมอบหมาย; subagents ทำงานพร้อมกันได้เมื่อ ownership ไม่ทับซ้อนกัน ส่วน shared files ต้องมีผู้เขียนหนึ่งตัวและ serialize
 
 # AI Execution Policy
 
@@ -206,10 +204,9 @@ Future AI agents MUST ปฏิบัติตามนโยบายดัง�
 
 # Current Roadmap
 
-- **Current Milestone (Phase 1):** Requirements & Architecture Definition
-  - สร้างความชัดเจนด้าน Product Vision, ขอบเขตของระบบ, Requirement ในระดับเทคนิค และ Architecture Design
-- **Next Milestone (Phase 2):** MVP Core Development
-  - เริ่มต้นพัฒนาระบบ Backend API, ฐานข้อมูล, และ Mobile App สำหรับฟีเจอร์หลัก (Authentication, Vehicle, Battery)
+- **Current Milestone:** Sprint 1 Closure Pending — GitHub CI verified; clean-tree/per-path disposition remains open
+  - ปิด clean-tree gap ตาม `docs/09_Implementation/04_SPRINT_1_PLAN.md` หลังได้รับ Owner disposition; ยังห้ามเริ่ม Android implementation ก่อน Sprint 1 closure
+- **Next Milestone:** ยังไม่เริ่ม; ต้องผ่าน Sprint 1 Definition of Done และได้รับ scope/Owner approval ตามกฎโครงการก่อน
 - **Long-term Milestone (Phase 3+):** Advanced Features & AI Integration
   - พัฒนาฟีเจอร์ Trip & Routing, Charging Analytics, ระบบ Automation และผสาน AI Assistant (EV-Jarvis) อย่างเต็มรูปแบบเพื่อยกระดับ UX
 
@@ -217,4 +214,6 @@ Future AI agents MUST ปฏิบัติตามนโยบายดัง�
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 1.2.0 | 2026-09-28 | Review | Codex | Reconcile current HEAD/GitHub CI evidence and document one-writer-per-file/path with disjoint subagent ownership |
+| 1.1.0 | 2026-09-27 | Review | Codex | ปรับสถานะปัจจุบันจาก requirements baseline ให้ตรงกับหลักฐาน Sprint 1, Owner-approved Next.js SSR, closure gaps และข้อจำกัดการรับช่วง |
 | 1.0.0 | 2026-08-02 | Complete | Documentation Architect | Initial MASTER_CONTEXT creation |

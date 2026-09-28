@@ -1,8 +1,8 @@
 ---
 id: DOC-033
 title: Sprint 1 Plan — Foundation & Authentication
-version: 1.2.0
-last_updated: 2026-08-14
+version: 1.4.0
+last_updated: 2026-09-28
 status: Review
 progress: Closure Pending
 author: Lead Software Engineer
@@ -109,15 +109,15 @@ references:
 
 ## 8. Verification Checklist
 
-- [x] ตรวจ branch, Git status และ post-push alignment; local `HEAD` ตรง `origin/main@e2cd0a7`
+- [x] ตรวจ branch, Git status และ post-push alignment; local `HEAD` ตรง `origin/main@9fbc108`
 - [x] ตรวจ environment contract และยืนยัน EV-JARVIS-DEV โดยไม่แสดงค่า secret
-- [ ] Backend reproducible install (`npm ci`) มีหลักฐาน — ยังไม่มี command evidence แยกเฉพาะ
+- [x] Backend reproducible install (`npm ci`) มีหลักฐาน — `S1-CLOSE-07` disposable Windows snapshot, exit 0 (486 packages added; npm audit warnings retained)
 - [x] Backend typecheck, lint, automated tests และ build ผ่านตาม pre-commit evidence
-- [ ] Frontend reproducible install (`npm ci`) มีหลักฐาน — ยังไม่มี command evidence แยกเฉพาะ
+- [x] Frontend reproducible install (`npm ci`) มีหลักฐาน — `S1-CLOSE-07` disposable Windows snapshot, exit 0 (400 packages added; npm audit warnings retained)
 - [x] Frontend typecheck, lint, automated tests และ build ผ่านตาม pre-commit evidence
 - [x] API/Auth contract tests สำหรับ FEAT-001 ถึง FEAT-004 ผ่าน
 - [x] Authentication negative tests สำหรับ missing/malformed header, invalid token/claims และ expired refresh token ผ่าน
-- [ ] Expired access-token case มี test evidence แยกเฉพาะ — SDK verification ปฏิเสธ provider error แต่ไม่มี test fixture ระบุ expiry โดยตรง
+- [x] Expired access-token case มี test evidence แยกเฉพาะ — isolated unit test maps Supabase's `JWT expired` provider error to HTTP 401; does not independently verify cryptographic expiry against live JWKS
 - [x] Authorization negative tests, approved-role checks และ Profile ownership/RLS checks ผ่าน
 - [x] Registration/Login/Profile UI flow ผ่านใน browser ที่กำหนด
 - [x] Migration ผ่าน independent review, มี rollback SQL และถูก apply เฉพาะ EV-JARVIS-DEV ตาม Owner approval
@@ -125,9 +125,9 @@ references:
 - [x] Secret scan และ `git diff --check` ผ่าน
 - [x] Bounded runtime/smoke test ผ่านและไม่มี process ค้าง
 - [x] PROJECT_PROGRESS และ verification evidence ปรับเป็น post-push state
-- [x] Project Owner อนุมัติ Sprint implementation commit/push แล้ว; remote อยู่ที่ `e2cd0a7`
-- [ ] GitHub CI status ผ่าน — repository ยังไม่มี workflow/status สำหรับ commit นี้
-- [ ] Working tree clean — tracked `dist`/`node_modules` และ unrelated baseline changes ยังต้องแก้แยกตาม Technical Debt
+- [x] Project Owner อนุมัติ Sprint implementation commit/push แล้ว; current remote `origin/main` อยู่ที่ `9fbc108` และมี CI run จริงตามรายการถัดไป
+- [x] GitHub CI status ผ่าน — GitHub Actions run [36379393726](https://github.com/DoubleFo20/EV-Jarvis/actions/runs/36379393726) completed `success` for pushed commit `9fbc1080aee5f6b56721326a37b4fa789a06c219` on `main`
+- [ ] Working tree clean — หลัง Phase A/B มี 7 tracked modified paths และ 2 untracked documents; local-only generated files 2 รายการยังอยู่บน disk แต่ถูก ignore แบบ exact path และยังต้องมี pre-commit review
 
 ## 9. Risks and Mitigation
 
@@ -177,6 +177,9 @@ references:
 
 | Version | Date | Status | Author | Change Summary |
 |---|---|---|---|---|
+| 1.5.0 | 2026-09-28 | Review | Codex | Record S1-CLOSE-11 Phase A/B restoration and exact-ignore evidence; retain documentation/clean-tree gate pending pre-commit approval |
+| 1.4.0 | 2026-09-28 | Review | Codex | Record actual GitHub Actions success for commit `9fbc108`; retain the clean-working-tree gate as pending |
+| 1.3.0 | 2026-09-28 | Review | Codex | Reconcile reproducible-install and isolated expired-access-token evidence from `S1-CLOSE-07`; retain GitHub CI and clean-tree gaps as pending |
 | 1.2.0 | 2026-08-14 | Review | Codex | Reconcile checklist จากหลักฐาน post-push โดยไม่อ้างผล reproducible install, expired access-token test หรือ CI ที่ยังไม่มี |
 | 1.1.0 | 2026-08-07 | Approved | Project Owner / Codex | บันทึก Owner decision สำหรับ Next.js SSR และผล verification ของ Milestone 3 |
 | 1.0.0 | 2026-08-05 | Review | Lead Software Engineer | สร้างแผน Sprint 1, acceptance criteria, DoD, verification, risks, rollback และ owner decision gate โดยยังไม่เริ่ม production feature |
