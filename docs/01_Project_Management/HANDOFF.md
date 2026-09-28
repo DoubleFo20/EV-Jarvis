@@ -1,7 +1,7 @@
 ---
 id: DOC-034
 title: EV-JARVIS Cross-Agent Handoff
-version: 3.0.0
+version: 3.2.0
 last_updated: 2026-09-28
 status: Review
 owner: Project Owner
@@ -19,12 +19,12 @@ references:
 
 ## 1. Handoff Status
 
-- **Updated:** 2026-09-28 (S1-CLOSE-12 pre-commit approval and local commit preparation)
+- **Updated:** 2026-09-28 (S1-CLOSE-14 Sprint 1 documentation closure)
 - **Current worker:** Codex
-- **Task status:** `S1-CLOSE-12` pre-commit verification in progress — Owner approved a local commit of the exact Phase C set; push remains held. Sprint 1 remains Closure Pending.
-- **Task ID:** `S1-CLOSE-12` — Verify and locally commit the approved `.gitignore` and eight-document reconciliation set
+- **Task status:** `S1-CLOSE-14` complete — `PROJECT_PROGRESS.md` and `04_SPRINT_1_PLAN.md` now reconcile the verified `f24d1fc`/run `36382091960` evidence; the approved local documentation closure commit is created but not pushed.
+- **Task ID:** `S1-CLOSE-14` — Record Sprint 1 closure after verified post-push CI and clean-tree checkpoint
 - **Running processes:** No dependency install, build, verifier, Android, emulator, DHU, vehicle, provider, database, or production process was started by this task. No process remains associated with this task.
-- **Next task candidate:** After the local commit, separate Owner decision is required for any push; do not stage unrelated paths or start Android implementation before Sprint 1 closure.
+- **Next task candidate:** Continue the next read-only Android MVP readiness task under the already approved architecture; handle the local documentation push as a separate Owner decision and do not claim remote CI for it until pushed and verified.
 
 ## 2. Goal and Scope
 
@@ -42,9 +42,9 @@ This section records the original handoff task scope. Later, explicit bounded Ow
 
 - **Working directory:** `D:\xampp\htdocs\EV-Jarvis`
 - **Branch:** `main`
-- **Local HEAD:** `9fbc1080aee5f6b56721326a37b4fa789a06c219` — `ci: add bounded sprint 1 verification workflow`
-- **Local `origin/main` tracking ref:** `9fbc1080aee5f6b56721326a37b4fa789a06c219`
-- **GitHub branch state:** Push to `origin/main` succeeded; GitHub Actions run `36379393726` for this commit completed `success`. This does not prove a clean working tree, Android/device/vehicle behavior, OEM telemetry, or provider availability.
+- **Local HEAD:** S1-CLOSE-14 documentation closure commit (`docs: close sprint 1 verification record`), created locally and not pushed.
+- **Local `origin/main` tracking ref:** `f24d1fc27f81341c0f72ae19924def7191d68334`
+- **GitHub branch state:** Push to `origin/main` succeeded; GitHub Actions run `36382091960` for remote commit `f24d1fc` completed `success` with backend/frontend jobs passed. This does not prove a local-only documentation commit, Android/device/vehicle behavior, OEM telemetry, or provider availability.
 - **Staged changes before this task:** None.
 
 ## 4. Work Completed and Remaining
@@ -122,6 +122,8 @@ These paths were already dirty or untracked before this documentation task; they
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 3.1.0 | 2026-09-28 | Review | Codex | Record push of `f24d1fc`, GitHub Actions run `36382091960` success for both jobs, and post-push Sprint 1 closure assessment |
+| 3.2.0 | 2026-09-28 | Review | Codex | Record S1-CLOSE-14 Sprint 1 closure documentation commit locally; keep its push separate and preserve the next Android readiness task |
 | 3.0.0 | 2026-09-28 | Review | Codex | Record separate pre-commit approval for the exact `.gitignore` plus eight-document set; local commit is allowed but push remains held |
 | 2.9.0 | 2026-09-28 | Review | Codex | Record S1-CLOSE-11 bounded Phase A generated/dependency restoration, Phase B exact ignore rules, and Phase C documentation reconciliation; stop before pre-commit approval |
 | 2.8.0 | 2026-09-28 | Review | Codex | Record approved workflow/test commit `9fbc108`, verified GitHub Actions run `36379393726` success, and reduce Sprint 1 remaining gate to clean-tree disposition |
@@ -850,3 +852,79 @@ No other path was edited by Phase C. The nine Phase A targets were restored to `
 
 - No dependency install, build, test, verifier execution, database/Supabase/Production access, Android project/toolchain, emulator/DHU, vehicle, provider, merge, or push is part of this checkpoint.
 - The commit must not include the nine Phase A restored artifacts, the two ignored local-only files, or any path outside the exact set above.
+
+## Current Continuation Record — S1-CLOSE-13
+
+### Goal and authorization
+
+- **Goal:** Push the approved local commit `f24d1fc` to `origin/main`, verify the GitHub Actions run for that exact SHA, and reassess Sprint 1 evidence without starting Android work.
+- **Owner authorization:** The current Owner message explicitly authorizes `git push f24d1fc` to `origin/main` and verification of the resulting GitHub Actions run. No further commit, merge, deploy, database/Supabase, provider, OEM, Android, emulator, DHU, or vehicle action was authorized.
+
+### Push and GitHub result
+
+- Pre-push preflight passed: branch `main`, full HEAD `f24d1fc27f81341c0f72ae19924def7191d68334`, no staged paths, local tracking ref `9fbc1080aee5f6b56721326a37b4fa789a06c219`.
+- `git push origin main` passed: `9fbc108..f24d1fc main -> main`.
+- GitHub Actions run [36382091960](https://github.com/DoubleFo20/EV-Jarvis/actions/runs/36382091960) matched `head_sha=f24d1fc27f81341c0f72ae19924def7191d68334`, event `push`, `status=completed`, `conclusion=success`.
+- Jobs passed:
+  - `Backend build, typecheck, and tests` — completed/success
+  - `Frontend build, typecheck, and tests` — completed/success
+
+### Sprint 1 closure assessment
+
+| Evidence layer | Result | Boundary |
+|---|---|---|
+| Local disposable verification | Passed as recorded in `S1-CLOSE-07` | Windows disposable snapshot only; not emulator/DHU/vehicle evidence. |
+| GitHub CI for current pushed commit | Passed | Run `36382091960` matched `f24d1fc`; no claim beyond workflow jobs. |
+| Post-push working tree | Passed at pre-checkpoint snapshot | `git status --short --branch` showed `## main...origin/main` with no visible changes and no staged paths before this HANDOFF update. Ignored local-only files remained on disk by design. |
+| Android/emulator/DHU/real vehicle/OEM/provider | Not run or not available | No Android implementation, device, car, live provider call, or OEM telemetry claim. |
+
+- The technical Sprint 1 verification evidence is now complete at the post-push `f24d1fc` snapshot: local evidence, current GitHub CI, and visible clean working tree all passed.
+- This HANDOFF update itself is now a new modified tracked path, so the repository is intentionally not being reported as clean after the checkpoint edit. Formal Sprint 1 closure requires committing this checkpoint and reconciling the Sprint Plan/PROJECT_PROGRESS status without silently changing requirements.
+- Android implementation remains blocked until that documentation closure checkpoint is committed and Sprint 1 is formally marked closed.
+
+### Verification performed
+
+| Command / inspection | Result | Notes |
+|---|---|---|
+| HEAD/branch/staged preflight | Passed | Confirmed `main`, HEAD `f24d1fc`, and no staged paths. |
+| `git push origin main` | Passed, exit 0 | Remote advanced from `9fbc108` to `f24d1fc`. |
+| GitHub Actions run query | Passed | Exact current SHA matched run `36382091960`, completed/success. |
+| GitHub job query | Passed | Backend and frontend jobs both completed/success. |
+
+### Next gate
+
+- Separate Owner approval is required to commit this post-push HANDOFF checkpoint and update Sprint 1 Plan/PROJECT_PROGRESS to formal closure status.
+- Do not push any new commit or start Android implementation without that next explicit approval.
+
+## Current Continuation Record — S1-CLOSE-14
+
+### Goal and bounded authorization
+
+- **Goal:** Reconcile the Sprint 1 closure documents after the verified `f24d1fc` push and create one local documentation commit.
+- **Owner authorization:** The latest `Proceed` was interpreted as approval for the previously described local documentation closure only: update `PROJECT_PROGRESS.md`, `04_SPRINT_1_PLAN.md`, and this `HANDOFF.md`, then commit those three paths. It does not authorize a new push, merge, deploy, Android implementation, or any change outside these documents.
+
+### Documentation result
+
+- `PROJECT_PROGRESS.md` now records Sprint 1 Auth closure evidence, the `f24d1fc` remote state, GitHub Actions run `36382091960`, and the separate push gate for this documentation commit.
+- `04_SPRINT_1_PLAN.md` now records `status: Complete` / `progress: Complete`, the verified post-push checklist, and the evidence boundary excluding Android, emulator/DHU, real vehicle, OEM telemetry, and provider-live behavior.
+- This HANDOFF records the same evidence and preserves the older continuation records as historical evidence; no requirement, architecture, or historical result was silently changed.
+
+### Local commit and remote boundary
+
+- Created one local commit with subject `docs: close sprint 1 verification record`; the exact local SHA is the current `HEAD` after this checkpoint.
+- No new push was performed. `origin/main` remains `f24d1fc27f81341c0f72ae19924def7191d68334`, and no GitHub Actions result is claimed for the local documentation commit.
+- The two exact-ignored local-only files remain on disk, the nine Phase A generated/dependency paths remain restored to `HEAD`, and the verifier script was not run.
+
+### Verification
+
+| Check | Result | Notes |
+|---|---|---|
+| Exact documentation scope | Passed | Only `PROJECT_PROGRESS.md`, `04_SPRINT_1_PLAN.md`, and `HANDOFF.md` were changed for S1-CLOSE-14. |
+| `git diff --check` / staged check | Passed | No whitespace errors reported. |
+| Local commit | Passed | One documentation-only commit; no generated, dependency, source, Android, or workflow path included. |
+| Post-commit working tree | Passed | No visible uncommitted or staged path; exact ignored local-only files preserved. |
+
+### Next gate
+
+- Separate push approval is required for this local documentation commit. If pushed, query the resulting GitHub Actions run before treating that remote documentation commit as CI-verified.
+- The next independent task may inspect Android MVP readiness under the approved architecture; Android implementation and any emulator/DHU/vehicle/OEM/SOC claim still require their own evidence and must not be inferred from Sprint 1 CI.

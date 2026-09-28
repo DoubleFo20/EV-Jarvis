@@ -1,7 +1,7 @@
 ---
 id: DOC-006
 title: Project Progress
-version: 1.7.0
+version: 1.8.0
 last_updated: 2026-09-28
 status: Active
 author: Project Management Office (PMO)
@@ -16,15 +16,15 @@ author: Project Management Office (PMO)
 - **Phase:** Phase 2 - Sprint Implementation
 
 # 3. Current Milestone
-- **Milestone:** Sprint 1 Closure Pending — GitHub CI verified; clean-tree disposition remains open
+- **Milestone:** Sprint 1 Complete — post-push evidence verified; closure documentation recorded locally
 
 # 4. Overall Progress (%)
-- **Progress:** Sprint 1 Auth implementation และ GitHub Actions workflow มีหลักฐานแล้ว; commit `9fbc108` ถูก push ไป `origin/main` และ run `36379393726` จบ `success`. Sprint 1 ยัง Closure Pending เฉพาะ clean-tree/per-path disposition gap.
+- **Progress:** Sprint 1 Auth implementation, local disposable verification, visible clean-tree checkpoint และ GitHub Actions มีหลักฐานครบตาม scope. Commit `f24d1fc` ถูก push ไป `origin/main`; run `36382091960` จบ `success` สำหรับ backend/frontend. เอกสาร closure ถูก reconcile และบันทึกใน local-only documentation commit ของ `S1-CLOSE-14`; ยังไม่มี Android, emulator/DHU, รถจริง, OEM telemetry หรือ provider-live evidence.
 
 # 5. Documentation Status
 
 ## Documentation Folders Status
-- 🟡 01_Project_Management : ACTIVE — `PROJECT_PROGRESS.md` อยู่ระหว่าง closure remediation
+- 🟡 01_Project_Management : ACTIVE — Sprint 1 closure ถูกบันทึกแล้ว; งานเอกสารโครงการอื่นยังคงสถานะเดิม
 - ✅ 02_Requirements : BASELINE COMPLETE
 - ✅ 03_Architecture : BASELINE COMPLETE
 - 🟡 04_Development : BASELINE PARTIAL — `BACKEND_STRUCTURE.md` เป็นไฟล์ว่างโดยตั้งใจและต้องมี Owner approval ก่อนแก้
@@ -32,7 +32,7 @@ author: Project Management Office (PMO)
 - ✅ 06_Deployment : BASELINE DOCUMENTED — ยังไม่มี Production deployment
 - 🟡 07_Database : SPRINT 1 AUTH SCOPE VERIFIED — domain schema ที่เหลือเป็นงาน Sprint ถัดไป
 - 🟡 08_API : REVIEW — API Specification/OpenAPI remediation ยังไม่อนุมัติและยังไม่ได้ทำ OpenAPI machine validation
-- 🟡 09_Implementation : REVIEW / CLOSURE PENDING
+- ✅ 09_Implementation : SPRINT 1 CLOSURE RECORDED — remote documentation checkpoint ยังไม่ถูก push
 
 ## Files
 | Document | Description |
@@ -69,7 +69,7 @@ author: Project Management Office (PMO)
 | `PROJECT_PROGRESS.md` | รายงานความคืบหน้าของโปรเจกต์ |
 | `01_API_SPECIFICATION.md` | Auth API contract remediation สถานะ Review |
 | `03_OPENAPI.md` | Auth OpenAPI documentation remediation; machine validation ยังไม่ได้รัน |
-| `04_SPRINT_1_PLAN.md` | Sprint verification reconciliation สถานะ Closure Pending |
+| `04_SPRINT_1_PLAN.md` | Sprint 1 closure recorded; remote documentation checkpoint remains separate |
 | `TECHNICAL_DEBT.md` | Technical debt register สถานะ Active |
 
 # 7. Pending Documents
@@ -77,22 +77,22 @@ author: Project Management Office (PMO)
 |---|---|
 
 # 8. Current Active Task
-- `S1-CLOSE-11` — Phase A restored nine generated/dependency artifacts, Phase B preserved and root-ignored two local-only files, and Phase C reconciles only the eight approved documents; no stage/commit/push
+- `S1-CLOSE-14` — reconcile post-push Sprint 1 closure evidence in `PROJECT_PROGRESS.md`, `04_SPRINT_1_PLAN.md`, and `HANDOFF.md`, then create the approved local documentation commit; push remains a separate decision
 
 # 9. Next Recommended Task
-- รอ separate pre-commit approval หลังตรวจ exact diff ของ Phase C; Sprint 1 ยัง Closure Pending และห้ามเริ่ม Android implementation ก่อนปิด gate
+- ดำเนิน `ANDROID-MVP-READINESS-01`/งาน readiness ถัดไปภายใต้ architecture ที่อนุมัติแล้ว; ขอ separate push approval สำหรับ local documentation closure commit และห้ามอ้าง CI ของ commit นั้นจนกว่าจะ push/verify จริง
 
 # 10. Current Branch
 - `main`
 
 # 11. Latest Commit
-- Local `HEAD`: `9fbc1080aee5f6b56721326a37b4fa789a06c219` (`ci: add bounded sprint 1 verification workflow`)
-- Local tracking ref `origin/main`: `9fbc1080aee5f6b56721326a37b4fa789a06c219`; live GitHub Actions run `36379393726` completed `success`.
+- Remote `origin/main`: `f24d1fc27f81341c0f72ae19924def7191d68334` (`docs: reconcile sprint 1 governance and handoff`); GitHub Actions run `36382091960` completed `success`.
+- Local `HEAD`: S1-CLOSE-14 documentation closure commit created locally and not pushed; no GitHub CI result is claimed for this local-only commit.
 
 # 12. Repository Status
-- **Status:** Branch `main` ตรงกับ `origin/main` ที่ `9fbc108`; หลัง Phase A/B มี 7 tracked modified paths (`.gitignore` และเอกสาร 6 ไฟล์) และ 2 untracked documents (`CODEx_CONTEXT.md`, `HANDOFF.md`). `frontend/next-env.d.ts` และ `backend/scripts/verify-auth-dev.ts` ยังอยู่บน disk แต่ถูก root `.gitignore` แบบ exact path
-- ไม่มี staged changes; generated/dependency artifacts ใน Phase A ถูก restore ตาม Owner approval และ verifier script ไม่ถูกเรียกใช้
-- Remote alignment ผ่านการตรวจด้วย push และ GitHub Actions run จริงแล้ว; ห้ามใช้ผลนี้อ้างว่า clean working tree ผ่าน
+- **Status:** หลัง post-push checkpoint ของ `f24d1fc` working tree แสดงผลสะอาดและ `main` ตรงกับ `origin/main`; S1-CLOSE-14 เปลี่ยนเฉพาะเอกสาร closure สามไฟล์และสร้าง local-only commit โดยไม่ push
+- ไม่มี visible uncommitted หรือ staged path หลัง local commit; `frontend/next-env.d.ts` และ `backend/scripts/verify-auth-dev.ts` ยังอยู่บน disk และถูก ignore ด้วย exact root rules; generated/dependency artifacts ใน Phase A ยังคงตรง `HEAD` และ verifier script ไม่ถูกเรียกใช้
+- Remote alignment และ GitHub Actions run ถูกตรวจจริงแล้ว; ผล CI นี้ใช้กับ `f24d1fc` เท่านั้น และไม่ครอบคลุม local-only documentation commit, Android, emulator/DHU, รถจริง หรือ OEM telemetry
 
 # 13. Architecture Status
 - Approved with Next.js 16 App Router SSR override for Frontend (Owner decision 2026-08-07)
@@ -105,16 +105,16 @@ author: Project Management Office (PMO)
 - ยังไม่ได้รัน OpenAPI machine validation หรือ validate bundled machine-readable specification จึงห้ามอ้างว่า OpenAPI validation ผ่าน
 
 # 16. Backend Status
-- Sprint 1 Auth backend scope ถูก implement และมีหลักฐาน claims/JWKS กับ Auth/RBAC tests; สถานะนี้ไม่เท่ากับการปิด Sprint อย่างเป็นทางการ
+- Sprint 1 Auth backend scope ถูก implement และมีหลักฐาน claims/JWKS กับ Auth/RBAC tests; Sprint 1 closure ถูกบันทึกแล้วโดยไม่ขยายไปยัง Android หรือ vehicle telemetry
 
 # 17. Frontend Status
-- Next.js SSR Auth scope ถูก implement: Register, Confirm, Login, Dashboard, Profile/RLS, Refresh และ Logout; Sprint closure ยัง Pending
+- Next.js SSR Auth scope ถูก implement: Register, Confirm, Login, Dashboard, Profile/RLS, Refresh และ Logout; Sprint 1 closure evidence และ post-push CI ถูกตรวจแล้ว
 
 # 18. AI Module Status
 - Not Started
 
 # 19. Testing Status
-- Frontend/backend build, typecheck, lint, automated tests, runtime smoke และ EV-JARVIS-DEV live Auth flow มีหลักฐานผ่านก่อน commit; `S1-CLOSE-07` เพิ่ม disposable local evidence สำหรับ reproducible install, Prisma validation/build/typecheck/lint/test; GitHub Actions run `36379393726` สำหรับ commit `9fbc108` จบ `success`. ผลนี้ไม่ครอบคลุม clean working tree, emulator/DHU, รถจริง หรือ OEM telemetry
+- Frontend/backend build, typecheck, lint, automated tests, runtime smoke และ EV-JARVIS-DEV live Auth flow มีหลักฐานผ่านก่อน commit; `S1-CLOSE-07` เพิ่ม disposable local evidence สำหรับ reproducible install, Prisma validation/build/typecheck/lint/test; GitHub Actions run `36382091960` สำหรับ commit `f24d1fc` จบ `success` ทั้ง backend และ frontend. ผลนี้ไม่ครอบคลุม local-only documentation commit, emulator/DHU, รถจริง หรือ OEM telemetry
 
 # 20. Deployment Status
 - Not Started
@@ -128,12 +128,12 @@ author: Project Management Office (PMO)
 - Hosted DEV email quota อาจ rate-limit การทดสอบ registration; ห้าม retry loop และใช้ custom SMTP เฉพาะเมื่อ Owner อนุมัติ
 - Destructive DEV Auth verifier ต้องผ่าน environment name, approved project-ref fingerprint และ explicit opt-in gate ทุกครั้ง
 - Phase A restored `backend/dist/*` 8 paths และ `backend/node_modules/.package-lock.json` ให้ตรง `HEAD`; ห้าม restore/clean path อื่นโดยไม่มี approval ใหม่
-- GitHub Actions workflow ถูก track/push แล้วและ run `36379393726` ผ่าน; ห้ามสรุป clean-tree จาก CI result และห้ามอ้าง Android/emulator/รถจริงจาก run นี้
+- GitHub Actions workflow ถูก track/push แล้วและ run `36382091960` ผ่านสำหรับ `f24d1fc`; ห้ามสรุป Android/emulator/รถจริง/OEM telemetry จาก run นี้
 
 # 23. Blockers
 - ไม่มี Sprint 1 implementation blocker
-- Sprint 1 formal closure ยัง Pending เพราะ Phase C ยังมี 7 tracked modified paths และ 2 untracked documents; GitHub CI run `36379393726` ผ่านแล้ว. Backend/Frontend `npm ci` และ isolated expired access-token mapping test มี local disposable evidence แล้ว แต่ไม่ใช่ live JWKS evidence
-- Owner อนุมัติ stage/commit/push เฉพาะ workflow และ expired-token test ตาม `S1-CLOSE-09`; เอกสารและไฟล์ค้างอื่นยังไม่ถูก stage ใน commit นี้
+- Technical Sprint 1 closure evidence complete: local disposable evidence, GitHub run `36382091960` for `f24d1fc`, and the visible clean-tree checkpoint all passed. The local documentation closure commit from `S1-CLOSE-14` is not yet pushed and therefore has no GitHub result.
+- Android implementation remains subject to the existing Sprint 1 closure and architecture gates, which are now recorded as satisfied for the approved Auth scope; the documentation push is a separate publication decision, not a new requirement.
 - การเปลี่ยน `docs/04_Development/BACKEND_STRUCTURE.md` ต้องมี Owner approval โดยตรง
 
 ## Cross-agent Handoff Rules
@@ -154,21 +154,21 @@ author: Project Management Office (PMO)
 - Pre-commit secret scan, scoped review และ `git diff --check` ผ่านตาม evidence ที่บันทึกไว้
 - Sprint implementation commit `78f6048` และ corrective documentation commit `e2cd0a7` ถูก push ไป `origin/main` แล้ว
 - Historical Milestone 3 post-push audit ยืนยัน local `HEAD` และ `origin/main` ตรงกันที่ `e2cd0a7`; commit เก่านั้นไม่มี CI result ที่ยืนยันได้
-- Current push ยืนยัน local `HEAD` และ `origin/main` ตรงกันที่ `9fbc108`; GitHub Actions run `36379393726` จบ `success`
+- Current push ยืนยัน `origin/main` ที่ `f24d1fc`; GitHub Actions run `36382091960` จบ `success`. Local S1-CLOSE-14 documentation commit ยังไม่ถูก push.
 
 # 24. Sprint 1 Closure Tasks
 
-ลำดับด้านล่างเป็น verification gaps ไม่ใช่การอนุมัติให้เริ่มแก้ code, dependency, CI หรือ Git; ให้กำหนด Task และขอ Owner approval แยกตามกฎก่อนเปลี่ยน scope:
+รายการด้านล่างเป็น Sprint 1 evidence/closure register; ไม่ได้อนุมัติให้แก้ code, dependency, CI หรือเริ่ม Android นอก scope:
 
 | Task | Description | Status |
 |---|---|---|
-| 1 | ตรวจและอนุมัติเอกสารส่งต่อ Codex/Antigravity | Ready for Owner review |
+| 1 | ตรวจและอนุมัติเอกสารส่งต่อ Codex/Antigravity | Recorded in current handoff |
 | 2 | Backend reproducible install (`npm ci`) evidence | Evidence recorded in `S1-CLOSE-07` (local disposable snapshot) |
 | 3 | Frontend reproducible install (`npm ci`) evidence | Evidence recorded in `S1-CLOSE-07` (local disposable snapshot) |
 | 4 | Explicit expired access-token test evidence | Isolated provider-error-to-401 mapping evidence recorded; live JWKS expiry remains unverified |
-| 5 | GitHub CI evidence | Passed — run `36379393726` / commit `9fbc108` |
-| 6 | Resolve tracked generated/dependency artifacts and clean working tree | Phase A restore complete for 9 approved paths; Phase B exact-ignore complete for 2 local-only files; Phase C documents remain pending pre-commit approval |
-| 7 | Review local nanoid security commit and establish GitHub remote alignment | Passed for current push; `main` and `origin/main` at `9fbc108` |
+| 5 | GitHub CI evidence | Passed — run `36382091960` / commit `f24d1fc` |
+| 6 | Resolve tracked generated/dependency artifacts and clean working tree | Passed at the `f24d1fc` post-push snapshot; Phase A restore, Phase B exact-ignore, and S1-CLOSE-14 local documentation closure recorded |
+| 7 | Review local nanoid security commit and establish GitHub remote alignment | Passed for current push; `origin/main` at `f24d1fc`; local documentation commit remains unpushed |
 
 # 25. Progress Timeline
 
@@ -210,12 +210,13 @@ gantt
 
 - งานปัจจุบันคือเตรียมเอกสารส่งต่อระหว่าง Codex และ Antigravity ภายใน Task ที่กำหนด; ผู้แก้ไฟล์ได้ครั้งละหนึ่ง AI และการเปลี่ยน AI ไม่ขยาย scope หรือเปลี่ยน architecture
 - `MASTER_CONTEXT.md` สรุปภาพรวม ส่วน `HANDOFF.md` บันทึก branch, local changes, งานเสร็จ/ค้าง และผลตรวจล่าสุด; ผู้รับช่วงต้องเทียบกับ Git และ implementation จริงก่อนแก้
-- เอกสารโครงการยังมีรายการ Review และ Sprint 1 ยังมี verification gaps; ห้ามอ้างว่าทุกเอกสารผ่าน validation หรือ Sprint 1 ปิดแล้ว
+- เอกสารโครงการบางส่วนยังมีสถานะ Review และ OpenAPI machine validation ยังไม่ได้ทำ; Sprint 1 closure เป็นเฉพาะ Auth scope ที่มีหลักฐาน ห้ามอ้างว่าทุกเอกสารหรือ Android/vehicle scope ผ่านแล้ว
 
 # 28. Revision History
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 1.8.0 | 2026-09-28 | Active | Codex | Record post-push `f24d1fc`/run `36382091960` evidence and local Sprint 1 documentation closure checkpoint; keep push as a separate gate |
 | 1.7.0 | 2026-09-28 | Active | Codex | Record S1-CLOSE-11 Phase A/B/C scope, exact ignored local paths, restored artifacts, and remaining pre-commit gate |
 | 1.6.0 | 2026-09-28 | Active | Codex | Record pushed commit `9fbc108`, GitHub Actions run `36379393726` success, and reduce Sprint 1 remaining gap to clean-tree disposition |
 | 1.5.0 | 2026-09-28 | Active | Codex | บันทึกหลักฐาน disposable local verification และ reconcile Sprint 1 checklist โดยคง GitHub CI/clean-tree gaps เป็น Pending |
