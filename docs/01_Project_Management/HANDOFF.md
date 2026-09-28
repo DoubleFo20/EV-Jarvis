@@ -1,7 +1,7 @@
 ---
 id: DOC-034
 title: EV-JARVIS Cross-Agent Handoff
-version: 4.8.0
+version: 4.9.0
 last_updated: 2026-09-28
 status: Review
 owner: Project Owner
@@ -19,12 +19,12 @@ references:
 
 ## 1. Handoff Status
 
-- **Updated:** 2026-09-28 (ANDROID-MVP-CI-20 GitHub Android SDK setup remediation)
+- **Updated:** 2026-09-28 (ANDROID-MVP-CI-20 GitHub Android CI success)
 - **Current worker:** Codex
-- **Task status:** `ANDROID-MVP-CI-20` in progress / SDK setup now passes on GitHub, but Android verification stops because `android/gradlew` is not executable in Git; wrapper mode correction prepared.
+- **Task status:** `ANDROID-MVP-CI-20` complete / GitHub Actions passed Android unit tests, debug APK assembly, lint, and backend/frontend jobs on exact SHA `549b0ba`.
 - **Task ID:** `ANDROID-MVP-CI-20` — Remove obsolete Android SDK `tools` package request, rerun GitHub Android verification, and report exact job results
 - **Running processes:** No installer, sdkmanager, adb, emulator, DHU, verifier, provider, database, or production process remains associated with this checkpoint.
-- **Next task candidate:** Verify the new GitHub run against its exact head SHA. Keep DHU/physical-device, Deepal live SOC/API, and licensed/commissioned/generic 3-D asset gates separate.
+- **Next task candidate:** Resume acceptance at DHU/Android Auto projection; earlier DHU transport remains blocked by host/Google APIs image limitations. Keep physical-device/vehicle, Deepal live SOC/API, and licensed/commissioned/generic 3-D asset gates separate.
 
 ## 2. Goal and Scope
 
@@ -42,9 +42,9 @@ This section records the original handoff task scope. Later, explicit bounded Ow
 
 - **Working directory:** `D:\xampp\htdocs\EV-Jarvis`
 - **Branch:** `main`
-- **Local HEAD:** `4359362f2655a25c42dc2ff6e28a290dee6813dd` — `fix(android): avoid obsolete SDK tools package`.
-- **Local `origin/main` tracking ref:** `4359362f2655a25c42dc2ff6e28a290dee6813dd` at checkpoint start.
-- **GitHub branch state:** Run `36414601839` for exact SHA `4359362f2655a25c42dc2ff6e28a290dee6813dd` completed with backend/frontend success. Android setup and SDK package install passed, but `Run Android verification` failed with exit 126 (`./gradlew: Permission denied`) before Gradle. The tracked wrapper mode is `100644`; this does not prove Android CI, DHU/device/vehicle behavior, OEM telemetry, or provider availability.
+- **Local HEAD:** `549b0ba2a7aecb7a9e133910cd9d29f6b740baeb` — `fix(android): mark Gradle wrapper executable`.
+- **Local `origin/main` tracking ref:** `549b0ba2a7aecb7a9e133910cd9d29f6b740baeb` at checkpoint start.
+- **GitHub branch state:** Actions run `36414846654` completed `success` for exact SHA `549b0ba2a7aecb7a9e133910cd9d29f6b740baeb`; Android, backend, and frontend jobs all succeeded. Android ran `testDebugUnitTest assembleDebug lintDebug`. This does not prove DHU/device/vehicle behavior, OEM telemetry, or provider availability.
 - **Staged changes before this task:** None.
 
 ## 4. Work Completed and Remaining
@@ -122,6 +122,7 @@ These paths were already dirty or untracked before this documentation task; they
 
 | Version | Date | Status | Author | Change Description |
 |---|---|---|---|---|
+| 4.9.0 | 2026-09-28 | Complete / CI passed | Codex | Record exact GitHub run `36414846654` success on `549b0ba` across Android, backend, and frontend; set DHU/physical acceptance as next independent gate |
 | 4.8.0 | 2026-09-28 | In progress / Android CI retry | Codex | Record Android GitHub runs `36414200394` and `36414601839`; remove the obsolete SDK package request, then identify the wrapper executable-mode failure and prepare a targeted mode correction |
 | 4.1.0 | 2026-09-28 | Review / Owner decision needed | Codex | Record public Deepal API and 3-D asset research; retain manual/local MVP, reject unapproved reverse-engineered production integration, and separate licensed asset decision |
 | 4.2.0 | 2026-09-28 | Review / DHU host blocker | Codex | Add Android Auto descriptor metadata, verify normal-memory emulator phone runtime and APK metadata, attempt DHU transport, and record the Google APIs stub limitation without claiming DHU acceptance |
@@ -1365,8 +1366,9 @@ No other path was edited by Phase C. The nine Phase A targets were restored to `
 |---|---|---|
 | Exact first Android GitHub run | Failed | Run `36414200394`, SHA `97e21ecf81e29c61c59c45866ccecc265430849a`; backend/frontend passed; Android SDK setup failed before Gradle. |
 | Exact retry GitHub run | Failed before Gradle | Run `36414601839`, SHA `4359362f2655a25c42dc2ff6e28a290dee6813dd`; backend/frontend and SDK setup/package install passed; shell could not execute `./gradlew` (exit 126). |
-| Wrapper permission correction | Prepared locally | Git currently tracks `android/gradlew` as `100644`; targeted index change sets it to `100755`, the standard executable mode for this checked-in shell wrapper. |
+| Wrapper permission correction | Pushed as `549b0ba` | Git now tracks `android/gradlew` as `100755`, the standard executable mode for this checked-in shell wrapper. |
+| Exact passing GitHub run | Passed | Run `36414846654`, exact SHA `549b0ba2a7aecb7a9e133910cd9d29f6b740baeb`; Android `testDebugUnitTest assembleDebug lintDebug`, backend, and frontend jobs all succeeded. |
 | Android local verification | Previously passed | ANDROID-MVP-QUALITY-19 records offline unit tests, APK assembly, lint, and phone-emulator smoke; that is independent of GitHub CI. |
 
-- Review the exact mode-only change and HANDOFF update, push the bounded correction under the Owner’s explicit request to send Android source for real CI, then inspect each job by exact head SHA.
+- Android GitHub CI is now verified for this exact SHA; this does not certify a future commit until its own run is checked.
 - Keep DHU, real device/vehicle, Deepal live SOC/API, and licensed 3-D asset gates independent. Do not claim Android CI until its GitHub job actually succeeds.
